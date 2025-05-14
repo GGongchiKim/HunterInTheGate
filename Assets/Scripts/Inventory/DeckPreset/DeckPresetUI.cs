@@ -4,17 +4,19 @@ using UnityEngine.UI;
 using TMPro;
 using Inventory;
 using System.Linq;
+using UnityEngine.EventSystems;
 
-public class DeckPresetUI : MonoBehaviour
+public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("UI 참조")]
     [SerializeField] private Button headerButton;
     [SerializeField] private GameObject recipePanel;
     [SerializeField] private Button saveButton;
     [SerializeField] private Button cancelButton;
+    [SerializeField] private Button deleteButton;
     [SerializeField] private Transform recipeCardSlot;
     [SerializeField] private GameObject recipeCardPrefab;
-    [SerializeField] private TMP_InputField deckNameInput; 
+    [SerializeField] private TMP_InputField deckNameInput;
 
     private DeckData originalData;
     private DeckData currentData;
@@ -22,13 +24,23 @@ public class DeckPresetUI : MonoBehaviour
     private DeckPanelManager panelManager;
     private bool isOpen = false;
 
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+    private int originalSiblingIndex;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+
     public void Initialize(DeckData data, DeckPanelManager manager)
     {
         originalData = data.DeepCopy();
         currentData = data.DeepCopy();
         panelManager = manager;
 
-        deckNameInput.text = currentData.deckName; 
+        deckNameInput.text = currentData.deckName;
         RefreshRecipeCardUI();
     }
 
@@ -38,7 +50,7 @@ public class DeckPresetUI : MonoBehaviour
         currentData = new DeckData("New Deck");
         originalData = currentData.DeepCopy();
 
-        deckNameInput.text = currentData.deckName; 
+        deckNameInput.text = currentData.deckName;
         RefreshRecipeCardUI();
     }
 
@@ -81,18 +93,23 @@ public class DeckPresetUI : MonoBehaviour
 
     public void Save()
     {
-        currentData.deckName = deckNameInput.text; 
+        currentData.deckName = deckNameInput.text;
         originalData = currentData.DeepCopy();
     }
 
     public void Cancel()
     {
         currentData = originalData.DeepCopy();
-        deckNameInput.text = currentData.deckName; 
+        deckNameInput.text = currentData.deckName;
         RefreshRecipeCardUI();
         CloseRecipePanel();
         deckNameInput.interactable = false;
         panelManager?.OnAllDecksClosed();
+    }
+
+    public void Delete()
+    {
+        panelManager?.RemoveDeck(this);
     }
 
     private void RefreshRecipeCardUI()
@@ -142,5 +159,24 @@ public class DeckPresetUI : MonoBehaviour
     {
         isOpen = false;
         recipePanel.SetActive(false);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
+        originalSiblingIndex = transform.GetSiblingIndex();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / panelManager.GetCanvasScaleFactor();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        panelManager.ReorderDeck(this, transform.GetSiblingIndex(), originalSiblingIndex);
     }
 }

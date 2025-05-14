@@ -6940,6 +6940,7 @@ MonoBehaviour:
   newDeckButton: {fileID: 1910231059}
   recipeSlotParent: {fileID: 2064702760}
   deckPrefab: {fileID: 1761646402244978837, guid: d8e36a02f11505c42a00c408ff3c1f8c, type: 3}
+  rootCanvas: {fileID: 1300168909}
 --- !u!1 &1761921672
 GameObject:
   m_ObjectHideFlags: 0

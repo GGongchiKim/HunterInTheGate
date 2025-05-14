@@ -43,6 +43,7 @@ namespace Inventory
         [SerializeField] private Button newDeckButton;
         [SerializeField] private Transform recipeSlotParent;
         [SerializeField] private GameObject deckPrefab;
+        [SerializeField] private Canvas rootCanvas;
 
         private readonly List<GameObject> spawnedCards = new();
         private readonly List<DeckPresetUI> deckUIs = new();
@@ -161,7 +162,7 @@ namespace Inventory
         {
             if (currentOpenDeck != null)
             {
-                currentOpenDeck.AddCard(card.cardName); // cardId 기반으로 사용
+                currentOpenDeck.AddCard(card.cardName);
             }
             else
             {
@@ -175,14 +176,12 @@ namespace Inventory
             var deckUI = go.GetComponent<DeckPresetUI>();
             deckUI.InitializeEmpty(this);
             deckUIs.Add(deckUI);
-
             go.transform.SetSiblingIndex(recipeSlotParent.childCount - 2);
         }
 
         public void OnAnyDeckOpened(DeckPresetUI openedDeck)
         {
             currentOpenDeck = openedDeck;
-
             newDeckButton.gameObject.SetActive(false);
 
             foreach (var deck in deckUIs)
@@ -202,14 +201,39 @@ namespace Inventory
         public void OnAllDecksClosed()
         {
             currentOpenDeck = null;
-
-          
             newDeckButton.gameObject.SetActive(true);
 
-            foreach (var deck in deckUIs)
+            for (int i = 0; i < deckUIs.Count; i++)
             {
-                deck.gameObject.SetActive(true);
+                deckUIs[i].gameObject.SetActive(true);
+                deckUIs[i].transform.SetSiblingIndex(i);
             }
+        }
+
+        public void RemoveDeck(DeckPresetUI deck)
+        {
+            if (deckUIs.Contains(deck))
+            {
+                deckUIs.Remove(deck);
+                Destroy(deck.gameObject);
+            }
+        }
+
+        public void ReorderDeck(DeckPresetUI target, int newIndex, int oldIndex)
+        {
+            if (!deckUIs.Contains(target)) return;
+            deckUIs.Remove(target);
+            deckUIs.Insert(newIndex, target);
+
+            for (int i = 0; i < deckUIs.Count; i++)
+            {
+                deckUIs[i].transform.SetSiblingIndex(i);
+            }
+        }
+
+        public float GetCanvasScaleFactor()
+        {
+            return rootCanvas != null ? rootCanvas.scaleFactor : 1f;
         }
     }
 }
