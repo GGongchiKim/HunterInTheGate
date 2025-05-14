@@ -182,19 +182,34 @@ namespace Inventory
         public void OnAnyDeckOpened(DeckPresetUI openedDeck)
         {
             currentOpenDeck = openedDeck;
-            newDeckButton.interactable = false;
+
+            newDeckButton.gameObject.SetActive(false);
 
             foreach (var deck in deckUIs)
             {
-                if (deck != openedDeck)
-                    deck.CloseRecipePanel();
+                if (deck == openedDeck)
+                {
+                    deck.transform.SetSiblingIndex(0);
+                    deck.gameObject.SetActive(true);
+                }
+                else
+                {
+                    deck.gameObject.SetActive(false);
+                }
             }
         }
 
         public void OnAllDecksClosed()
         {
             currentOpenDeck = null;
-            newDeckButton.interactable = true;
+
+          
+            newDeckButton.gameObject.SetActive(true);
+
+            foreach (var deck in deckUIs)
+            {
+                deck.gameObject.SetActive(true);
+            }
         }
     }
 }

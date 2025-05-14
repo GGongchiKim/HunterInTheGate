@@ -14,7 +14,7 @@ public class DeckPresetUI : MonoBehaviour
     [SerializeField] private Button cancelButton;
     [SerializeField] private Transform recipeCardSlot;
     [SerializeField] private GameObject recipeCardPrefab;
-    [SerializeField] private TMP_Text deckNameText;
+    [SerializeField] private TMP_InputField deckNameInput; 
 
     private DeckData originalData;
     private DeckData currentData;
@@ -28,7 +28,7 @@ public class DeckPresetUI : MonoBehaviour
         currentData = data.DeepCopy();
         panelManager = manager;
 
-        deckNameText.text = currentData.deckName;
+        deckNameInput.text = currentData.deckName; 
         RefreshRecipeCardUI();
     }
 
@@ -38,7 +38,7 @@ public class DeckPresetUI : MonoBehaviour
         currentData = new DeckData("New Deck");
         originalData = currentData.DeepCopy();
 
-        deckNameText.text = currentData.deckName;
+        deckNameInput.text = currentData.deckName; 
         RefreshRecipeCardUI();
     }
 
@@ -47,6 +47,7 @@ public class DeckPresetUI : MonoBehaviour
         isOpen = !isOpen;
         recipePanel.SetActive(isOpen);
         Debug.Log($"덱 패널 {(isOpen ? "열림" : "닫힘")}");
+        deckNameInput.interactable = isOpen;
 
         if (isOpen)
         {
@@ -56,7 +57,6 @@ public class DeckPresetUI : MonoBehaviour
             }
             else
             {
-                // 🔼 덱을 가장 위로 이동
                 transform.SetSiblingIndex(0);
                 panelManager.OnAnyDeckOpened(this);
             }
@@ -81,13 +81,18 @@ public class DeckPresetUI : MonoBehaviour
 
     public void Save()
     {
+        currentData.deckName = deckNameInput.text; 
         originalData = currentData.DeepCopy();
     }
 
     public void Cancel()
     {
         currentData = originalData.DeepCopy();
+        deckNameInput.text = currentData.deckName; 
         RefreshRecipeCardUI();
+        CloseRecipePanel();
+        deckNameInput.interactable = false;
+        panelManager?.OnAllDecksClosed();
     }
 
     private void RefreshRecipeCardUI()
@@ -113,7 +118,7 @@ public class DeckPresetUI : MonoBehaviour
         Image icon = go.transform.Find("CardSprite")?.GetComponent<Image>();
 
         var cardData = PlayerInventory.Instance.GetAllCards()
-            .FirstOrDefault(c => c.cardName == cardId); // 고유 ID 있다면 cardId로 비교
+            .FirstOrDefault(c => c.cardName == cardId);
 
         if (cardData != null)
         {
