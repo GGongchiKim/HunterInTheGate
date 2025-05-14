@@ -26,12 +26,18 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private LayoutElement layoutElement;
     private int originalSiblingIndex;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        layoutElement = GetComponent<LayoutElement>();
+        if (layoutElement == null)
+        {
+            layoutElement = gameObject.AddComponent<LayoutElement>();
+        }
     }
 
     public void Initialize(DeckData data, DeckPanelManager manager)
@@ -52,6 +58,10 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         deckNameInput.text = currentData.deckName;
         RefreshRecipeCardUI();
+
+        isOpen = false;
+        recipePanel.SetActive(false);
+        deckNameInput.interactable = false;
     }
 
     public void OnClickHeaderToggle()
@@ -95,6 +105,9 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         currentData.deckName = deckNameInput.text;
         originalData = currentData.DeepCopy();
+        CloseRecipePanel();
+        deckNameInput.interactable = false;
+        panelManager?.OnAllDecksClosed();
     }
 
     public void Cancel()
@@ -165,18 +178,24 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
+        layoutElement.ignoreLayout = true;
         originalSiblingIndex = transform.GetSiblingIndex();
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / panelManager.GetCanvasScaleFactor();
+        Vector2 delta = eventData.delta / panelManager.GetCanvasScaleFactor();
+        rectTransform.anchoredPosition += new Vector2(0f, delta.y);
+        panelManager.UpdateDeckInsertVisual(this);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        layoutElement.ignoreLayout = false;
+
         panelManager.ReorderDeck(this, transform.GetSiblingIndex(), originalSiblingIndex);
     }
 }

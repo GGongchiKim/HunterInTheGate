@@ -4708,7 +4708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1270607313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6016,6 +6016,7 @@ GameObject:
   - component: {fileID: 1532951157}
   - component: {fileID: 1532951159}
   - component: {fileID: 1532951158}
+  - component: {fileID: 1532951160}
   m_Layer: 5
   m_Name: ArtifactSlot
   m_TagString: Untagged
@@ -6080,6 +6081,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532951156}
   m_CullTransparentMesh: 1
+--- !u!114 &1532951160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532951156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 150, y: 250}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1546103117
 GameObject:
   m_ObjectHideFlags: 0
@@ -6843,7 +6868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1731336218
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6940,6 +6965,7 @@ MonoBehaviour:
   newDeckButton: {fileID: 1910231059}
   recipeSlotParent: {fileID: 2064702760}
   deckPrefab: {fileID: 1761646402244978837, guid: d8e36a02f11505c42a00c408ff3c1f8c, type: 3}
+  spacerPrefab: {fileID: 3513069270159725608, guid: 1e7c4d946fc15704894e37a08d71e40a, type: 3}
   rootCanvas: {fileID: 1300168909}
 --- !u!1 &1761921672
 GameObject:
@@ -8439,6 +8465,7 @@ GameObject:
   - component: {fileID: 1910231061}
   - component: {fileID: 1910231060}
   - component: {fileID: 1910231059}
+  - component: {fileID: 1910231062}
   m_Layer: 5
   m_Name: NewDeckButton
   m_TagString: Untagged
@@ -8461,10 +8488,10 @@ RectTransform:
   - {fileID: 294992499}
   m_Father: {fileID: 2064702760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 420, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 205, y: -60}
+  m_SizeDelta: {x: 420, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910231059
 MonoBehaviour:
@@ -8548,6 +8575,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910231057}
   m_CullTransparentMesh: 1
+--- !u!114 &1910231062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910231057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 120
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1957679158
 GameObject:
   m_ObjectHideFlags: 0
@@ -9471,7 +9518,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0

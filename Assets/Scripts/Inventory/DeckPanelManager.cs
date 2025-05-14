@@ -43,6 +43,7 @@ namespace Inventory
         [SerializeField] private Button newDeckButton;
         [SerializeField] private Transform recipeSlotParent;
         [SerializeField] private GameObject deckPrefab;
+        [SerializeField] private GameObject spacerPrefab;
         [SerializeField] private Canvas rootCanvas;
 
         private readonly List<GameObject> spawnedCards = new();
@@ -53,6 +54,7 @@ namespace Inventory
         private Dictionary<Toggle, int> costMap;
 
         private DeckPresetUI currentOpenDeck = null;
+        private GameObject currentSpacer = null;
 
         private void Awake()
         {
@@ -219,21 +221,68 @@ namespace Inventory
             }
         }
 
-        public void ReorderDeck(DeckPresetUI target, int newIndex, int oldIndex)
+        public void InsertSpacerAt(int index)
         {
-            if (!deckUIs.Contains(target)) return;
-            deckUIs.Remove(target);
-            deckUIs.Insert(newIndex, target);
+            ClearSpacer();
+            currentSpacer = Instantiate(spacerPrefab, recipeSlotParent);
+            currentSpacer.transform.SetSiblingIndex(index);
+        }
+
+        public void ClearSpacer()
+        {
+            if (currentSpacer != null)
+            {
+                Destroy(currentSpacer);
+                currentSpacer = null;
+            }
+        }
+
+        public void ReorderDeck(DeckPresetUI draggingDeck, int _, int __)
+        {
+            if (currentSpacer == null) return;
+
+            int newIndex = currentSpacer.transform.GetSiblingIndex();
+            deckUIs.Remove(draggingDeck);
+            deckUIs.Insert(newIndex, draggingDeck);
 
             for (int i = 0; i < deckUIs.Count; i++)
             {
                 deckUIs[i].transform.SetSiblingIndex(i);
             }
+
+            ClearSpacer();
         }
 
         public float GetCanvasScaleFactor()
         {
             return rootCanvas != null ? rootCanvas.scaleFactor : 1f;
+        }
+
+        public void UpdateDeckInsertVisual(DeckPresetUI draggingDeck)
+        {
+            float draggingY = draggingDeck.transform.position.y;
+            float closestDistance = float.MaxValue;
+            int insertIndex = -1;
+
+            for (int i = 0; i < recipeSlotParent.childCount; i++)
+            {
+                Transform child = recipeSlotParent.GetChild(i);
+
+                if (child == null || (currentSpacer != null && child == currentSpacer.transform) || child.gameObject == draggingDeck.gameObject)
+                    continue;
+
+                float distance = Mathf.Abs(draggingY - child.position.y);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    insertIndex = i;
+                }
+            }
+
+            if (insertIndex != -1)
+            {
+                InsertSpacerAt(insertIndex);
+            }
         }
     }
 }
