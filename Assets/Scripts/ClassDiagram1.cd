@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CardData">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAgCBAAAAAIAAAAAEAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardManager">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAACAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardProgress">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAABAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardUI" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAACAoAAAAQBABAEAoCAAoAACCAhCAAAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardUI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.355" Collapsed="true" />
+  </Class>
+  <Class Name="CombatManager">
+    <Position X="8.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Combat\CombatManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CombatSceneInitializer">
+    <Position X="10.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Combat\CombatSceneInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIEAAAQIBAIAAQAkAADAABAAABAAIAAAEAASkABIhEg=</HashCode>
+      <FileName>Assets\Scripts\Combat\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameContext">
+    <Position X="10.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgCQAAAAAAAAAAAAAAAAABQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Combat\GameContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAAAAIACAAQgikAEEABUBAQAAoIAAAUoACkAAgBFg=</HashCode>
+      <FileName>Assets\Scripts\Combat\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnManager">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAABAAAABAAAgCGAABQAAAUAAAAAAAQgIAAAAgAEA=</HashCode>
+      <FileName>Assets\Scripts\Combat\TurnManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeckManager">
+    <Position X="12.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAACAQAAEAAAABCAAEBAAAAAARAAAAAAAAFA=</HashCode>
+      <FileName>Assets\Scripts\DeckSystem\DeckManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HandManager">
+    <Position X="8.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgCAAkAAAAFAAAAQAAAAAAEQEA=</HashCode>
+      <FileName>Assets\Scripts\DeckSystem\HandManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuffEffect">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Effects\BuffEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardEffect">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Effects\CardEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DebuffEffect">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Effects\DebuffEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StrikeCardEffect">
+    <Position X="1" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAIAAIAAAAAYAAAAEAAAAgAACQAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Effects\StrikeCardEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameStateManager">
+    <Position X="12.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\GameStateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HUDManager">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACgAQJkRAgIASAAAAAAICgAAAITBAgASGBAEAAEA0E=</HashCode>
+      <FileName>Assets\Scripts\UI\HUDManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CardRarity">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CardType">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAAAABCAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cards\CardData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AttackTargetType">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Effects\AttackTargetType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePhase">
+    <Position X="6.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\GameStateManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

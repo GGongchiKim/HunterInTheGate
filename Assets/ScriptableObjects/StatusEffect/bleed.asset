@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d6b2b8589364341b1365052d5ec54e, type: 3}
+  m_Name: bleed
+  m_EditorClassIdentifier: 
+  effectId: DOT01
+  effectName: "\uCD9C\uD608"
+  effectType: 2
+  description: "\uB9E4 \uD134 \uB514\uBC84\uD504\uB97C \uBD80\uC5EC\uD55C \uD53C\uD574\uC758
+    50% \uB9CC\uD07C\uC758 \uC9C0\uC18D \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+  icon: {fileID: 21300000, guid: c2e2db215b55c92418fc9675a1162cb3, type: 3}
+  iconColor: {r: 0.8207547, g: 0, b: 0, a: 1}
+  defaultDuration: 2
+  canStack: 0
+  maxStack: 1
+  flatBonusDamage: 0
+  percentBonusDamage: 0
+  receivedDamageMultiplier: 1
+  givenDamageReduction: 0
+  healReductionRate: 0
+  dotPercentDamage: 0.5
+  logicTemplate: {fileID: 11400000, guid: c712ab7673df89e42ba30122d29dc8cd, type: 2}
