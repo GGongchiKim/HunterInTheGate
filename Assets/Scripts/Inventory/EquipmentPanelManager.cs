@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -6,18 +6,23 @@ namespace Inventory
 {
     public class EquipmentPanelManager : MonoBehaviour
     {
-        [Header("½½·Ô ¹öÆ°")]
+        [Header("ìŠ¬ë¡¯ ë²„íŠ¼")]
         [SerializeField] private Button weaponSlotButton;
         [SerializeField] private Button armorSlotButton;
         [SerializeField] private Button toolSlotButton;
 
-        [Header("±âÅ¸ ¹öÆ°")]
+        [Header("ê¸°íƒ€ ë²„íŠ¼")]
         [SerializeField] private Button clearFilterButton;
 
-        [Header("Àåºñ Ä«µå UI ¿µ¿ª")]
+        [Header("ì¥ë¹„ ì¹´ë“œ UI ì˜ì—­")]
         [SerializeField] private Transform cardParent;
 
-        private EquipType? currentSlot = null; // nullÀÌ¸é ÀüÃ¼ Àåºñ Ç¥½Ã
+        [Header("ì¥ë¹„ ìŠ¬ë¡¯ í‘œì‹œ UI")]
+        [SerializeField] private EquipmentSlotDisplay weaponSlotDisplay;
+        [SerializeField] private EquipmentSlotDisplay armorSlotDisplay;
+        [SerializeField] private EquipmentSlotDisplay toolSlotDisplay;
+
+        private EquipType? currentSlot = null; // nullì´ë©´ ì „ì²´ ì¥ë¹„ í‘œì‹œ
         private readonly List<GameObject> spawnedCards = new();
 
         private void Start()
@@ -27,7 +32,7 @@ namespace Inventory
             toolSlotButton.onClick.AddListener(() => OnSlotClicked(EquipType.Tool));
             clearFilterButton.onClick.AddListener(ClearFilter);
 
-            RefreshPanel(); // ½ÃÀÛ ½Ã ÀüÃ¼ Àåºñ Ç¥½Ã
+            RefreshPanel();
         }
 
         public void RefreshPanel()
@@ -42,7 +47,6 @@ namespace Inventory
             ShowEquipments(slot);
         }
 
-        // ½½·Ô ¿Ü ¿µ¿ª Å¬¸¯ ½Ã È£Ãâ ¡æ ÀüÃ¼ Àåºñ Ç¥½Ã
         public void ClearFilter()
         {
             if (currentSlot != null)
@@ -78,8 +82,30 @@ namespace Inventory
 
         private void OnEquipmentCardClicked(EquipmentData selected)
         {
-            Debug.Log($"¼±ÅÃµÈ Àåºñ: {selected.displayName}");
-            // ÃßÈÄ ÀåÂø ·ÎÁ÷ ±¸Çö ¿¹Á¤
+            Debug.Log($"ì„ íƒëœ ì¥ë¹„: {selected.displayName}");
+
+            EquipToSlot(selected, selected.equipType);
+
+            currentSlot = null;
+            ShowEquipments(null);
+        }
+
+        private void EquipToSlot(EquipmentData data, EquipType slotType)
+        {
+            switch (slotType)
+            {
+                case EquipType.Weapon:
+                    weaponSlotDisplay.SetEquipment(data);
+                    break;
+                case EquipType.Armor:
+                    armorSlotDisplay.SetEquipment(data);
+                    break;
+                case EquipType.Tool:
+                    toolSlotDisplay.SetEquipment(data);
+                    break;
+            }
+
+            PlayerInventory.Instance.EquipItem(slotType, data);
         }
     }
 }
