@@ -178,7 +178,7 @@ public class Enemy : MonoBehaviour
 
         if (pattern.damage > 0)
         {
-            GameContext.Instance.player.TakeDamage(pattern.damage);
+            CombatContext.Instance.player.TakeDamage(pattern.damage);
             PlayAttackAnimation();
         }
 
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
 
         if (pattern.statusEffect != null)
         {
-            GameContext.Instance.player.ApplyEffect(pattern.statusEffect);
+            CombatContext.Instance.player.ApplyEffect(pattern.statusEffect);
         }
     }
 
@@ -214,7 +214,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        GameContext.Instance.allEnemies.Remove(this);
+        CombatContext.Instance.allEnemies.Remove(this);
         Destroy(gameObject);
     }
 }

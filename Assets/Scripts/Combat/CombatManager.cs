@@ -20,7 +20,7 @@ public class CombatManager : MonoBehaviour
         // 카드 효과 실행 방식 변경
         if (card.cardEffect != null)
         {
-            card.cardEffect.ExecuteEffect(GameContext.Instance, card, null);
+            card.cardEffect.ExecuteEffect(CombatContext.Instance, card, null);
         }
         else
         {

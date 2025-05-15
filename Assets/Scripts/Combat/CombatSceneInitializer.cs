@@ -21,7 +21,7 @@ public class CombatSceneInitializer : MonoBehaviour
         if (additionalEnemies != null)
             enemyList.AddRange(additionalEnemies);
 
-        GameContext.Instance.Initialize(playerObject, enemyObject, enemyList);
+        CombatContext.Instance.Initialize(playerObject, enemyObject, enemyList);
         Debug.Log("GameContext 초기화 완료");
     }
 

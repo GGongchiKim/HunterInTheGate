@@ -18,7 +18,7 @@ public class GraceCardEffect : CardEffect
         return target != null && target.CompareTag("Player");
     }
 
-    public override bool ExecuteEffect(GameContext context, CardData cardData, GameObject target = null)
+    public override bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null)
     {
         if (context.player == null)
         {

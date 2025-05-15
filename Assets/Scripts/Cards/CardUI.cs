@@ -149,11 +149,11 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             }
             else if (worldTarget != null && cardData.cardEffect.IsValidTarget(worldTarget))
             {
-                used = cardData.cardEffect.ExecuteEffect(GameContext.Instance, cardData, worldTarget);
+                used = cardData.cardEffect.ExecuteEffect(CombatContext.Instance, cardData, worldTarget);
             }
             else if (cardData.cardEffect.AllowsGlobalDrop())
             {
-                used = cardData.cardEffect.ExecuteEffect(GameContext.Instance, cardData, null);
+                used = cardData.cardEffect.ExecuteEffect(CombatContext.Instance, cardData, null);
             }
         }
 

@@ -13,7 +13,7 @@ public abstract class CardEffect : ScriptableObject
     /// <summary>
     /// 카드 효과를 실행하고 성공 여부 반환 (true: 발동됨, false: 실패)
     /// </summary>
-    public abstract bool ExecuteEffect(GameContext context, CardData cardData, GameObject target = null);
+    public abstract bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null);
 
     /// <summary>
     /// 카드가 전역 드롭을 허용하는지 여부 반환 (기본은 false)

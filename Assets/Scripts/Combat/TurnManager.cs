@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
 
     public void StartCombat()
     {
-        if (GameContext.Instance.player == null)
+        if (CombatContext.Instance.player == null)
         {
             Debug.LogError("GameContext가 초기화되지 않았습니다.");
             return;
@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour
 
         GameStateManager.Instance.SetPhase(GamePhase.Combat);
         HUDManager.Instance.UpdateTurn(currentTurn);
-        GameContext.Instance.player.ResetShield();
+        CombatContext.Instance.player.ResetShield();
 
         InitializeEnemyIntents();
         DeckViewerManager.Instance.ForceRefreshAll();
@@ -61,7 +61,7 @@ public class TurnManager : MonoBehaviour
 
     private void InitializeEnemyIntents()
     {
-        foreach (Enemy enemy in GameContext.Instance.allEnemies)
+        foreach (Enemy enemy in CombatContext.Instance.allEnemies)
         {
             if (enemy == null || enemy.intentUI != null) continue;
 
@@ -103,7 +103,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log("=== 적 턴 시작 ===");
 
         // 🔹 적들 상태이상 갱신
-        foreach (Enemy enemy in GameContext.Instance.allEnemies)
+        foreach (Enemy enemy in CombatContext.Instance.allEnemies)
         {
             if (enemy == null) continue;
 
@@ -122,7 +122,7 @@ public class TurnManager : MonoBehaviour
         SetActionPoints(baseActionPoints);
         DrawCards(drawCountPerTurn);
         HUDManager.Instance.UpdateTurn(currentTurn);
-        GameContext.Instance.player.ResetShield();
+        CombatContext.Instance.player.ResetShield();
 
         // 🔹 플레이어 상태이상 갱신
         UpdatePlayerEffects();
@@ -149,18 +149,18 @@ public class TurnManager : MonoBehaviour
 
     private void SetActionPoints(int ap)
     {
-        if (GameContext.Instance.player == null)
+        if (CombatContext.Instance.player == null)
         {
             Debug.LogWarning("플레이어가 null입니다.");
             return;
         }
 
-        GameContext.Instance.player.actionPoints = ap;
+        CombatContext.Instance.player.actionPoints = ap;
         HUDManager.Instance.UpdateActionPoints(ap);
     }
 
     private void UpdatePlayerEffects()
     {
-        GameContext.Instance.player.GetComponent<EffectHandler>()?.UpdateEffects();
+        CombatContext.Instance.player.GetComponent<EffectHandler>()?.UpdateEffects();
     }
 }

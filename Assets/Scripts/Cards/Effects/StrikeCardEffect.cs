@@ -24,7 +24,7 @@ public class StrikeCardEffect : CardEffect
         return targetType == AttackTargetType.Single && target.CompareTag("Enemy");
     }
 
-    public override bool ExecuteEffect(GameContext context, CardData cardData, GameObject target = null)
+    public override bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null)
     {
         if (context.player == null || context.player.actionPoints < cardData.cardCost)
         {
