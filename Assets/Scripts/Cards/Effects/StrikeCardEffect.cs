@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewStrikeCardEffect", menuName = "Card Effects/StrikeCardEffect")]
@@ -33,7 +33,7 @@ public class StrikeCardEffect : CardEffect
         }
 
         context.player.actionPoints -= cardData.cardCost;
-        HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
 
         List<Enemy> targets = new();
         if (targetType == AttackTargetType.Single && target != null)

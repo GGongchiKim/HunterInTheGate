@@ -1,23 +1,23 @@
 using UnityEngine;
 
 /// <summary>
-/// ¸ğµç Ä«µå È¿°úÀÇ ±âº» Ãß»ó Å¬·¡½º (ScriptableObject ±â¹İ)
-/// ÇÏÀ§ Å¬·¡½º´Â ¹İµå½Ã ExecuteEffect, IsValidTargetÀ» ±¸ÇöÇØ¾ß ÇÔ.
-/// Ãß°¡·Î StatusEffect¸¦ ÅëÇÕÇÏ¿© »óÅÂÀÌ»ó Àû¿ëµµ Áö¿ø.
+/// ëª¨ë“  ì¹´ë“œ íš¨ê³¼ì˜ ê¸°ë³¸ ì¶”ìƒ í´ë˜ìŠ¤ (ScriptableObject ê¸°ë°˜)
+/// í•˜ìœ„ í´ë˜ìŠ¤ëŠ” ë°˜ë“œì‹œ ExecuteEffect, IsValidTargetì„ êµ¬í˜„í•´ì•¼ í•¨.
+/// ì¶”ê°€ë¡œ StatusEffectë¥¼ í†µí•©í•˜ì—¬ ìƒíƒœì´ìƒ ì ìš©ë„ ì§€ì›.
 /// </summary>
 public abstract class CardEffect : ScriptableObject
 {
-    [Header("»óÅÂÀÌ»ó ¿É¼Ç (¼±ÅÃ)")]
-    public StatusEffect statusEffect; // Ä«µå È¿°ú¿Í ÇÔ²² Àû¿ëÇÒ ¼ö ÀÖ´Â »óÅÂÀÌ»ó (¾øÀ¸¸é ¹«½Ã)
+    [Header("ìƒíƒœì´ìƒ ì˜µì…˜ (ì„ íƒ)")]
+    public StatusEffect statusEffect; // ì¹´ë“œ íš¨ê³¼ì™€ í•¨ê»˜ ì ìš©í•  ìˆ˜ ìˆëŠ” ìƒíƒœì´ìƒ (ì—†ìœ¼ë©´ ë¬´ì‹œ)
 
     /// <summary>
-    /// Ä«µå È¿°ú¸¦ ½ÇÇàÇÏ°í ¼º°ø ¿©ºÎ ¹İÈ¯ (true: ¹ßµ¿µÊ, false: ½ÇÆĞ)
+    /// ì¹´ë“œ íš¨ê³¼ë¥¼ ì‹¤í–‰í•˜ê³  ì„±ê³µ ì—¬ë¶€ ë°˜í™˜ (true: ë°œë™ë¨, false: ì‹¤íŒ¨)
     /// </summary>
     public abstract bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null);
 
     /// <summary>
-    /// Ä«µå°¡ Àü¿ª µå·ÓÀ» Çã¿ëÇÏ´ÂÁö ¿©ºÎ ¹İÈ¯ (±âº»Àº false)
-    /// Àü¿ª Ä«µå¸¸ ÀÌ ¸Ş¼­µå¸¦ overrideÇÏ¿© true ¹İÈ¯
+    /// ì¹´ë“œê°€ ì „ì—­ ë“œë¡­ì„ í—ˆìš©í•˜ëŠ”ì§€ ì—¬ë¶€ ë°˜í™˜ (ê¸°ë³¸ì€ false)
+    /// ì „ì—­ ì¹´ë“œë§Œ ì´ ë©”ì„œë“œë¥¼ overrideí•˜ì—¬ true ë°˜í™˜
     /// </summary>
     public virtual bool AllowsGlobalDrop()
     {
@@ -25,13 +25,13 @@ public abstract class CardEffect : ScriptableObject
     }
 
     /// <summary>
-    /// ÇØ´ç GameObject°¡ ÀÌ Ä«µåÀÇ À¯È¿ÇÑ ´ë»óÀÎÁö ¿©ºÎ
-    /// ¿¹: °ø°İÄ«µå´Â Enemy¸¸, È¸º¹Ä«µå´Â Player¸¸ ´ë»óÀ¸·Î À¯È¿ Ã³¸®
+    /// í•´ë‹¹ GameObjectê°€ ì´ ì¹´ë“œì˜ ìœ íš¨í•œ ëŒ€ìƒì¸ì§€ ì—¬ë¶€
+    /// ì˜ˆ: ê³µê²©ì¹´ë“œëŠ” Enemyë§Œ, íšŒë³µì¹´ë“œëŠ” Playerë§Œ ëŒ€ìƒìœ¼ë¡œ ìœ íš¨ ì²˜ë¦¬
     /// </summary>
     public abstract bool IsValidTarget(GameObject target);
 
     /// <summary>
-    /// »óÅÂÀÌ»ó(StatusEffect)À» ´ë»ó(target)¿¡°Ô Àû¿ëÇÏ´Â °øÅë ¸Ş¼­µå
+    /// ìƒíƒœì´ìƒ(StatusEffect)ì„ ëŒ€ìƒ(target)ì—ê²Œ ì ìš©í•˜ëŠ” ê³µí†µ ë©”ì„œë“œ
     /// </summary>
     protected void ApplyStatusEffect(GameObject target, StatusEffect statusEffect, int baseDamage)
     {
@@ -57,6 +57,6 @@ public abstract class CardEffect : ScriptableObject
             return;
         }
 
-        Debug.LogWarning($"[CardEffect] {target.name}¿¡ »óÅÂÈ¿°ú¸¦ Àû¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. (Player/Enemy ÄÄÆ÷³ÍÆ® ¾øÀ½)");
+        Debug.LogWarning($"[CardEffect] {target.name}ì— ìƒíƒœíš¨ê³¼ë¥¼ ì ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. (Player/Enemy ì»´í¬ë„ŒíŠ¸ ì—†ìŒ)");
     }
 }

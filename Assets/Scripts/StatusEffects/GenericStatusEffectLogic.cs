@@ -1,8 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// ¸ğµç »óÅÂÈ¿°ú¸¦ µ¥ÀÌÅÍ ±â¹İÀ¸·Î Ã³¸®ÇÏ´Â ¹ü¿ë »óÅÂÈ¿°ú ·ÎÁ÷.
-/// Player, Enemy ¸ğµÎ Áö¿ø.
+/// ëª¨ë“  ìƒíƒœíš¨ê³¼ë¥¼ ë°ì´í„° ê¸°ë°˜ìœ¼ë¡œ ì²˜ë¦¬í•˜ëŠ” ë²”ìš© ìƒíƒœíš¨ê³¼ ë¡œì§.
+/// Player, Enemy ëª¨ë‘ ì§€ì›.
 /// </summary>
 [CreateAssetMenu(fileName = "GenericStatusEffectLogic", menuName = "StatusLogic/GenericStatusEffectLogic")]
 public class GenericStatusEffectLogic : StatusEffectLogic
@@ -25,7 +25,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
                 break;
 
             case StatusEffectType.DamageOverTime:
-                // DOT´Â Àû¿ë ½Ã Æ¯º°È÷ Ã³¸®ÇÒ ÇÊ¿ä ¾øÀ½ (ÅÏ ½ÃÀÛ¸¶´Ù ÀÛµ¿)
+                // DOTëŠ” ì ìš© ì‹œ íŠ¹ë³„íˆ ì²˜ë¦¬í•  í•„ìš” ì—†ìŒ (í„´ ì‹œì‘ë§ˆë‹¤ ì‘ë™)
                 break;
         }
     }
@@ -61,30 +61,30 @@ public class GenericStatusEffectLogic : StatusEffectLogic
                 break;
 
             case StatusEffectType.DamageOverTime:
-                // DOT´Â ¸¸·á ½Ã º°µµ Ã³¸® ¾øÀ½
+                // DOTëŠ” ë§Œë£Œ ì‹œ ë³„ë„ ì²˜ë¦¬ ì—†ìŒ
                 break;
         }
     }
 
     // ------------------------
-    // ¼¼ºÎ Ã³¸®
+    // ì„¸ë¶€ ì²˜ë¦¬
     // ------------------------
 
     private void ApplyBuff(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
-        // ¿¹: Èû¸ğÀ¸±â (flatBonusDamage) ¡æ °ø°İ·Â »ó½Â
+        // ì˜ˆ: í˜ëª¨ìœ¼ê¸° (flatBonusDamage) â†’ ê³µê²©ë ¥ ìƒìŠ¹
         var player = target.GetComponent<Player>();
         if (player != null)
         {
             player.strength += effect.flatBonusDamage * instance.StackCount;
-            Debug.Log($"[¹öÇÁ] {player.playerName}ÀÇ ÈûÀÌ Áõ°¡: +{effect.flatBonusDamage * instance.StackCount}");
+            Debug.Log($"[ë²„í”„] {player.playerName}ì˜ í˜ì´ ì¦ê°€: +{effect.flatBonusDamage * instance.StackCount}");
         }
 
         var enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.AddShield(effect.flatBonusDamage * instance.StackCount); // ¿¹½Ã: ÀûÀº °ø°İ·ÂÀÌ ¾Æ´Ï¶ó ½Çµå¸¦ ¾ò´Â´Ù
-            Debug.Log($"[¹öÇÁ] {enemy.enemyName}ÀÌ ½Çµå¸¦ ¾òÀ½: +{effect.flatBonusDamage * instance.StackCount}");
+            enemy.AddShield(effect.flatBonusDamage * instance.StackCount); // ì˜ˆì‹œ: ì ì€ ê³µê²©ë ¥ì´ ì•„ë‹ˆë¼ ì‹¤ë“œë¥¼ ì–»ëŠ”ë‹¤
+            Debug.Log($"[ë²„í”„] {enemy.enemyName}ì´ ì‹¤ë“œë¥¼ ì–»ìŒ: +{effect.flatBonusDamage * instance.StackCount}");
         }
     }
 
@@ -94,14 +94,14 @@ public class GenericStatusEffectLogic : StatusEffectLogic
         if (player != null)
         {
             player.strength -= effect.flatBonusDamage * instance.StackCount;
-            Debug.Log($"[¹öÇÁ Á¾·á] {player.playerName}ÀÇ ÈûÀÌ °¨¼Ò: -{effect.flatBonusDamage * instance.StackCount}");
+            Debug.Log($"[ë²„í”„ ì¢…ë£Œ] {player.playerName}ì˜ í˜ì´ ê°ì†Œ: -{effect.flatBonusDamage * instance.StackCount}");
         }
 
         var enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
             enemy.AddShield(-effect.flatBonusDamage * instance.StackCount);
-            Debug.Log($"[¹öÇÁ Á¾·á] {enemy.enemyName}ÀÇ ½Çµå °¨¼Ò: {-effect.flatBonusDamage * instance.StackCount}");
+            Debug.Log($"[ë²„í”„ ì¢…ë£Œ] {enemy.enemyName}ì˜ ì‹¤ë“œ ê°ì†Œ: {-effect.flatBonusDamage * instance.StackCount}");
         }
     }
 
@@ -112,21 +112,21 @@ public class GenericStatusEffectLogic : StatusEffectLogic
 
         if (player != null)
         {
-            Debug.Log($"[µğ¹öÇÁ Àû¿ë] {player.playerName}¿¡°Ô {effect.effectName} ºÎ¿©µÊ (Ãß°¡ µ¥¹ÌÁö ¾øÀ½)");
+            Debug.Log($"[ë””ë²„í”„ ì ìš©] {player.playerName}ì—ê²Œ {effect.effectName} ë¶€ì—¬ë¨ (ì¶”ê°€ ë°ë¯¸ì§€ ì—†ìŒ)");
         }
         else if (enemy != null)
         {
-            Debug.Log($"[µğ¹öÇÁ Àû¿ë] {enemy.enemyName}¿¡°Ô {effect.effectName} ºÎ¿©µÊ (Ãß°¡ µ¥¹ÌÁö ¾øÀ½)");
+            Debug.Log($"[ë””ë²„í”„ ì ìš©] {enemy.enemyName}ì—ê²Œ {effect.effectName} ë¶€ì—¬ë¨ (ì¶”ê°€ ë°ë¯¸ì§€ ì—†ìŒ)");
         }
         else
         {
-            Debug.LogWarning($"[µğ¹öÇÁ Àû¿ë ½ÇÆĞ] ´ë»óÀÌ Playerµµ Enemyµµ ¾Æ´Ô ({target.name})");
+            Debug.LogWarning($"[ë””ë²„í”„ ì ìš© ì‹¤íŒ¨] ëŒ€ìƒì´ Playerë„ Enemyë„ ì•„ë‹˜ ({target.name})");
         }
     }
 
     private void RemoveDebuff(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
-        // °£´ÜÈ­: µğ¹öÇÁ ¸¸·á ½Ã Ãß°¡ Ã³¸® ¾øÀÌ µğ¹öÇÁ¸¸ ÀÚ¿¬ Á¾·á
+        // ê°„ë‹¨í™”: ë””ë²„í”„ ë§Œë£Œ ì‹œ ì¶”ê°€ ì²˜ë¦¬ ì—†ì´ ë””ë²„í”„ë§Œ ìì—° ì¢…ë£Œ
     }
 
     private void ApplyDotDamage(GameObject target, StatusEffect effect, StatusEffectInstance instance)
@@ -140,16 +140,16 @@ public class GenericStatusEffectLogic : StatusEffectLogic
         if (player != null)
         {
             player.TakeDamage(dotDamage);
-            Debug.Log($"[DOT] {player.playerName}ÀÌ DOT·Î {dotDamage} ÇÇÇØ¸¦ ÀÔÀ½");
+            Debug.Log($"[DOT] {player.playerName}ì´ DOTë¡œ {dotDamage} í”¼í•´ë¥¼ ì…ìŒ");
         }
         else if (enemy != null)
         {
             enemy.TakeDamage(dotDamage);
-            Debug.Log($"[DOT] {enemy.enemyName}ÀÌ DOT·Î {dotDamage} ÇÇÇØ¸¦ ÀÔÀ½");
+            Debug.Log($"[DOT] {enemy.enemyName}ì´ DOTë¡œ {dotDamage} í”¼í•´ë¥¼ ì…ìŒ");
         }
         else
         {
-            Debug.LogWarning($"[DOT Àû¿ë ½ÇÆĞ] ´ë»óÀÌ Playerµµ Enemyµµ ¾Æ´Ô ({target.name})");
+            Debug.LogWarning($"[DOT ì ìš© ì‹¤íŒ¨] ëŒ€ìƒì´ Playerë„ Enemyë„ ì•„ë‹˜ ({target.name})");
         }
     }
 }

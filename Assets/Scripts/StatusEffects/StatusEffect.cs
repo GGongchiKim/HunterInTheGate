@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// »óÅÂ È¿°ú Å¸ÀÔ (¹öÇÁ, µğ¹öÇÁ, Áö¼ÓÇÇÇØ µî)
+/// ìƒíƒœ íš¨ê³¼ íƒ€ì… (ë²„í”„, ë””ë²„í”„, ì§€ì†í”¼í•´ ë“±)
 /// </summary>
 public enum StatusEffectType
 {
@@ -11,42 +11,42 @@ public enum StatusEffectType
 }
 
 /// <summary>
-/// »óÅÂ È¿°ú µ¥ÀÌÅÍ (ScriptableObject)
-/// ¼ø¼ö µ¥ÀÌÅÍ¸¸ °ü¸® (·ÎÁ÷ ½ÇÇàÀº StatusEffectLogic ÂÊ ´ã´ç)
+/// ìƒíƒœ íš¨ê³¼ ë°ì´í„° (ScriptableObject)
+/// ìˆœìˆ˜ ë°ì´í„°ë§Œ ê´€ë¦¬ (ë¡œì§ ì‹¤í–‰ì€ StatusEffectLogic ìª½ ë‹´ë‹¹)
 /// </summary>
 [CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Status/StatusEffect")]
 public class StatusEffect : ScriptableObject
 {
-    [Header("±âº» Á¤º¸")]
-    public string effectId;                      // °íÀ¯ ½Äº°ÀÚ (ex: "BLEED", "POISON")
-    public string effectName;                    // UI¿ë ÀÌ¸§
-    public StatusEffectType effectType;          // ¹öÇÁ/µğ¹öÇÁ/Áö¼ÓÇÇÇØ ±¸ºĞ
+    [Header("ê¸°ë³¸ ì •ë³´")]
+    public string effectId;                      // ê³ ìœ  ì‹ë³„ì (ex: "BLEED", "POISON")
+    public string effectName;                    // UIìš© ì´ë¦„
+    public StatusEffectType effectType;          // ë²„í”„/ë””ë²„í”„/ì§€ì†í”¼í•´ êµ¬ë¶„
     [TextArea(2, 3)] 
-    public string description;                   // È¿°ú ¼³¸í
+    public string description;                   // íš¨ê³¼ ì„¤ëª…
     
-    [Header("UI Ç¥½Ã")]
-    public Sprite icon;                           // UI¿ë ¾ÆÀÌÄÜ
-    public Color iconColor = Color.white;  // ¾ÆÀÌÄÜ »ö»ó (±âº»Àº Èò»ö)
+    [Header("UI í‘œì‹œ")]
+    public Sprite icon;                           // UIìš© ì•„ì´ì½˜
+    public Color iconColor = Color.white;  // ì•„ì´ì½˜ ìƒ‰ìƒ (ê¸°ë³¸ì€ í°ìƒ‰)
 
-    [Header("±âº» ¼Ó¼º")]
-    public int defaultDuration = 3;              // ±âº» Áö¼Ó ÅÏ ¼ö
-    public bool canStack = false;                // ÁßÃ¸ °¡´É ¿©ºÎ
-    public int maxStack = 0;                     // 0ÀÌ¸é ¹«Á¦ÇÑ ½ºÅÃ Çã¿ë
+    [Header("ê¸°ë³¸ ì†ì„±")]
+    public int defaultDuration = 3;              // ê¸°ë³¸ ì§€ì† í„´ ìˆ˜
+    public bool canStack = false;                // ì¤‘ì²© ê°€ëŠ¥ ì—¬ë¶€
+    public int maxStack = 0;                     // 0ì´ë©´ ë¬´ì œí•œ ìŠ¤íƒ í—ˆìš©
 
-    [Header("¼öÄ¡ ¿É¼Ç (¼±ÅÃÀû)")]
-    public int flatBonusDamage = 0;               // °íÁ¤ Ãß°¡ ÇÇÇØ (ex: Èû¸ğÀ¸±â)
-    public float percentBonusDamage = 0f;         // ÆÛ¼¾Æ® ±â¹İ Ãß°¡ ÇÇÇØ (ex: ¿¬°İ)
-    public float receivedDamageMultiplier = 1f;  // ¹Ş´Â ÇÇÇØ·® ¹èÀ² (ex: Ãë¾à)
-    public float givenDamageReduction = 0f;       // ÁÖ´Â ÇÇÇØ·® °¨¼Ò ºñÀ² (ex: ¾àÈ­)
-    public float healReductionRate = 0f;          // È¸º¹·® °¨¼Ò ºñÀ² (ex: È­»ó)
-    public float dotPercentDamage = 0f;           // DOT (Áö¼ÓÇÇÇØ) ºñÀ² (ex: ÃâÇ÷, ¸Íµ¶)
+    [Header("ìˆ˜ì¹˜ ì˜µì…˜ (ì„ íƒì )")]
+    public int flatBonusDamage = 0;               // ê³ ì • ì¶”ê°€ í”¼í•´ (ex: í˜ëª¨ìœ¼ê¸°)
+    public float percentBonusDamage = 0f;         // í¼ì„¼íŠ¸ ê¸°ë°˜ ì¶”ê°€ í”¼í•´ (ex: ì—°ê²©)
+    public float receivedDamageMultiplier = 1f;  // ë°›ëŠ” í”¼í•´ëŸ‰ ë°°ìœ¨ (ex: ì·¨ì•½)
+    public float givenDamageReduction = 0f;       // ì£¼ëŠ” í”¼í•´ëŸ‰ ê°ì†Œ ë¹„ìœ¨ (ex: ì•½í™”)
+    public float healReductionRate = 0f;          // íšŒë³µëŸ‰ ê°ì†Œ ë¹„ìœ¨ (ex: í™”ìƒ)
+    public float dotPercentDamage = 0f;           // DOT (ì§€ì†í”¼í•´) ë¹„ìœ¨ (ex: ì¶œí˜ˆ, ë§¹ë…)
 
-    [Header("·ÎÁ÷ ¿¬°á (ÇÊ¼ö)")]
-    public StatusEffectLogic logicTemplate;       // »óÅÂ È¿°ú ½ÇÇà¿ë ·ÎÁ÷ (±âº»: GenericStatusEffectLogic)
+    [Header("ë¡œì§ ì—°ê²° (í•„ìˆ˜)")]
+    public StatusEffectLogic logicTemplate;       // ìƒíƒœ íš¨ê³¼ ì‹¤í–‰ìš© ë¡œì§ (ê¸°ë³¸: GenericStatusEffectLogic)
 
     /// <summary>
-    /// ÀÌ StatusEffect¸¦ ±â¹İÀ¸·Î ½ÇÇà¿ë Logic ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÑ´Ù.
-    /// ½ÇÁ¦ Àû¿ë°ú °è»êÀº Logic¿¡¼­ Ã³¸®
+    /// ì´ StatusEffectë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì‹¤í–‰ìš© Logic ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•œë‹¤.
+    /// ì‹¤ì œ ì ìš©ê³¼ ê³„ì‚°ì€ Logicì—ì„œ ì²˜ë¦¬
     /// </summary>
     public StatusEffectLogic CreateLogicInstance()
     {
@@ -56,13 +56,13 @@ public class StatusEffect : ScriptableObject
         }
         else
         {
-            Debug.LogWarning($"[StatusEffect] {effectName}ÀÇ LogicTemplateÀÌ ¼³Á¤µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogWarning($"[StatusEffect] {effectName}ì˜ LogicTemplateì´ ì„¤ì •ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
             return null;
         }
     }
 
     public override string ToString()
     {
-        return $"[{effectId}] {effectName} - {effectType}, {defaultDuration}ÅÏ {(canStack ? "(ÁßÃ¸ °¡´É)" : "")}";
+        return $"[{effectId}] {effectName} - {effectType}, {defaultDuration}í„´ {(canStack ? "(ì¤‘ì²© ê°€ëŠ¥)" : "")}";
     }
 }

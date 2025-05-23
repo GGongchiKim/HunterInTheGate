@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
@@ -46,13 +46,13 @@ public class TacticCardEffect : CardEffect
 
         // 🔹 행동력 소모
         context.player.actionPoints -= cardData.cardCost;
-        HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
 
         // 🔹 행동력 회복
         if (recoverAP > 0)
         {
             context.player.actionPoints = Mathf.Min(context.player.actionPoints + recoverAP, context.player.maxActionPoints);
-            HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+            C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
             Debug.Log($"[TacticCard] 행동력 {recoverAP} 회복");
         }
 

@@ -1564,6 +1564,9 @@ MonoBehaviour:
   player: {fileID: 13182753}
   selectedEnemy: {fileID: 152339820}
   allEnemies: []
+  tempRewardGold: 0
+  tempExpGain: 0
+  tempRewardCards: []
 --- !u!4 &335937398
 Transform:
   m_ObjectHideFlags: 0
@@ -6399,23 +6402,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2030597008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b5aa2460ad819b46b89f4b3effb5cf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 847d7bc0b44b2804db1d587a5b6e04a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealthBar: {fileID: 706053014}
   playerHealthText: {fileID: 1035624971}
-  playerSpriteTransform: {fileID: 1436033733}
+  playerSpriteTransform: {fileID: 13182752}
   playerHealthUI: {fileID: 706053013}
   enemyHealthBar: {fileID: 462028680}
   enemyHealthText: {fileID: 42010288}
-  enemySpriteTransform: {fileID: 1408558215}
+  enemySpriteTransform: {fileID: 152339819}
   enemyHealthUI: {fileID: 462028679}
-  playerStatusPanel: {fileID: 0}
-  enemyStatusPanel: {fileID: 0}
-  statusEffectPrefab: {fileID: 0}
+  playerStatusPanel: {fileID: 1897190287}
+  enemyStatusPanel: {fileID: 1542819656}
+  statusEffectPrefab: {fileID: 978466789338078024, guid: 5926f5a7395ac7b45bf1e75108e48cb0, type: 3}
   defeatPanel: {fileID: 1878929566}
-  enemyIntentSlots:
-  - {fileID: 1983487014857365598, guid: 88beb5725d769864e8edaa3cff464c25, type: 3}
+  enemyIntentSlots: []
   apBeads:
   - {fileID: 307691842}
   - {fileID: 1941568598}
@@ -6427,7 +6429,7 @@ MonoBehaviour:
   beadInsufficientColor: {r: 1, g: 0, b: 0, a: 1}
   turnCounterText: {fileID: 1005353198}
   TurnEndbutton: {fileID: 1455898634}
-  uiOffset: {x: 1, y: -1.5, z: 0}
+  uiOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &2032445821
 GameObject:
   m_ObjectHideFlags: 0

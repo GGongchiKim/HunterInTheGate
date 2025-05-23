@@ -10,7 +10,7 @@ public class CardManager : MonoBehaviour
     {
         if (data == null)
         {
-            Debug.LogError("CardManager: CardData°¡ nullÀÔ´Ï´Ù.");
+            Debug.LogError("CardManager: CardDataê°€ nullìž…ë‹ˆë‹¤.");
             return;
         }
 

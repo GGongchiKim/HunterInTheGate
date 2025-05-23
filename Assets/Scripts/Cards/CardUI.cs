@@ -29,10 +29,10 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         if (data == null)
         {
-            Debug.LogError("Card µ¥ÀÌÅÍ°¡ nullÀÔ´Ï´Ù.");
+            Debug.LogError("Card ë°ì´í„°ê°€ nullì…ë‹ˆë‹¤.");
             return;
         }
-        Debug.Log($"[CardUI.Setup] Ä«µå ¼³Á¤: {data.cardName}");
+        Debug.Log($"[CardUI.Setup] ì¹´ë“œ ì„¤ì •: {data.cardName}");
 
         cardData = data;
         cNameText.text = cardData.cardName;
@@ -77,7 +77,7 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             rectTransform.position = Input.mousePosition;
         }
 
-        HUDManager.Instance?.HighlightAPBeads(cardData.cardCost);
+        C_HUDManager.Instance?.HighlightAPBeads(cardData.cardCost);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -110,7 +110,7 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
 
         transform.SetParent(originalParent, true);
-        HUDManager.Instance?.ResetAPBeadColors();
+        C_HUDManager.Instance?.ResetAPBeadColors();
     }
 
     private GameObject GetUIRaycastTarget(PointerEventData eventData)

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
@@ -50,7 +50,7 @@ public class ItemCardEffect : CardEffect
         }
 
         context.player.actionPoints -= cardData.cardCost;
-        HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
 
         // 🔹 공격 처리
         if (damage > 0)
@@ -111,7 +111,7 @@ public class ItemCardEffect : CardEffect
         if (energyRestore > 0)
         {
             context.player.actionPoints = Mathf.Min(context.player.actionPoints + energyRestore, context.player.maxActionPoints);
-            HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+            C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
             Debug.Log($"[ItemCard] 행동력 {energyRestore} 회복");
         }
 

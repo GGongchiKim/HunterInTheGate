@@ -42,13 +42,13 @@ public class HandManager : MonoBehaviour
 
     public void AddCardsToHand(List<CardData> cardDatas)
     {
-        Debug.Log($"[AddCardsToHand] È£ÃâµÊ - ÇöÀç ÇÚµå ¼ö: {handCards.Count}, Ãß°¡ Ä«µå ¼ö: {cardDatas.Count}");
+        Debug.Log($"[AddCardsToHand] í˜¸ì¶œë¨ - í˜„ì¬ í•¸ë“œ ìˆ˜: {handCards.Count}, ì¶”ê°€ ì¹´ë“œ ìˆ˜: {cardDatas.Count}");
 
         foreach (CardData data in cardDatas)
         {
             if (handCards.Count >= 10)
             {
-                Debug.Log($"[Hand Full] Ä«µå [{data.cardName}]´Â ¹ö·ÁÁı´Ï´Ù.");
+                Debug.Log($"[Hand Full] ì¹´ë“œ [{data.cardName}]ëŠ” ë²„ë ¤ì§‘ë‹ˆë‹¤.");
                 DeckManager.Instance.DiscardCard(data);
                 continue;
             }
@@ -69,22 +69,22 @@ public class HandManager : MonoBehaviour
 
     private IEnumerator DelayedRemove(GameObject cardObj, CardData cardData)
     {
-        yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â (OnEndDrag Á¾·á ÈÄ ½ÇÇà)
+        yield return null; // í•œ í”„ë ˆì„ ëŒ€ê¸° (OnEndDrag ì¢…ë£Œ í›„ ì‹¤í–‰)
 
         if (handCards.Contains(cardObj))
         {
             handCards.Remove(cardObj);
 
-            // Ä«µå Å¸ÀÔ¿¡ µû¶ó ºĞ±â Ã³¸®
+            // ì¹´ë“œ íƒ€ì…ì— ë”°ë¼ ë¶„ê¸° ì²˜ë¦¬
             if (cardData.cardType == CardType.Item)
             {
                 DeckManager.Instance.ExhaustCard(cardData);
-                Debug.Log($"[{cardData.cardName}] ´Â ¾ÆÀÌÅÛ Ä«µåÀÌ¹Ç·Î ¿ÏÀüÈ÷ Á¦°ÅµÊ");
+                Debug.Log($"[{cardData.cardName}] ëŠ” ì•„ì´í…œ ì¹´ë“œì´ë¯€ë¡œ ì™„ì „íˆ ì œê±°ë¨");
             }
             else
             {
                 DeckManager.Instance.DiscardCard(cardData);
-                Debug.Log($"[{cardData.cardName}] ´Â ÀÏ¹İ Ä«µåÀÌ¹Ç·Î ¹ö¸° ´õ¹Ì·Î ÀÌµ¿");
+                Debug.Log($"[{cardData.cardName}] ëŠ” ì¼ë°˜ ì¹´ë“œì´ë¯€ë¡œ ë²„ë¦° ë”ë¯¸ë¡œ ì´ë™");
             }
 
             Destroy(cardObj);

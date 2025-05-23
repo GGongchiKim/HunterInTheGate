@@ -27,7 +27,7 @@ public class DeckManager : MonoBehaviour
         combatDeck.AddRange(permanentDeck);
         combatDeck.AddRange(temporaryDeck);
         ShuffleList(combatDeck);
-        Debug.Log("ÀÌ´Ï¼È ÄÄ¹î - µ¦º¯È­ ÀÎº¸Å©");
+        Debug.Log("ì´ë‹ˆì…œ ì»´ë±ƒ - ë±ë³€í™” ì¸ë³´í¬");
         OnDeckChanged?.Invoke();
         OnDiscardChanged?.Invoke();
     }
@@ -48,7 +48,7 @@ public class DeckManager : MonoBehaviour
                 drawnCards.Add(combatDeck[0]);
                 
                 combatDeck.RemoveAt(0);
-                Debug.Log("µå·Î¿ìÄ«µå - µ¦º¯È­ ÀÎº¸Å©");
+                Debug.Log("ë“œë¡œìš°ì¹´ë“œ - ë±ë³€í™” ì¸ë³´í¬");
                 OnDeckChanged?.Invoke();
             }
             else
@@ -65,8 +65,8 @@ public class DeckManager : MonoBehaviour
         if (card == null) return;
 
         discardPile.Add(card);
-        Debug.Log($"[DiscardPile] Ä«µå [{card.cardName}]°¡ ¹ö·ÁÁ³½À´Ï´Ù. ÇöÀç ¹ö¸° ´õ¹Ì ¼ö: {discardPile.Count}");
-        Debug.Log("µğ½ºÄ«µå - ¹ö¸²ÆĞº¯È­ ÀÎº¸Å©");
+        Debug.Log($"[DiscardPile] ì¹´ë“œ [{card.cardName}]ê°€ ë²„ë ¤ì¡ŒìŠµë‹ˆë‹¤. í˜„ì¬ ë²„ë¦° ë”ë¯¸ ìˆ˜: {discardPile.Count}");
+        Debug.Log("ë””ìŠ¤ì¹´ë“œ - ë²„ë¦¼íŒ¨ë³€í™” ì¸ë³´í¬");
         OnDiscardChanged?.Invoke();
        
     }
@@ -76,7 +76,7 @@ public class DeckManager : MonoBehaviour
         if (cards == null || cards.Count == 0) return;
 
         discardPile.AddRange(cards);
-        Debug.Log("µğ½ºÄ«µåÄ«µåÁî - ¹ö¸²ÆĞº¯È­ ÀÎº¸Å©");
+        Debug.Log("ë””ìŠ¤ì¹´ë“œì¹´ë“œì¦ˆ - ë²„ë¦¼íŒ¨ë³€í™” ì¸ë³´í¬");
         OnDiscardChanged?.Invoke();
     }
 
@@ -85,7 +85,7 @@ public class DeckManager : MonoBehaviour
         combatDeck.AddRange(discardPile);
         discardPile.Clear();
         ShuffleList(combatDeck);
-        Debug.Log("¸®¼ÅÇÃ - µ¦º¯È­ ÀÎº¸Å©");
+        Debug.Log("ë¦¬ì…”í”Œ - ë±ë³€í™” ì¸ë³´í¬");
         OnDeckChanged?.Invoke();
         OnDiscardChanged?.Invoke();
     }
@@ -103,11 +103,11 @@ public class DeckManager : MonoBehaviour
     {
         if (card == null)
         {
-            Debug.LogWarning("ExhaustCard() - Ä«µå°¡ nullÀÔ´Ï´Ù.");
+            Debug.LogWarning("ExhaustCard() - ì¹´ë“œê°€ nullì…ë‹ˆë‹¤.");
             return;
         }
 
-        Debug.Log($"[Exhaust] Ä«µå [{card.cardName}]°¡ ¿ÏÀüÈ÷ Á¦°ÅµË´Ï´Ù.");
+        Debug.Log($"[Exhaust] ì¹´ë“œ [{card.cardName}]ê°€ ì™„ì „íˆ ì œê±°ë©ë‹ˆë‹¤.");
 
         bool changed = false;
 

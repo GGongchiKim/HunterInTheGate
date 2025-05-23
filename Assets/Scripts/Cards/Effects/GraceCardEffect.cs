@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewGraceCardEffect", menuName = "Card Effects/GraceCardEffect")]
 public class GraceCardEffect : CardEffect
@@ -34,7 +34,7 @@ public class GraceCardEffect : CardEffect
 
         // 🔹 행동력 소모
         context.player.actionPoints -= cardData.cardCost;
-        HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
 
         // 🔹 숙련도 보정
         int level = context.player.GetCardLevel(cardData);

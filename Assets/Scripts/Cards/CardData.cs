@@ -5,10 +5,10 @@ using UnityEngine;
 
 public enum CardRarity { Common, Uncommon, Rare, Legendary }
 public enum CardType { Strike, Grace, Tactic, Item }
-// Strike: °ø°İ Ä«µå
-// Grace: ¹æ¾î & È¸º¹ Ä«µå
-// Tactic: µå·Î¿ì, ÄÚ½ºÆ®, Àû ÆĞÅÏ º¯È­ µîµî Æ¯¼öÇÑ È¿°ú¸¦ °¡Áø Ä«µå
-// Item: ÇÑ¹ø »ç¿ëÇÏ¸é µ¦¿¡¼­ »ç¶óÁö´Â 1È¸¿ë Ä«µå
+// Strike: ê³µê²© ì¹´ë“œ
+// Grace: ë°©ì–´ & íšŒë³µ ì¹´ë“œ
+// Tactic: ë“œë¡œìš°, ì½”ìŠ¤íŠ¸, ì  íŒ¨í„´ ë³€í™” ë“±ë“± íŠ¹ìˆ˜í•œ íš¨ê³¼ë¥¼ ê°€ì§„ ì¹´ë“œ
+// Item: í•œë²ˆ ì‚¬ìš©í•˜ë©´ ë±ì—ì„œ ì‚¬ë¼ì§€ëŠ” 1íšŒìš© ì¹´ë“œ
 
 [CreateAssetMenu(fileName = "NewCardData", menuName = "Cards/Card Data")]
 public class CardData : ScriptableObject

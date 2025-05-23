@@ -1,8 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// ½ÇÁ¦ Àû¿ëµÈ °³º° »óÅÂÈ¿°ú ÀÎ½ºÅÏ½º¸¦ °ü¸®.
-/// (µ¥ÀÌÅÍ¿Í ½ÇÇà ·ÎÁ÷ ºĞ¸®)
+/// ì‹¤ì œ ì ìš©ëœ ê°œë³„ ìƒíƒœíš¨ê³¼ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê´€ë¦¬.
+/// (ë°ì´í„°ì™€ ì‹¤í–‰ ë¡œì§ ë¶„ë¦¬)
 /// </summary>
 public class StatusEffectInstance
 {
@@ -21,7 +21,7 @@ public class StatusEffectInstance
         InitialDamage = initialDamage;
     }
 
-    // -------- »óÅÂÈ¿°ú »ı¸íÁÖ±â --------
+    // -------- ìƒíƒœíš¨ê³¼ ìƒëª…ì£¼ê¸° --------
 
     public void OnApply(EffectHandler handler)
     {
@@ -38,7 +38,7 @@ public class StatusEffectInstance
         Logic?.OnExpire(handler, this);
     }
 
-    // -------- ÅÏ/½ºÅÃ °ü¸® --------
+    // -------- í„´/ìŠ¤íƒ ê´€ë¦¬ --------
 
     public void DecreaseDuration()
     {
@@ -71,32 +71,32 @@ public class StatusEffectInstance
         RemainingDuration = BaseEffect.defaultDuration;
     }
 
-    // -------- Ãß°¡ ±â´É¿ë È®Àå ½½·Ô --------
+    // -------- ì¶”ê°€ ê¸°ëŠ¥ìš© í™•ì¥ ìŠ¬ë¡¯ --------
 
     /// <summary>
-    /// [Reserved] ¸ÅÅÏ µµÆ® µ¥¹ÌÁö µîÀ» °è»êÇÏ´Â ±â´É¿ë (ÃßÈÄ °í±Ş DOT °ø½Ä ´ëÀÀ)
-    /// ÇöÀç´Â »ç¿ëÇÏÁö ¾ÊÀ½. ±âº» ±¸Á¶¸¸ È®º¸.
+    /// [Reserved] ë§¤í„´ ë„íŠ¸ ë°ë¯¸ì§€ ë“±ì„ ê³„ì‚°í•˜ëŠ” ê¸°ëŠ¥ìš© (ì¶”í›„ ê³ ê¸‰ DOT ê³µì‹ ëŒ€ì‘)
+    /// í˜„ì¬ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ. ê¸°ë³¸ êµ¬ì¡°ë§Œ í™•ë³´.
     /// </summary>
     public int CalculateDotDamage()
     {
-        // È®Àå¿ë: ³ªÁß¿¡ InitialDamage, ½ºÅÃ ¼ö, º°µµ °ø½Ä Àû¿ë °¡´É
+        // í™•ì¥ìš©: ë‚˜ì¤‘ì— InitialDamage, ìŠ¤íƒ ìˆ˜, ë³„ë„ ê³µì‹ ì ìš© ê°€ëŠ¥
         return 0;
     }
 
     /// <summary>
-    /// [Reserved] ½ºÅÃ ¼ö¿¡ µû¶ó È¿°ú¸¦ °­È­ÇÏ°Å³ª Æ¯¼ö ¹ßµ¿ Á¶°ÇÀ» Ã¼Å©ÇÏ´Â ±â´É¿ë
-    /// ÇöÀç´Â »ç¿ëÇÏÁö ¾ÊÀ½. ±âº» ±¸Á¶¸¸ È®º¸.
+    /// [Reserved] ìŠ¤íƒ ìˆ˜ì— ë”°ë¼ íš¨ê³¼ë¥¼ ê°•í™”í•˜ê±°ë‚˜ íŠ¹ìˆ˜ ë°œë™ ì¡°ê±´ì„ ì²´í¬í•˜ëŠ” ê¸°ëŠ¥ìš©
+    /// í˜„ì¬ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ. ê¸°ë³¸ êµ¬ì¡°ë§Œ í™•ë³´.
     /// </summary>
     public bool ShouldTriggerSpecialEffect()
     {
-        // ¿¹: ½ºÅÃÀÌ 5 ÀÌ»óÀÌ¸é Ãß°¡ È¿°ú ¹ßµ¿ µî
+        // ì˜ˆ: ìŠ¤íƒì´ 5 ì´ìƒì´ë©´ ì¶”ê°€ íš¨ê³¼ ë°œë™ ë“±
         return false;
     }
 
-    // -------- µğ¹ö±ë ÆíÀÇ¼º --------
+    // -------- ë””ë²„ê¹… í¸ì˜ì„± --------
 
     public override string ToString()
     {
-        return $"[{BaseEffect.effectName}] {StackCount}½ºÅÃ / {RemainingDuration}ÅÏ ³²À½";
+        return $"[{BaseEffect.effectName}] {StackCount}ìŠ¤íƒ / {RemainingDuration}í„´ ë‚¨ìŒ";
     }
 }
