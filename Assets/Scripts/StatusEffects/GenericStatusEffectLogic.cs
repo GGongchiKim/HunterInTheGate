@@ -73,7 +73,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
     private void ApplyBuff(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
         // 예: 힘모으기 (flatBonusDamage) → 공격력 상승
-        var player = target.GetComponent<Player>();
+        var player = target.GetComponent<CombatPlayer>();
         if (player != null)
         {
             player.strength += effect.flatBonusDamage * instance.StackCount;
@@ -90,7 +90,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
 
     private void RemoveBuff(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
-        var player = target.GetComponent<Player>();
+        var player = target.GetComponent<CombatPlayer>();
         if (player != null)
         {
             player.strength -= effect.flatBonusDamage * instance.StackCount;
@@ -107,7 +107,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
 
     private void ApplyDebuff(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
-        var player = target.GetComponent<Player>();
+        var player = target.GetComponent<CombatPlayer>();
         var enemy = target.GetComponent<Enemy>();
 
         if (player != null)
@@ -131,7 +131,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
 
     private void ApplyDotDamage(GameObject target, StatusEffect effect, StatusEffectInstance instance)
     {
-        var player = target.GetComponent<Player>();
+        var player = target.GetComponent<CombatPlayer>();
         var enemy = target.GetComponent<Enemy>();
 
         int dotDamage = Mathf.RoundToInt(10 * effect.dotPercentDamage * instance.StackCount);

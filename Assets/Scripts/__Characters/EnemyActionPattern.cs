@@ -30,9 +30,9 @@ public class EnemyActionPattern
     /// <summary>
     /// 플레이어에게 이 행동을 실행합니다.
     /// </summary>
-    public void Execute(Player player)
+    public void Execute(CombatPlayer combatPlayer)
     {
-        if (player == null)
+        if (combatPlayer == null)
         {
             Debug.LogWarning($"[{patternName}] 실행 실패 - 플레이어가 null입니다.");
             return;
@@ -41,8 +41,8 @@ public class EnemyActionPattern
         // 🔹 공격
         if (damage > 0)
         {
-            player.TakeDamage(damage);
-            player.PlayAttackedAnimation(0.2f); // 간단한 공격 리액션 연출 추가
+            combatPlayer.TakeDamage(damage);
+            combatPlayer.PlayAttackedAnimation(0.2f); // 간단한 공격 리액션 연출 추가
         }
 
         // 🔹 방어
@@ -54,7 +54,7 @@ public class EnemyActionPattern
         // 🔹 상태이상 적용 (공격 이후 적용)
         if (statusEffect != null)
         {
-            player.ApplyEffect(statusEffect);
+            combatPlayer.ApplyEffect(statusEffect);
             Debug.Log($"[{patternName}] 상태이상 {statusEffect.effectName} 적용됨");
         }
 

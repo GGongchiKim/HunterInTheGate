@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
 
     public void StartCombat()
     {
-        if (CombatContext.Instance.player == null)
+        if (CombatContext.Instance.combatPlayer == null)
         {
             Debug.LogError("GameContext가 초기화되지 않았습니다.");
             return;
@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour
 
         GameStateManager.Instance.SetPhase(GamePhase.Combat);
         C_HUDManager.Instance.UpdateTurn(currentTurn);
-        CombatContext.Instance.player.ResetShield();
+        CombatContext.Instance.combatPlayer.ResetShield();
 
         InitializeEnemyIntents();
         DeckViewerManager.Instance.ForceRefreshAll();
@@ -122,7 +122,7 @@ public class TurnManager : MonoBehaviour
         SetActionPoints(baseActionPoints);
         DrawCards(drawCountPerTurn);
         C_HUDManager.Instance.UpdateTurn(currentTurn);
-        CombatContext.Instance.player.ResetShield();
+        CombatContext.Instance.combatPlayer.ResetShield();
 
         // 🔹 플레이어 상태이상 갱신
         UpdatePlayerEffects();
@@ -149,18 +149,18 @@ public class TurnManager : MonoBehaviour
 
     private void SetActionPoints(int ap)
     {
-        if (CombatContext.Instance.player == null)
+        if (CombatContext.Instance.combatPlayer == null)
         {
             Debug.LogWarning("플레이어가 null입니다.");
             return;
         }
 
-        CombatContext.Instance.player.actionPoints = ap;
+        CombatContext.Instance.combatPlayer.actionPoints = ap;
         C_HUDManager.Instance.UpdateActionPoints(ap);
     }
 
     private void UpdatePlayerEffects()
     {
-        CombatContext.Instance.player.GetComponent<EffectHandler>()?.UpdateEffects();
+        CombatContext.Instance.combatPlayer.GetComponent<EffectHandler>()?.UpdateEffects();
     }
 }

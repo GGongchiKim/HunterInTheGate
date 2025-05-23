@@ -37,20 +37,20 @@ public class ItemCardEffect : CardEffect
 
     public override bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null)
     {
-        if (context.player == null)
+        if (context.combatPlayer == null)
         {
             Debug.LogWarning("[ItemCard] 플레이어가 존재하지 않습니다.");
             return false;
         }
 
-        if (context.player.actionPoints < cardData.cardCost)
+        if (context.combatPlayer.actionPoints < cardData.cardCost)
         {
             Debug.LogWarning("[ItemCard] 행동력 부족으로 카드 사용 실패");
             return false;
         }
 
-        context.player.actionPoints -= cardData.cardCost;
-        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        context.combatPlayer.actionPoints -= cardData.cardCost;
+        C_HUDManager.Instance.UpdateActionPoints(context.combatPlayer.actionPoints);
 
         // 🔹 공격 처리
         if (damage > 0)
@@ -83,21 +83,21 @@ public class ItemCardEffect : CardEffect
         // 🔹 회복
         if (heal > 0)
         {
-            context.player.Heal(heal);
+            context.combatPlayer.Heal(heal);
             Debug.Log($"[ItemCard] 회복: {heal}");
         }
 
         // 🔹 실드
         if (shield > 0)
         {
-            context.player.AddShield(shield);
+            context.combatPlayer.AddShield(shield);
             Debug.Log($"[ItemCard] 실드: {shield}");
         }
 
         // 🔹 플레이어 상태이상 부여 (비공격 조건)
         if ((heal > 0 || shield > 0 || (statusEffect != null && damage == 0)) && statusEffect != null)
         {
-            ApplyStatusEffect(context.player.gameObject, statusEffect, 0);
+            ApplyStatusEffect(context.combatPlayer.gameObject, statusEffect, 0);
         }
 
         // 🔹 카드 드로우
@@ -110,8 +110,8 @@ public class ItemCardEffect : CardEffect
         // 🔹 행동력 회복
         if (energyRestore > 0)
         {
-            context.player.actionPoints = Mathf.Min(context.player.actionPoints + energyRestore, context.player.maxActionPoints);
-            C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+            context.combatPlayer.actionPoints = Mathf.Min(context.combatPlayer.actionPoints + energyRestore, context.combatPlayer.maxActionPoints);
+            C_HUDManager.Instance.UpdateActionPoints(context.combatPlayer.actionPoints);
             Debug.Log($"[ItemCard] 행동력 {energyRestore} 회복");
         }
 

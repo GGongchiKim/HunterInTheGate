@@ -178,7 +178,7 @@ public class Enemy : MonoBehaviour
 
         if (pattern.damage > 0)
         {
-            CombatContext.Instance.player.TakeDamage(pattern.damage);
+            CombatContext.Instance.combatPlayer.TakeDamage(pattern.damage);
             PlayAttackAnimation();
         }
 
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
 
         if (pattern.statusEffect != null)
         {
-            CombatContext.Instance.player.ApplyEffect(pattern.statusEffect);
+            CombatContext.Instance.combatPlayer.ApplyEffect(pattern.statusEffect);
         }
     }
 

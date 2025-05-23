@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ì „íˆ¬ ì”¬ ì»¨í…ìŠ¤íŠ¸. CombatPlayerì™€ ì  ëª©ë¡, ì„ì‹œ ë³´ìƒ ë°ì´í„° í¬í•¨.
+/// ÀüÅõ ¾À ÄÁÅØ½ºÆ®. CombatPlayer¿Í Àû ¸ñ·Ï, ÀÓ½Ã º¸»ó µ¥ÀÌÅÍ Æ÷ÇÔ.
 /// </summary>
 public class CombatContext : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class CombatContext : MonoBehaviour
     public List<Enemy> allEnemies = new List<Enemy>();
     public Enemy selectedEnemy;
 
-    [Header("ì „íˆ¬ ë³´ìƒ")]
+    [Header("ÀüÅõ º¸»ó")]
     public int rewardGold;
     public int rewardExp;
     public List<string> rewardCards = new List<string>();

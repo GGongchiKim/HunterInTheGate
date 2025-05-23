@@ -162,7 +162,7 @@ public class C_HUDManager : MonoBehaviour
 
     public void HighlightAPBeads(int cost)
     {
-        int availableAP = CombatContext.Instance.player.actionPoints;
+        int availableAP = CombatContext.Instance.combatPlayer.actionPoints;
 
         for (int i = 0; i < apBeads.Length; i++)
         {
@@ -201,7 +201,7 @@ public class C_HUDManager : MonoBehaviour
                 flashCoroutines[i] = null;
             }
 
-            if (i < CombatContext.Instance.player.actionPoints)
+            if (i < CombatContext.Instance.combatPlayer.actionPoints)
                 apBeads[i].color = beadDefaultColor;
             else
                 apBeads[i].color = new Color(0.3f, 0.3f, 0.3f, 1f);

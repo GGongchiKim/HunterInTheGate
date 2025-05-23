@@ -26,14 +26,14 @@ public class StrikeCardEffect : CardEffect
 
     public override bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null)
     {
-        if (context.player == null || context.player.actionPoints < cardData.cardCost)
+        if (context.combatPlayer == null || context.combatPlayer.actionPoints < cardData.cardCost)
         {
             Debug.LogWarning("[StrikeCard] 행동력 부족 또는 플레이어 없음");
             return false;
         }
 
-        context.player.actionPoints -= cardData.cardCost;
-        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        context.combatPlayer.actionPoints -= cardData.cardCost;
+        C_HUDManager.Instance.UpdateActionPoints(context.combatPlayer.actionPoints);
 
         List<Enemy> targets = new();
         if (targetType == AttackTargetType.Single && target != null)
@@ -52,14 +52,14 @@ public class StrikeCardEffect : CardEffect
             return false;
         }
 
-        int level = context.player.GetCardLevel(cardData);
+        int level = context.combatPlayer.GetCardLevel(cardData);
         float levelBonus = (level == 2) ? 1.1f : (level == 3 ? 1.25f : 1f);
 
         int totalDamage = Mathf.RoundToInt(
             (baseDamage +
-            context.player.strength * strengthMultiplier +
-            context.player.agility * agilityMultiplier +
-            context.player.insight * insightMultiplier)
+            context.combatPlayer.strength * strengthMultiplier +
+            context.combatPlayer.agility * agilityMultiplier +
+            context.combatPlayer.insight * insightMultiplier)
             * levelBonus
         );
 
@@ -74,7 +74,7 @@ public class StrikeCardEffect : CardEffect
                 enemy.ApplyEffect(statusEffect, totalDamage);
         }
 
-        context.player.PlayAttackAnimation();
+        context.combatPlayer.PlayAttackAnimation();
         context.selectedEnemy?.PlayAttackedAnimation(0.28f);
 
         return true;

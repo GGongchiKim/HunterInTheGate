@@ -30,13 +30,13 @@ public class A_HUDManager : MonoBehaviour
     public void UpdateStatsUI()
     {
         // AcademyContext의 능력치로 UI를 갱신
-        strengthText.text = "Strength: " + GameContext.Instance.player.strength;
-        agilityText.text = "Agility: " + GameContext.Instance.player.agility;
-        insightText.text = "Insight: " + GameContext.Instance.player.insight;
-        magicText.text = "Magic: " + GameContext.Instance.player.magic;
-        willPowerText.text = "Will Power: " + GameContext.Instance.player.willPower;
-        witText.text = "Wit: " + GameContext.Instance.player.wit;
-        charismaText.text = "Charisma: " + GameContext.Instance.player.charisma;
-        luckText.text = "Luck: " + GameContext.Instance.player.luck;
+        strengthText.text = "Strength: " + GameContext.Instance.academyPlayer.strength;
+        agilityText.text = "Agility: " + GameContext.Instance.academyPlayer.agility;
+        insightText.text = "Insight: " + GameContext.Instance.academyPlayer.insight;
+        magicText.text = "Magic: " + GameContext.Instance.academyPlayer.magic;
+        willPowerText.text = "Will Power: " + GameContext.Instance.academyPlayer.willPower;
+        witText.text = "Wit: " + GameContext.Instance.academyPlayer.wit;
+        charismaText.text = "Charisma: " + GameContext.Instance.academyPlayer.charisma;
+        luckText.text = "Luck: " + GameContext.Instance.academyPlayer.luck;
     }
 }

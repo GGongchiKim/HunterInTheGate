@@ -32,27 +32,27 @@ public class TacticCardEffect : CardEffect
 
     public override bool ExecuteEffect(CombatContext context, CardData cardData, GameObject target = null)
     {
-        if (context.player == null)
+        if (context.combatPlayer == null)
         {
             Debug.LogWarning("[TacticCard] 플레이어가 존재하지 않습니다.");
             return false;
         }
 
-        if (context.player.actionPoints < cardData.cardCost)
+        if (context.combatPlayer.actionPoints < cardData.cardCost)
         {
             Debug.LogWarning("[TacticCard] 행동력 부족으로 카드 사용 실패");
             return false;
         }
 
         // 🔹 행동력 소모
-        context.player.actionPoints -= cardData.cardCost;
-        C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+        context.combatPlayer.actionPoints -= cardData.cardCost;
+        C_HUDManager.Instance.UpdateActionPoints(context.combatPlayer.actionPoints);
 
         // 🔹 행동력 회복
         if (recoverAP > 0)
         {
-            context.player.actionPoints = Mathf.Min(context.player.actionPoints + recoverAP, context.player.maxActionPoints);
-            C_HUDManager.Instance.UpdateActionPoints(context.player.actionPoints);
+            context.combatPlayer.actionPoints = Mathf.Min(context.combatPlayer.actionPoints + recoverAP, context.combatPlayer.maxActionPoints);
+            C_HUDManager.Instance.UpdateActionPoints(context.combatPlayer.actionPoints);
             Debug.Log($"[TacticCard] 행동력 {recoverAP} 회복");
         }
 

@@ -1,12 +1,14 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿#if UNITY_EDITOR
 using UnityEditor;
-
+#endif
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace TMPro.Examples
 {
-
+#if UNITY_EDITOR
     public class TMP_TextInfoDebugTool : MonoBehaviour
     {
         // Since this script is used for debugging, we exclude it from builds.
@@ -650,3 +652,4 @@ namespace TMPro.Examples
     }
 }
 
+#endif

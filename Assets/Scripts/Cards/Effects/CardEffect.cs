@@ -43,7 +43,7 @@ public abstract class CardEffect : ScriptableObject
             handler.AddEffect(statusEffect, baseDamage);
         }
 
-        var player = target.GetComponent<Player>();
+        var player = target.GetComponent<CombatPlayer>();
         if (player != null)
         {
             player.ApplyEffect(statusEffect);
