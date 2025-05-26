@@ -40,8 +40,8 @@ public class GraceCardEffect : CardEffect
         int level = context.combatPlayer.GetCardLevel(cardData);
         float levelBonus = (level == 2) ? 1.1f : (level == 3 ? 1.25f : 1f);
 
-        int finalHeal = Mathf.RoundToInt((healAmount + context.combatPlayer.magic * magicMultiplier) * levelBonus);
-        int finalShield = Mathf.RoundToInt((shieldAmount + context.combatPlayer.willPower * willPowerMultiplier) * levelBonus);
+        int finalHeal = Mathf.RoundToInt((healAmount + context.combatPlayer.combat.magic * magicMultiplier) * levelBonus);
+        int finalShield = Mathf.RoundToInt((shieldAmount + context.combatPlayer.combat.willPower * willPowerMultiplier) * levelBonus);
 
         // 🔹 회복
         if (finalHeal > 0)

@@ -18,9 +18,9 @@ MonoBehaviour:
   classType: 0
   statModifiers:
   - statType: 0
-    amount: 2
+    amount: 10
   - statType: 1
-    amount: 1
+    amount: 5
   previewCards:
   - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}
   - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}

@@ -20,14 +20,8 @@ public class CombatPlayer : MonoBehaviour
     }
 
     [Header("능력치")]
-    public int strength;
-    public int agility;
-    public int magic;
-    public int insight;
-    public int willPower;
-    public int wit;
-    public int charisma;
-    public int luck;
+    public CombatStats combat = new();
+    public RelationStats relation = new();
 
     [Header("행동력")]
     public int actionPoints;
@@ -40,26 +34,7 @@ public class CombatPlayer : MonoBehaviour
     private Animator animator;
     public EffectHandler effectHandler;
 
-    // 🔹 기본 생성자
     public CombatPlayer() { }
-
-    public CombatPlayer(string name, int health, int strength, int agility, int magic, int insight, int willPower, int wit, int charisma, int luck)
-    {
-        this.playerName = name;
-        this.health = this.maxHealth = health;
-        this.strength = strength;
-        this.agility = agility;
-        this.magic = magic;
-        this.insight = insight;
-        this.willPower = willPower;
-        this.wit = wit;
-        this.charisma = charisma;
-        this.luck = luck;
-
-        this.maxActionPoints = 5;
-        this.actionPoints = maxActionPoints;
-        this.cardProgressMap = new Dictionary<CardData, CardProgress>();
-    }
 
     private void Awake()
     {
@@ -71,12 +46,6 @@ public class CombatPlayer : MonoBehaviour
     {
         health = maxHealth = 100;
     }
-
-    // -----------------
-    // 카드 숙련도 관련
-    // -----------------
-
-    
 
     public int GetCardLevel(CardData card)
     {
@@ -111,10 +80,6 @@ public class CombatPlayer : MonoBehaviour
         Debug.Log($"[{card.cardName}] 사용됨 → 숙련도 {cardProgressMap[card].usageCount}회");
     }
 
-    // -----------------
-    // 상태 관리
-    // -----------------
-
     public void ResetActionPoints()
     {
         actionPoints = maxActionPoints;
@@ -127,7 +92,6 @@ public class CombatPlayer : MonoBehaviour
 
         int modifiedDamage = damage;
 
-        // 🔹 현재 걸린 디버프 상태 출력
         if (effectHandler != null)
         {
             var activeEffects = effectHandler.GetActiveEffects();
@@ -171,7 +135,6 @@ public class CombatPlayer : MonoBehaviour
         }
 
         C_HUDManager.Instance.UpdatePlayerHealth(health, maxHealth, currentShield);
-
         PlayAttackedAnimation(0.28f);
 
         if (health <= 0)
@@ -210,10 +173,6 @@ public class CombatPlayer : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    // -----------------
-    // 상태이상 처리
-    // -----------------
-
     public void ApplyEffect(StatusEffect effect, int sourceDamage = 0)
     {
         if (effectHandler != null)
@@ -226,10 +185,6 @@ public class CombatPlayer : MonoBehaviour
             Debug.LogWarning($"[ApplyEffect] {playerName}에 EffectHandler가 없습니다.");
         }
     }
-
-    // -----------------
-    // 애니메이션 관련
-    // -----------------
 
     public void PlayAttackAnimation()
     {
@@ -252,30 +207,25 @@ public class CombatPlayer : MonoBehaviour
         animator?.SetTrigger("OnAttacked");
     }
 
-    //아카데미 -> 전투 데이터 전환
     public void LoadFromAcademy(AcademyPlayer academyPlayer)
     {
-        this.playerName = academyPlayer.playerName;
-        this.strength = academyPlayer.strength;
-        this.agility = academyPlayer.agility;
-        this.magic = academyPlayer.magic;
-        this.insight = academyPlayer.insight;
-        this.willPower = academyPlayer.willPower;
-        this.wit = academyPlayer.wit;
-        this.charisma = academyPlayer.charisma;
-        this.luck = academyPlayer.luck;
+        playerName = academyPlayer.playerName;
 
-        // 체력 및 초기화
-        this.maxHealth = 100;
-        this.health = maxHealth;
-        this.maxActionPoints = 5;
-        this.actionPoints = maxActionPoints;
+        combat.strength = academyPlayer.combat.strength;
+        combat.agility = academyPlayer.combat.agility;
+        combat.magic = academyPlayer.combat.magic;
+        combat.insight = academyPlayer.combat.insight;
+        combat.willPower = academyPlayer.combat.willPower;
+        combat.wit = academyPlayer.combat.wit;
 
-        // 카드 숙련도 초기화
-        this.cardProgressMap = new Dictionary<CardData, CardProgress>();
+        relation.charisma = academyPlayer.relation.charisma;
+        relation.luck = academyPlayer.relation.luck;
+        relation.fame = academyPlayer.relation.fame;
+
+        maxHealth = 100;
+        health = maxHealth;
+        maxActionPoints = 5;
+        actionPoints = maxActionPoints;
+        cardProgressMap = new Dictionary<CardData, CardProgress>();
     }
-
-
-
-
 }

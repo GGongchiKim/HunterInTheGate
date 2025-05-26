@@ -57,9 +57,9 @@ public class StrikeCardEffect : CardEffect
 
         int totalDamage = Mathf.RoundToInt(
             (baseDamage +
-            context.combatPlayer.strength * strengthMultiplier +
-            context.combatPlayer.agility * agilityMultiplier +
-            context.combatPlayer.insight * insightMultiplier)
+            context.combatPlayer.combat.strength * strengthMultiplier +
+            context.combatPlayer.combat.agility * agilityMultiplier +
+            context.combatPlayer.combat.insight * insightMultiplier)
             * levelBonus
         );
 

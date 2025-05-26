@@ -27,25 +27,6 @@ public class ClassData : ScriptableObject
     public Sprite resultFailure;
 }
 
-[System.Serializable]
-public struct StatModifier
-{
-    public StatType statType;
-    public int amount;
-}
-
-public enum StatType
-{
-    Strength,
-    Agility,
-    Magic,
-    Insight,
-    WillPower,
-    Wit,
-    Charisma,
-    Luck
-}
-
 public enum ClassType
 {
     Strike,

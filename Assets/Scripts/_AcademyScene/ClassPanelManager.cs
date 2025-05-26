@@ -41,6 +41,14 @@ public class ClassPanelManager : MonoBehaviour
     public Button[] rewardButtons;
     public Text[] rewardTexts;
 
+    [Header("능력치 결과 애니메이션 바")]
+    public TMP_Text resultStatLabel1;
+    public Slider resultStatBar1;
+    public TMP_Text resultStatText1;
+    public TMP_Text resultStatLabel2;
+    public Slider resultStatBar2;
+    public TMP_Text resultStatText2;
+
     public Button attendButton;
 
     private ClassData selectedClass;
@@ -91,12 +99,12 @@ public class ClassPanelManager : MonoBehaviour
         if (selectedClass.statModifiers.Count > 0)
         {
             stat1NameText.text = selectedClass.statModifiers[0].statType.ToString();
-            stat1ValueText.text = new string('+', selectedClass.statModifiers[0].amount);
+            stat1ValueText.text = GetStatSymbol(selectedClass.statModifiers[0].amount);
         }
         if (selectedClass.statModifiers.Count > 1)
         {
             stat2NameText.text = selectedClass.statModifiers[1].statType.ToString();
-            stat2ValueText.text = new string('+', selectedClass.statModifiers[1].amount);
+            stat2ValueText.text = GetStatSymbol(selectedClass.statModifiers[1].amount);
         }
 
         for (int i = 0; i < cardPreviewSlots.Length; i++)
@@ -117,8 +125,14 @@ public class ClassPanelManager : MonoBehaviour
         }
     }
 
-
-
+    private string GetStatSymbol(int amount)
+    {
+        if (amount >= 8) return "++";
+        if (amount >= 3) return "+";
+        if (amount <= -4) return "--";
+        if (amount <= -1) return "-";
+        return "";
+    }
 
     private IEnumerator StartClassRoutine()
     {
@@ -140,16 +154,94 @@ public class ClassPanelManager : MonoBehaviour
         List<StatModifier> finalMods = ApplyStatMultiplier(selectedClass.statModifiers, multiplier);
 
         GameContext.Instance.academyPlayer.ApplyModifiers(finalMods);
+        ShowResultStatAnimation(finalMods);
 
         ShowRewardCardOptions(selectedClass.rewardPool);
     }
 
+    private void ShowResultStatAnimation(List<StatModifier> modifiers)
+    {
+        var player = GameContext.Instance.academyPlayer;
+
+        for (int i = 0; i < modifiers.Count && i < 2; i++)
+        {
+            var mod = modifiers[i];
+            int original = GetStatValue(player, mod.statType) - mod.amount;
+            int updated = original + mod.amount;
+
+            if (i == 0)
+            {
+                resultStatLabel1.text = mod.statType.ToString();
+                resultStatText1.text = original.ToString();
+                StartCoroutine(AnimateSlider(resultStatBar1, original, updated, resultStatText1, mod.statType));
+            }
+            else if (i == 1)
+            {
+                resultStatLabel2.text = mod.statType.ToString();
+                resultStatText2.text = original.ToString();
+                StartCoroutine(AnimateSlider(resultStatBar2, original, updated, resultStatText2, mod.statType));
+            }
+        }
+    }
+
+    private IEnumerator AnimateSlider(Slider slider, int from, int to, TMP_Text text, StatType statType)
+    {
+        float duration = 0.5f;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float val = Mathf.Lerp(from, to, t / duration);
+            slider.value = val;
+            text.text = Mathf.RoundToInt(val).ToString();
+            yield return null;
+        }
+        slider.value = to;
+        text.text = to.ToString();
+    }
+
+    private int GetStatValue(AcademyPlayer player, StatType type)
+    {
+        return type switch
+        {
+            StatType.Strength => player.combat.strength,
+            StatType.Agility => player.combat.agility,
+            StatType.Magic => player.combat.magic,
+            StatType.Insight => player.combat.insight,
+            StatType.WillPower => player.combat.willPower,
+            StatType.Wit => player.combat.wit,
+            StatType.Charisma => player.relation.charisma,
+            StatType.Luck => player.relation.luck,
+            StatType.Fame => player.relation.fame,
+            StatType.Mood => player.condition.mood,
+            StatType.Stress => player.condition.stress,
+            _ => 0
+        };
+    }
+
     private ClassResult RollClassResult()
     {
+        int stress = GameContext.Instance.academyPlayer.condition.stress;
         int roll = Random.Range(0, 100);
-        if (roll < 20) return ClassResult.Failure;
-        else if (roll < 80) return ClassResult.Success;
-        else return ClassResult.GreatSuccess;
+
+        if (stress <= 30) // 무드1
+        {
+            if (roll < 20) return ClassResult.GreatSuccess;
+            if (roll < 90) return ClassResult.Success;
+            return ClassResult.Failure;
+        }
+        else if (stress <= 70) // 무드2
+        {
+            if (roll < 10) return ClassResult.GreatSuccess;
+            if (roll < 70) return ClassResult.Success;
+            return ClassResult.Failure;
+        }
+        else // 무드3
+        {
+            if (roll < 5) return ClassResult.GreatSuccess;
+            if (roll < 50) return ClassResult.Success;
+            return ClassResult.Failure;
+        }
     }
 
     private Sprite GetResultSprite(ClassResult result)

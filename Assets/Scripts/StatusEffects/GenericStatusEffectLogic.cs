@@ -76,7 +76,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
         var player = target.GetComponent<CombatPlayer>();
         if (player != null)
         {
-            player.strength += effect.flatBonusDamage * instance.StackCount;
+            player.combat.strength += effect.flatBonusDamage * instance.StackCount;
             Debug.Log($"[버프] {player.playerName}의 힘이 증가: +{effect.flatBonusDamage * instance.StackCount}");
         }
 
@@ -93,7 +93,7 @@ public class GenericStatusEffectLogic : StatusEffectLogic
         var player = target.GetComponent<CombatPlayer>();
         if (player != null)
         {
-            player.strength -= effect.flatBonusDamage * instance.StackCount;
+            player.combat.strength -= effect.flatBonusDamage * instance.StackCount;
             Debug.Log($"[버프 종료] {player.playerName}의 힘이 감소: -{effect.flatBonusDamage * instance.StackCount}");
         }
 

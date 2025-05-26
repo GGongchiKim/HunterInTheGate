@@ -15,6 +15,16 @@ public class A_HUDManager : MonoBehaviour
     public Text charismaText;
     public Text luckText;
 
+    [Header("능력치 슬라이더 바")]
+    public Slider strengthBar;
+    public Slider agilityBar;
+    public Slider insightBar;
+    public Slider magicBar;
+    public Slider willPowerBar;
+    public Slider witBar;
+    public Slider charismaBar;
+    public Slider luckBar;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,17 +36,38 @@ public class A_HUDManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        var player = GameContext.Instance.academyPlayer;
+
+        player.combat.OnStatsChanged += UpdateStatsUI;
+        player.relation.OnStatsChanged += UpdateStatsUI;
+        player.condition.OnStatsChanged += UpdateStatsUI;
+
+        UpdateStatsUI(); // 초기값 표시
+    }
+
     // 능력치 UI 업데이트
     public void UpdateStatsUI()
     {
-        // AcademyContext의 능력치로 UI를 갱신
-        strengthText.text = "Strength: " + GameContext.Instance.academyPlayer.strength;
-        agilityText.text = "Agility: " + GameContext.Instance.academyPlayer.agility;
-        insightText.text = "Insight: " + GameContext.Instance.academyPlayer.insight;
-        magicText.text = "Magic: " + GameContext.Instance.academyPlayer.magic;
-        willPowerText.text = "Will Power: " + GameContext.Instance.academyPlayer.willPower;
-        witText.text = "Wit: " + GameContext.Instance.academyPlayer.wit;
-        charismaText.text = "Charisma: " + GameContext.Instance.academyPlayer.charisma;
-        luckText.text = "Luck: " + GameContext.Instance.academyPlayer.luck;
+        var player = GameContext.Instance.academyPlayer;
+
+        strengthText.text = "Strength: " + player.combat.strength;
+        agilityText.text = "Agility: " + player.combat.agility;
+        insightText.text = "Insight: " + player.combat.insight;
+        magicText.text = "Magic: " + player.combat.magic;
+        willPowerText.text = "Will Power: " + player.combat.willPower;
+        witText.text = "Wit: " + player.combat.wit;
+        charismaText.text = "Charisma: " + player.relation.charisma;
+        luckText.text = "Luck: " + player.relation.luck;
+
+        strengthBar.value = player.combat.strength;
+        agilityBar.value = player.combat.agility;
+        insightBar.value = player.combat.insight;
+        magicBar.value = player.combat.magic;
+        willPowerBar.value = player.combat.willPower;
+        witBar.value = player.combat.wit;
+        charismaBar.value = player.relation.charisma;
+        luckBar.value = player.relation.luck;
     }
 }
