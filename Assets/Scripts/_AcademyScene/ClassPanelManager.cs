@@ -22,12 +22,20 @@ public class ClassPanelManager : MonoBehaviour
     public TMP_Text stat2NameText;
     public TMP_Text stat2ValueText;
 
+    [Header("보상 카드 프리뷰 슬롯 (정적 4개)")]
+    public CardPreviewSlot[] cardPreviewSlots;
+
+    [System.Serializable]
+    public class CardPreviewSlot
+    {
+        public TMP_Text cardNameText;
+        public Image cardSpriteImage;
+        public TMP_Text cardDescriptionText;
+    }
+
     [Header("애니메이션 관련")]
     public Image cardFrontImage;
     public Image cardBackImage;
-    public Sprite successSprite;
-    public Sprite greatSuccessSprite;
-    public Sprite failureSprite;
 
     [Header("보상 카드 선택")]
     public Button[] rewardButtons;
@@ -90,7 +98,27 @@ public class ClassPanelManager : MonoBehaviour
             stat2NameText.text = selectedClass.statModifiers[1].statType.ToString();
             stat2ValueText.text = new string('+', selectedClass.statModifiers[1].amount);
         }
+
+        for (int i = 0; i < cardPreviewSlots.Length; i++)
+        {
+            if (i < selectedClass.previewCards.Count && selectedClass.previewCards[i] != null)
+            {
+                var card = selectedClass.previewCards[i];
+                cardPreviewSlots[i].cardNameText.text = card.cardName;
+                cardPreviewSlots[i].cardSpriteImage.sprite = card.cardSprite;
+                cardPreviewSlots[i].cardDescriptionText.text = card.cardDescription;
+            }
+            else
+            {
+                cardPreviewSlots[i].cardNameText.text = "";
+                cardPreviewSlots[i].cardSpriteImage.sprite = null;
+                cardPreviewSlots[i].cardDescriptionText.text = "";
+            }
+        }
     }
+
+
+
 
     private IEnumerator StartClassRoutine()
     {
@@ -110,6 +138,7 @@ public class ClassPanelManager : MonoBehaviour
 
         float multiplier = GetMultiplier(result);
         List<StatModifier> finalMods = ApplyStatMultiplier(selectedClass.statModifiers, multiplier);
+
         GameContext.Instance.academyPlayer.ApplyModifiers(finalMods);
 
         ShowRewardCardOptions(selectedClass.rewardPool);
@@ -127,10 +156,10 @@ public class ClassPanelManager : MonoBehaviour
     {
         return result switch
         {
-            ClassResult.Success => successSprite,
-            ClassResult.GreatSuccess => greatSuccessSprite,
-            ClassResult.Failure => failureSprite,
-            _ => failureSprite
+            ClassResult.Success => selectedClass.resultSuccess,
+            ClassResult.GreatSuccess => selectedClass.resultGreatSuccess,
+            ClassResult.Failure => selectedClass.resultFailure,
+            _ => selectedClass.resultFailure
         };
     }
 

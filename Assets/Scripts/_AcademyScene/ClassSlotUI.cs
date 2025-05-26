@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class ClassSlotUI : MonoBehaviour
 {
-    public Text classNameText;
+    public TextMeshProUGUI classNameText;
     private ClassData data;
     private System.Action onClick;
 

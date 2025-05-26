@@ -10,7 +10,8 @@ public class GameContext : MonoBehaviour
     public int currentDay = 1;
 
     [Header("플레이어")]
-    public AcademyPlayer academyPlayer; // 리팩터링된 플레이어 클래스
+    public AcademyPlayer academyPlayer;
+    public GameObject academyPlayerPrefab;
 
     public enum SceneType { Academy, Combat, Inventory, Event }
     public SceneType currentScene = SceneType.Academy;
@@ -18,21 +19,27 @@ public class GameContext : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            if (academyPlayer == null && academyPlayerPrefab != null)
+            {
+                GameObject playerInstance = Instantiate(academyPlayerPrefab);
+                academyPlayer = playerInstance.GetComponent<AcademyPlayer>();
+                DontDestroyOnLoad(playerInstance);
+            }
+            Debug.Log($"[GameContext] AcademyPlayer 생성 완료: {academyPlayer}");
+        }
         else
         {
             Destroy(gameObject);
-            return;
         }
+
+
     }
 
-    private void Start()
-    {
-        if (academyPlayer == null)
-            academyPlayer = new AcademyPlayer(); // 실제로는 MonoBehaviour가 아님 → DI로 주입해야 함
-    }
-
-    public void AdvanceWeek()
+    public void AdvanceDay()
     {
         currentDay++;
         if (currentDay > 7)
@@ -62,7 +69,6 @@ public class GameContext : MonoBehaviour
 
     public void InitializeGame()
     {
-        academyPlayer = new AcademyPlayer();
         currentWeek = 1;
         currentDay = 1;
         currentScene = SceneType.Academy;

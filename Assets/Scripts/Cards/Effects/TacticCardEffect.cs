@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 전술형 카드 효과: 카드 드로우, 행동력 회복, 상태이상 부여 등
 /// </summary>
-[CreateAssetMenu(fileName = "NewTacticCardEffect", menuName = "Card Effects/TacticCardEffect")]
+[CreateAssetMenu(fileName = "NewTacticCardEffect", menuName = "Effects/TacticCardEffect")]
 public class TacticCardEffect : CardEffect
 {
     [Header("타겟 설정")]

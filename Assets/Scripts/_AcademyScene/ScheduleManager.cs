@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ public class ScheduleManager : MonoBehaviour
     public GameObject gateDivePanel;
 
     [Header("날짜 처리")]
-    public Text dateText;
+    public TextMeshProUGUI dateText;
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int currentWeek = 1;
     [SerializeField] private int currentMonth = 1;

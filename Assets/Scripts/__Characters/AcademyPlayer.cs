@@ -1,7 +1,8 @@
+// AcademyPlayer.cs (프리팹화 & MonoBehaviour 기반으로 변경)
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AcademyPlayer
+public class AcademyPlayer : MonoBehaviour
 {
     public string playerName;
 
@@ -18,7 +19,7 @@ public class AcademyPlayer
     [Header("덱과 장비")]
     public DeckData deck;
     public List<string> inventoryCards = new();
-    //public EquipmentSet equipment;
+    // public EquipmentSet equipment;
 
     [Header("관계, 명성 등")]
     public int reputation;

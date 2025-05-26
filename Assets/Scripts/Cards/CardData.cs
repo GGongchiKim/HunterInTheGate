@@ -10,7 +10,7 @@ public enum CardType { Strike, Grace, Tactic, Item }
 // Tactic: 드로우, 코스트, 적 패턴 변화 등등 특수한 효과를 가진 카드
 // Item: 한번 사용하면 덱에서 사라지는 1회용 카드
 
-[CreateAssetMenu(fileName = "NewCardData", menuName = "Cards/Card Data")]
+[CreateAssetMenu(fileName = "NewCardData", menuName = "Data/CardData")]
 public class CardData : ScriptableObject
 {
     [Header("Basic Info")]

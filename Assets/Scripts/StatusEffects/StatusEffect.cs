@@ -14,7 +14,7 @@ public enum StatusEffectType
 /// 상태 효과 데이터 (ScriptableObject)
 /// 순수 데이터만 관리 (로직 실행은 StatusEffectLogic 쪽 담당)
 /// </summary>
-[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Status/StatusEffect")]
+[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Effects/StatusEffect")]
 public class StatusEffect : ScriptableObject
 {
     [Header("기본 정보")]

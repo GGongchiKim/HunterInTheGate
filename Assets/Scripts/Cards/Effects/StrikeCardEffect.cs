@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "NewStrikeCardEffect", menuName = "Card Effects/StrikeCardEffect")]
+[CreateAssetMenu(fileName = "NewStrikeCardEffect", menuName = "Effects/StrikeCardEffect")]
 public class StrikeCardEffect : CardEffect
 {
     [Header("타겟 설정")]

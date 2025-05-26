@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewGraceCardEffect", menuName = "Card Effects/GraceCardEffect")]
+[CreateAssetMenu(fileName = "NewGraceCardEffect", menuName = "Effects/GraceCardEffect")]
 public class GraceCardEffect : CardEffect
 {
     [Header("수치")]

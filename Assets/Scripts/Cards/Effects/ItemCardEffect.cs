@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 아이템 카드: 1회용. 공격, 회복, 버프/디버프 등 다양한 기능 조합 가능
 /// </summary>
-[CreateAssetMenu(fileName = "NewItemCardEffect", menuName = "Card Effects/ItemCardEffect")]
+[CreateAssetMenu(fileName = "NewItemCardEffect", menuName = "Effects/ItemCardEffect")]
 public class ItemCardEffect : CardEffect
 {
     [Header("공격 관련")]
