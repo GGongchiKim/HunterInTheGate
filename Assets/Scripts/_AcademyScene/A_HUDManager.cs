@@ -1,29 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class A_HUDManager : MonoBehaviour
 {
     public static A_HUDManager Instance { get; private set; }
 
-    [Header("능력치 UI 텍스트")]
-    public Text strengthText;
-    public Text agilityText;
-    public Text insightText;
-    public Text magicText;
-    public Text willPowerText;
-    public Text witText;
-    public Text charismaText;
-    public Text luckText;
+    [Header("전투 능력치 UI 텍스트")]
+    public TextMeshProUGUI strengthText;
+    public TextMeshProUGUI agilityText;
+    public TextMeshProUGUI magicText;
+    public TextMeshProUGUI insightText;
+    public TextMeshProUGUI willPowerText;
+    public TextMeshProUGUI witText;
 
-    [Header("능력치 슬라이더 바")]
+    [Header("관계 능력치 UI 텍스트")]
+    public TextMeshProUGUI charismaText;
+    public TextMeshProUGUI fameText;
+    public TextMeshProUGUI luckText;
+
+    [Header("컨디션 능력치 UI 텍스트")]
+    public TextMeshProUGUI stressText;
+
+    [Header("전투 능력치 슬라이더 바")]
     public Slider strengthBar;
     public Slider agilityBar;
-    public Slider insightBar;
     public Slider magicBar;
+    public Slider insightBar;
     public Slider willPowerBar;
     public Slider witBar;
+
+    [Header("관계 능력치 슬라이더 바")]
     public Slider charismaBar;
+    public Slider fameBar;
     public Slider luckBar;
+
+    [Header("컨디션 능력치 슬라이더 바")]
+    public Slider StressBar;
+
+    private const float maxStatValue = 999f;
 
     private void Awake()
     {
@@ -52,22 +67,28 @@ public class A_HUDManager : MonoBehaviour
     {
         var player = GameContext.Instance.academyPlayer;
 
-        strengthText.text = "Strength: " + player.combat.strength;
-        agilityText.text = "Agility: " + player.combat.agility;
-        insightText.text = "Insight: " + player.combat.insight;
-        magicText.text = "Magic: " + player.combat.magic;
-        willPowerText.text = "Will Power: " + player.combat.willPower;
-        witText.text = "Wit: " + player.combat.wit;
-        charismaText.text = "Charisma: " + player.relation.charisma;
-        luckText.text = "Luck: " + player.relation.luck;
+        strengthText.text = player.combat.strength.ToString();
+        agilityText.text = player.combat.agility.ToString();
+        insightText.text = player.combat.insight.ToString();
+        magicText.text = player.combat.magic.ToString();
+        willPowerText.text = player.combat.willPower.ToString();
+        witText.text = player.combat.wit.ToString();
+        charismaText.text = player.relation.charisma.ToString();
+        fameText.text = player.relation.fame.ToString();
+        luckText.text = player.relation.luck.ToString();
+        stressText.text = player.condition.stress.ToString();
 
-        strengthBar.value = player.combat.strength;
-        agilityBar.value = player.combat.agility;
-        insightBar.value = player.combat.insight;
-        magicBar.value = player.combat.magic;
-        willPowerBar.value = player.combat.willPower;
-        witBar.value = player.combat.wit;
+        strengthBar.value = (float)player.combat.strength / maxStatValue * strengthBar.maxValue;
+        agilityBar.value = (float)player.combat.agility / maxStatValue * agilityBar.maxValue;
+        insightBar.value = (float)player.combat.insight / maxStatValue * insightBar.maxValue;
+        magicBar.value = (float)player.combat.magic / maxStatValue * magicBar.maxValue;
+        willPowerBar.value = (float)player.combat.willPower / maxStatValue * willPowerBar.maxValue;
+        witBar.value = (float)player.combat.wit / maxStatValue * witBar.maxValue;
+
         charismaBar.value = player.relation.charisma;
-        luckBar.value = player.relation.luck;
+        fameBar.value = (float)player.relation.fame / maxStatValue * fameBar.maxValue;
+        luckBar.value = (float)player.relation.luck;
+
+        StressBar.value = player.condition.stress; // 스트레스는 0~100 기준 유지
     }
 }

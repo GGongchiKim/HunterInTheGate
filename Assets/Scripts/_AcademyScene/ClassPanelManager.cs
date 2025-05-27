@@ -57,6 +57,8 @@ public class ClassPanelManager : MonoBehaviour
 
     private void OnEnable()
     {
+        classAnimationPanel.SetActive(false);
+        classRewardPanel.SetActive(false);
         GenerateClassSlots();
     }
 
@@ -163,6 +165,14 @@ public class ClassPanelManager : MonoBehaviour
     {
         var player = GameContext.Instance.academyPlayer;
 
+        resultStatLabel1.text = "";
+        resultStatText1.text = "";
+        resultStatBar1.value = 0;
+
+        resultStatLabel2.text = "";
+        resultStatText2.text = "";
+        resultStatBar2.value = 0;
+
         for (int i = 0; i < modifiers.Count && i < 2; i++)
         {
             var mod = modifiers[i];
@@ -173,12 +183,14 @@ public class ClassPanelManager : MonoBehaviour
             {
                 resultStatLabel1.text = mod.statType.ToString();
                 resultStatText1.text = original.ToString();
+                resultStatBar1.maxValue = 999f;
                 StartCoroutine(AnimateSlider(resultStatBar1, original, updated, resultStatText1, mod.statType));
             }
             else if (i == 1)
             {
                 resultStatLabel2.text = mod.statType.ToString();
                 resultStatText2.text = original.ToString();
+                resultStatBar2.maxValue = 999f;
                 StartCoroutine(AnimateSlider(resultStatBar2, original, updated, resultStatText2, mod.statType));
             }
         }
