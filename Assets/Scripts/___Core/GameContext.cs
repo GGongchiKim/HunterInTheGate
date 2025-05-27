@@ -27,6 +27,7 @@ public class GameContext : MonoBehaviour
             {
                 GameObject playerInstance = Instantiate(academyPlayerPrefab);
                 academyPlayer = playerInstance.GetComponent<AcademyPlayer>();
+                academyPlayer.InitializeStats(); // ✅ 초기 능력치 설정 호출
                 DontDestroyOnLoad(playerInstance);
             }
             Debug.Log($"[GameContext] AcademyPlayer 생성 완료: {academyPlayer}");
@@ -35,8 +36,6 @@ public class GameContext : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     public void AdvanceDay()

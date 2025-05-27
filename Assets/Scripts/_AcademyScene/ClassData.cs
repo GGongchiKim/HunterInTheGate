@@ -21,7 +21,8 @@ public class ClassData : ScriptableObject
     [Header("실제 획득 가능한 카드 풀")]
     public List<CardData> rewardPool;
 
-    [Header("애니메이션 결과 스프라이트")]
+    [Header("수업 결과 애니메이션 스프라이트")]
+    public Sprite frontImageSprite;
     public Sprite resultSuccess;
     public Sprite resultGreatSuccess;
     public Sprite resultFailure;

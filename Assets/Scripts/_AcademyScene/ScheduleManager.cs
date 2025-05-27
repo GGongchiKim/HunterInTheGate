@@ -41,9 +41,14 @@ public class ScheduleManager : MonoBehaviour
         UpdateDateUI();
     }
 
-    private void InitScheduleMenuButtons()
+    public void InitScheduleMenuButtons()
     {
-        classButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Class));
+        classButton.onClick.AddListener(() =>
+        {
+            OnClickScheduleType(ScheduleType.Class);
+            A_SceneManager.Instance?.OpenClassPanelDirectly();
+        });
+
         outingButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Outing));
         gateDiveButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.GateDive));
         restButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Rest));

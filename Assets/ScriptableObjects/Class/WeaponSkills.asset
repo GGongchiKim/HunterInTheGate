@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}
   - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
   - {fileID: 11400000, guid: ade3e35a621ddbf4ea6147a07b04aa5f, type: 2}
+  frontImageSprite: {fileID: 21300000, guid: d0f58d50be001c04d8b9689cdd969699, type: 3}
   resultSuccess: {fileID: 21300000, guid: 51bf74ce1df9d414685266e9cd564434, type: 3}
   resultGreatSuccess: {fileID: 21300000, guid: 689d545ca7b517f4fa219a7e4b689456, type: 3}
   resultFailure: {fileID: 21300000, guid: cf96434c1d0aa574d9e7bba1fe0edb19, type: 3}
