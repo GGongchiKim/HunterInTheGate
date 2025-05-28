@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d56f54b1986914686cca61d78a67a0, type: 3}
-  m_Name: Weapon3
+  m_Name: Weapon2
   m_EditorClassIdentifier: 
-  displayName: Weapon3
-  description: Trash Weapon
-  icon: {fileID: 21300000, guid: 7a39d27cb62eb304e93e03cb7ef8304f, type: 3}
+  displayName: Weapon2
+  id: E_W_Weapon2
+  description: good Weapon
+  icon: {fileID: 21300000, guid: a3626fa019af7824fb2f07990269eb6b, type: 3}
   equipType: 0
   rarity: 0
   attack: 0

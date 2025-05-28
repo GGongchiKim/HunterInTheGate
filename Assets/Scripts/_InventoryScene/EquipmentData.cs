@@ -14,7 +14,6 @@ namespace Inventory
         Common,
         Uncommon,
         Rare,
-        Epic,
         Legendary
     }
 
@@ -23,6 +22,7 @@ namespace Inventory
     {
         [Header("기본 정보")]
         public string displayName;
+        public string id;
         [TextArea]
         public string description;
         public Sprite icon;

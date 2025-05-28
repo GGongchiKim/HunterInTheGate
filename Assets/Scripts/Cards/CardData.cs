@@ -15,7 +15,9 @@ public class CardData : ScriptableObject
 {
     [Header("Basic Info")]
     public string cardName;
+    public string cardId;
     public int cardCost;
+    public int level = 1;
     public CardType cardType;
     public CardRarity rarity;
     public CardEffect cardEffect;
@@ -23,5 +25,8 @@ public class CardData : ScriptableObject
     [TextArea(3, 5)]
     public string cardDescription;
     public Sprite cardSprite;
+
+
+
 
 }

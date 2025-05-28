@@ -39,9 +39,5 @@ public class CombatContext : MonoBehaviour
         rewardCards.Clear();
     }
 
-    public void CommitResultsToAcademy(AcademyPlayer player)
-    {
-        player.ReceiveCombatRewards(rewardGold, rewardExp, rewardCards);
-        ResetRewards();
-    }
+   
 }

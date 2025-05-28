@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   cardName: Slash
+  cardId: C_S_Slash
   cardCost: 1
+  level: 1
   cardType: 0
-  rarity: 0
+  rarity: 3
   cardEffect: {fileID: 11400000, guid: 46aa9a887105f954bb922edbc14c7a22, type: 2}
   cardDescription: deal 6 damage
   cardSprite: {fileID: 21300000, guid: aeaffc795217708458444a996b93c074, type: 3}

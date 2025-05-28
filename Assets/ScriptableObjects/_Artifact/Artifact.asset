@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b8bfb009a12c34f9fe4f66bfb2a5a2, type: 3}
   m_Name: Artifact
   m_EditorClassIdentifier: 
-  displayName: amulet
+  id: A_Amulet
+  displayName: Amulet
   description: it is a good amulet
   icon: {fileID: 21300000, guid: ddc4c3530293adb499df46a1559c28bc, type: 3}
   rarity: 0

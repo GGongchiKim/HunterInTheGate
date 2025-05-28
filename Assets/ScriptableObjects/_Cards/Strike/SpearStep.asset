@@ -10,19 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
-  m_Name: SteelSlash
+  m_Name: SpearStep
   m_EditorClassIdentifier: 
-  cardName: Steel Slash
+  cardName: SpearStep
+  cardId: C_S_SpearStep
   cardCost: 2
-  cardEffect: {fileID: 11400000, guid: 46aa9a887105f954bb922edbc14c7a22, type: 2}
-  cardDescription: 
-  cardSprite: {fileID: 21300000, guid: 7ba2105bc50328f469729b351c7c8be6, type: 3}
+  level: 1
   cardType: 0
   rarity: 0
-  baseDamage: 6
-  strengthMultiplier: 2.5
-  agilityMultiplier: 0
-  intellectMultiplier: 0
-  defenseDecrease: 0
-  nextAttackDamageIncrease: 0.5
-  critChanceIncreaseDuration: 0
+  cardEffect: {fileID: 11400000, guid: 82501def0cc90194480dd52e2c064e7d, type: 2}
+  cardDescription: Deal 10Damage + bleed
+  cardSprite: {fileID: 21300000, guid: 9c3447474d3610345aecbba733f54161, type: 3}

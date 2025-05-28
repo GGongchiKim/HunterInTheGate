@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
-  m_Name: PotOfGreed
+  m_Name: Rare
   m_EditorClassIdentifier: 
-  cardName: PotOfGreed
+  cardName: Rare
+  cardId: C_S_Rare
   cardCost: 0
-  cardType: 2
-  rarity: 0
-  cardEffect: {fileID: 11400000, guid: a6a1462a6c9d9f54c97a45cc1522ad3d, type: 2}
-  cardDescription: draw 2 cards
-  cardSprite: {fileID: 21300000, guid: 0b6e21236e651df4b826ddba85ea9ddb, type: 3}
+  level: 1
+  cardType: 0
+  rarity: 2
+  cardEffect: {fileID: 11400000, guid: a41f9cf8bbb38c64b9829d0b55ec0b19, type: 2}
+  cardDescription: Rare
+  cardSprite: {fileID: 21300000, guid: ec6984b7b29979a43a3ce3c57c0831d4, type: 3}

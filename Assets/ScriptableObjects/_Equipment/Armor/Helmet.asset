@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d56f54b1986914686cca61d78a67a0, type: 3}
-  m_Name: Weapon2
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  displayName: Weapon2
-  description: good Weapon
-  icon: {fileID: 21300000, guid: a3626fa019af7824fb2f07990269eb6b, type: 3}
-  equipType: 0
+  displayName: Helmet
+  id: E_A_Helmet
+  description: Helmet
+  icon: {fileID: 21300000, guid: e6e63500dd3ab5f458d7232ab0e99fae, type: 3}
+  equipType: 1
   rarity: 0
-  attack: 0
+  attack: 5
   defense: 0
   utility: 0
   passiveEffectText: 

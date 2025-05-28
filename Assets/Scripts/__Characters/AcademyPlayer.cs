@@ -18,7 +18,6 @@ public class AcademyPlayer : MonoBehaviour
     public int gold;
     public int academyRank;
     public HunterGrade hunterGrade;
-    public List<string> inventoryCards = new();
     public DeckData deck;
     public Dictionary<string, int> npcAffinity = new();
 
@@ -113,15 +112,5 @@ public class AcademyPlayer : MonoBehaviour
         if (condition.stress <= 30) return 1;
         if (condition.stress <= 70) return 2;
         return 3;
-    }
-
-    public void CollectRewards(List<string> rewards)
-    {
-        inventoryCards.AddRange(rewards);
-    }
-
-    public void ReceiveCombatRewards(int gold, int exp, List<string> cards)
-    {
-        inventoryCards.AddRange(cards);
     }
 }

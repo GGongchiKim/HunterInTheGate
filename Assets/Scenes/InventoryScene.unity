@@ -5850,7 +5850,6 @@ Transform:
   m_Children:
   - {fileID: 427110247}
   - {fileID: 527210231}
-  - {fileID: 1471392909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1270607312
@@ -6963,65 +6962,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!1 &1471392908
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1471392909}
-  - component: {fileID: 1471392910}
-  m_Layer: 0
-  m_Name: PlayerInventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1471392909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471392908}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1226990034}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1471392910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471392908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41d5d8ae20133a4fb8668a069ed706c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allEquipments:
-  - {fileID: 11400000, guid: 7283eee88c2b9284e80bf62795b3e8b9, type: 2}
-  - {fileID: 11400000, guid: 35fc7534689325246a5051a521c03619, type: 2}
-  - {fileID: 11400000, guid: 107890bdcf68bfe44a993765deb90c23, type: 2}
-  - {fileID: 11400000, guid: b38aab224ac93ee448da1d7f5d2a0e78, type: 2}
-  - {fileID: 11400000, guid: bfcd800ae46d4624f8f2a7bfe68f7ea3, type: 2}
-  allArtifacts:
-  - {fileID: 11400000, guid: 21848b5a9b0231b49a2f239bead80dce, type: 2}
-  allCards:
-  - {fileID: 11400000, guid: ade3e35a621ddbf4ea6147a07b04aa5f, type: 2}
-  - {fileID: 11400000, guid: cef915748fe179b46924a1c8bb26434a, type: 2}
-  - {fileID: 11400000, guid: 0ec06f9c04715d2409472f3a07794d85, type: 2}
-  - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
-  - {fileID: 11400000, guid: 7f50a0f9c727eb04aadf54c50874cbbe, type: 2}
-  - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}
 --- !u!1 &1524323993
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class ClassAnimationController : MonoBehaviour
     [Header("애니메이션 관련")]
     public GameObject classAnimationPanel;
     public GameObject classRewardPanel;
+    public ClassRewardManager rewardManager;
     public Image cardFrontImage;
     public Image cardBackImage;
 
@@ -67,6 +68,7 @@ public class ClassAnimationController : MonoBehaviour
 
         classAnimationPanel.SetActive(false);
         classRewardPanel.SetActive(true);
+        rewardManager.ShowRewards(currentClass);
     }
 
     private void SetInitialResultStatsFromPlayer()

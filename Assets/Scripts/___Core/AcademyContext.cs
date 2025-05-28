@@ -40,7 +40,6 @@ public class AcademyContext : MonoBehaviour
     public void CommitResults(AcademyPlayer player)
     {
         player.ApplyModifiers(statModifiers);
-        player.CollectRewards(tempRewards);
         StatusPanelManager.Instance?.UpdateStatsUI();
         ResetWeeklyContext();
     }
