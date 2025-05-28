@@ -12,14 +12,16 @@ public class A_SceneManager : MonoBehaviour
     [Header("스케줄 관련")]
     public GameObject schedulePanel;          // 스케줄 시스템 전체 루트
     public GameObject scheduleSelectPanel;    // 활동 종류를 선택하는 메뉴
+    public GameObject scheduleMenuPanel;      // 활동 종류를 보관하는 슬롯
     public GameObject schedulePanelGroup;     // 활동별 상세 패널 묶음 (Class, Outing 등)
 
     [Header("클래스 패널 그룹")]
-    public GameObject classPanel;             // ClassPanel 전체
-    public GameObject classSelectSlot;        // 수업 목록 (클래스 카드)
-    public GameObject classInfoPanel;         // 수업 상세 정보
-    public GameObject classAnimationPanel;    // 수업 애니메이션
-    public GameObject classRewardPanel;       // 수업 보상
+    public GameObject classPanel;               // ClassPanel 전체
+    public GameObject classSelectSlot;          // 수업 목록 (클래스 카드)
+    public GameObject classInfoPanel;           // 수업 상세 정보
+    public GameObject classAnimationPanel;      // 수업 애니메이션
+    public GameObject classAnimationController; // 수업 애니메이션 관리용 클래스
+    public GameObject classRewardPanel;         // 수업 보상
 
     [Header("기타 활동 패널")]
     public GameObject gateDivePanel;
@@ -69,7 +71,11 @@ public class A_SceneManager : MonoBehaviour
 
     private void InitializeClassPanels()
     {
-        SetActiveGroup(false, classPanel, classSelectSlot, classInfoPanel, classAnimationPanel, classRewardPanel);
+        SetActiveGroup(false, classPanel, classSelectSlot, classInfoPanel, classRewardPanel, classAnimationPanel);
+
+        
+        if (classAnimationController != null)
+            classAnimationController.SetActive(true);
     }
 
     private void InitializeOtherActivityPanels()
@@ -85,6 +91,9 @@ public class A_SceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 클래스 메뉴 직접 열기 (버튼에 연결됨)
+    /// </summary>
     public void OpenClassPanelDirectly()
     {
         if (scheduleManager != null)
@@ -92,5 +101,8 @@ public class A_SceneManager : MonoBehaviour
 
         classSelectSlot.SetActive(true);
         classInfoPanel.SetActive(true);
+        scheduleMenuPanel.SetActive(false);
     }
+
+  
 }

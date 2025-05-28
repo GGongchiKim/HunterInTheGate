@@ -43,12 +43,7 @@ public class ScheduleManager : MonoBehaviour
 
     public void InitScheduleMenuButtons()
     {
-        classButton.onClick.AddListener(() =>
-        {
-            OnClickScheduleType(ScheduleType.Class);
-            A_SceneManager.Instance?.OpenClassPanelDirectly();
-        });
-
+        classButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Class));
         outingButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Outing));
         gateDiveButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.GateDive));
         restButton.onClick.AddListener(() => OnClickScheduleType(ScheduleType.Rest));
@@ -63,8 +58,16 @@ public class ScheduleManager : MonoBehaviour
     public void CloseScheduleMenu()
     {
         scheduleMenuPanel.SetActive(false);
-        schedulePanelGroup.SetActive(false);
     }
+
+    public void CloseScheduleDetailPanels()
+    {
+        classPanel.SetActive(false);
+        outingPanel.SetActive(false);
+        gateDivePanel.SetActive(false);
+        restPanel.SetActive(false);
+    }
+
 
     public void OnClickScheduleType(ScheduleType type)
     {

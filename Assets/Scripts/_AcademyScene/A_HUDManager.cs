@@ -1,94 +1,43 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class A_HUDManager : MonoBehaviour
 {
     public static A_HUDManager Instance { get; private set; }
 
-    [Header("전투 능력치 UI 텍스트")]
-    public TextMeshProUGUI strengthText;
-    public TextMeshProUGUI agilityText;
-    public TextMeshProUGUI magicText;
-    public TextMeshProUGUI insightText;
-    public TextMeshProUGUI willPowerText;
-    public TextMeshProUGUI witText;
-
-    [Header("관계 능력치 UI 텍스트")]
-    public TextMeshProUGUI charismaText;
-    public TextMeshProUGUI fameText;
-    public TextMeshProUGUI luckText;
-
-    [Header("컨디션 능력치 UI 텍스트")]
-    public TextMeshProUGUI stressText;
-
-    [Header("전투 능력치 슬라이더 바")]
-    public Slider strengthBar;
-    public Slider agilityBar;
-    public Slider magicBar;
-    public Slider insightBar;
-    public Slider willPowerBar;
-    public Slider witBar;
-
-    [Header("관계 능력치 슬라이더 바")]
-    public Slider charismaBar;
-    public Slider fameBar;
-    public Slider luckBar;
-
-    [Header("컨디션 능력치 슬라이더 바")]
-    public Slider StressBar;
-
-    private const float maxStatValue = 999f;
+    [Header("�г� ����")]
+    public GameObject statusPanel;
+    public GameObject journalPanel;
+    public GameObject settingPanel;
+    public GameObject saveLoadPanel;
+    public GameObject scheduleMenuPanel;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    private void Start()
+    // �� ��ư�� ������ ���� �Լ���
+    public void OnClickStatus(){statusPanel.SetActive(true);}
+    public void OnClickStatusClose(){statusPanel.SetActive(false);}
+    public void OnClickJournal(){journalPanel.SetActive(true);}
+    public void OnClickJournalClose() { journalPanel.SetActive(false); }
+    public void OnClickSetting(){settingPanel.SetActive(true);}
+    public void OnClickSettingClose() { settingPanel.SetActive(false); }
+    public void OnClickSaveLoad(){saveLoadPanel.SetActive(true);}
+    public void OnClickSaveLoadClose() { saveLoadPanel.SetActive(false); }
+    public void OnClickSchedule() { scheduleMenuPanel.SetActive(true);}
+
+    /// <summary>
+    /// �κ��丮 ��ư Ŭ�� �� �� ��ȯ
+    /// </summary>
+    public void OnClickInventory()
     {
-        var player = GameContext.Instance.academyPlayer;
-
-        player.combat.OnStatsChanged += UpdateStatsUI;
-        player.relation.OnStatsChanged += UpdateStatsUI;
-        player.condition.OnStatsChanged += UpdateStatsUI;
-
-        UpdateStatsUI(); // 초기값 표시
+        SceneManager.LoadScene("InventoryScene");
     }
 
-    // 능력치 UI 업데이트
-    public void UpdateStatsUI()
-    {
-        var player = GameContext.Instance.academyPlayer;
-
-        strengthText.text = player.combat.strength.ToString();
-        agilityText.text = player.combat.agility.ToString();
-        insightText.text = player.combat.insight.ToString();
-        magicText.text = player.combat.magic.ToString();
-        willPowerText.text = player.combat.willPower.ToString();
-        witText.text = player.combat.wit.ToString();
-        charismaText.text = player.relation.charisma.ToString();
-        fameText.text = player.relation.fame.ToString();
-        luckText.text = player.relation.luck.ToString();
-        stressText.text = player.condition.stress.ToString();
-
-        strengthBar.value = (float)player.combat.strength / maxStatValue * strengthBar.maxValue;
-        agilityBar.value = (float)player.combat.agility / maxStatValue * agilityBar.maxValue;
-        insightBar.value = (float)player.combat.insight / maxStatValue * insightBar.maxValue;
-        magicBar.value = (float)player.combat.magic / maxStatValue * magicBar.maxValue;
-        willPowerBar.value = (float)player.combat.willPower / maxStatValue * willPowerBar.maxValue;
-        witBar.value = (float)player.combat.wit / maxStatValue * witBar.maxValue;
-
-        charismaBar.value = player.relation.charisma;
-        fameBar.value = (float)player.relation.fame / maxStatValue * fameBar.maxValue;
-        luckBar.value = (float)player.relation.luck;
-
-        StressBar.value = player.condition.stress; // 스트레스는 0~100 기준 유지
-    }
+   
+    
 }

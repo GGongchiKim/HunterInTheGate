@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 namespace Inventory
 {
@@ -9,7 +11,7 @@ namespace Inventory
         Deck = 2
     }
 
-    public class InventorySceneManager : MonoBehaviour
+    public class I_SceneManager : MonoBehaviour
     {
         [Header("Panel References")]
         [SerializeField] private GameObject equipmentPanel;
@@ -58,5 +60,10 @@ namespace Inventory
                     break;
             }
         }
+        public void CloseScene()
+        {
+            SceneManager.LoadScene("AcademyScene");
+        }
+
     }
 }

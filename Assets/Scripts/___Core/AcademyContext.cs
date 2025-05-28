@@ -41,7 +41,7 @@ public class AcademyContext : MonoBehaviour
     {
         player.ApplyModifiers(statModifiers);
         player.CollectRewards(tempRewards);
-        A_HUDManager.Instance?.UpdateStatsUI();
+        StatusPanelManager.Instance?.UpdateStatsUI();
         ResetWeeklyContext();
     }
 }
