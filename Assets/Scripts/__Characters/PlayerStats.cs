@@ -43,7 +43,7 @@ public class ConditionStats : IStatChangeNotifier
     public void NotifyChange() => OnStatsChanged?.Invoke();
 }
 
-public enum HunterGrade
+public enum HunterRank
 {
     F, E, D, C, B, A, S, EX
 }

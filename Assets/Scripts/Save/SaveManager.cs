@@ -55,7 +55,7 @@ namespace SaveSystem
                     playerName = AcademyPlayer.Instance.playerName,
                   //  inGameYear = GameDateManager.Instance.Year,
                   //  inGameWeek = GameDateManager.Instance.Week,
-                    hunterRank = AcademyPlayer.Instance.hunterGrade,
+                    hunterRank = AcademyPlayer.Instance.hunterRank,
                    // activeQuests = QuestManager.Instance.GetActiveQuestIds(),
                    // completedQuests = QuestManager.Instance.GetCompletedQuestIds()
                 }
@@ -98,7 +98,7 @@ namespace SaveSystem
                 AcademyPlayer.Instance.ApplyStats(saveData.stats);
                 PlayerInventory.Instance.LoadFromData(saveData.inventory);
                 AcademyPlayer.Instance.playerName = saveData.progress.playerName;
-                AcademyPlayer.Instance.hunterGrade = saveData.progress.hunterRank;
+                AcademyPlayer.Instance.hunterRank = saveData.progress.hunterRank;
                 //GameDateManager.Instance.SetDate(saveData.progress.inGameYear, saveData.progress.inGameWeek);
                 //QuestManager.Instance.LoadQuests(saveData.progress.activeQuests, saveData.progress.completedQuests);
 

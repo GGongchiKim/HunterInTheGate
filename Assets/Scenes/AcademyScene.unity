@@ -1676,6 +1676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158047603}
   - component: {fileID: 158047604}
+  - component: {fileID: 158047605}
   m_Layer: 5
   m_Name: SaveSlot 2
   m_TagString: Untagged
@@ -1747,6 +1748,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &158047605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158047602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7a6ec739381c144b620c711fdd9569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 0}
+  gameDateText: {fileID: 0}
+  hunterRankText: {fileID: 0}
+  lastSaveTimeText: {fileID: 0}
+  highlightImage: {fileID: 0}
+  selectButton: {fileID: 0}
 --- !u!1 &160287077
 GameObject:
   m_ObjectHideFlags: 0
@@ -8303,6 +8322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 669024714}
   - component: {fileID: 669024715}
+  - component: {fileID: 669024716}
   m_Layer: 5
   m_Name: SaveSlot 1
   m_TagString: Untagged
@@ -8374,6 +8394,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &669024716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669024713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7a6ec739381c144b620c711fdd9569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 0}
+  gameDateText: {fileID: 0}
+  hunterRankText: {fileID: 0}
+  lastSaveTimeText: {fileID: 0}
+  highlightImage: {fileID: 0}
+  selectButton: {fileID: 0}
 --- !u!1 &694353988
 GameObject:
   m_ObjectHideFlags: 0
@@ -14232,6 +14270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058996664}
   - component: {fileID: 1058996665}
+  - component: {fileID: 1058996666}
   m_Layer: 5
   m_Name: SaveSlot 3
   m_TagString: Untagged
@@ -14303,6 +14342,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1058996666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058996663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7a6ec739381c144b620c711fdd9569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 0}
+  gameDateText: {fileID: 0}
+  hunterRankText: {fileID: 0}
+  lastSaveTimeText: {fileID: 0}
+  highlightImage: {fileID: 0}
+  selectButton: {fileID: 0}
 --- !u!1 &1065353000
 GameObject:
   m_ObjectHideFlags: 0
@@ -17146,6 +17203,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283884890}
   m_CullTransparentMesh: 1
+--- !u!1 &1285591647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285591648}
+  - component: {fileID: 1285591649}
+  m_Layer: 5
+  m_Name: SaveLoadPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1285591648
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285591647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1802932016}
+  m_Father: {fileID: 1307993836}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1285591649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285591647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aaa86c598509ae41b9fd94a7ae39d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveSlots:
+  - {fileID: 669024716}
+  - {fileID: 158047605}
+  - {fileID: 1058996666}
+  saveButton: {fileID: 1109663109}
+  loadButton: {fileID: 1853522626}
 --- !u!1 &1289295655
 GameObject:
   m_ObjectHideFlags: 0
@@ -17519,8 +17631,8 @@ RectTransform:
   m_Children:
   - {fileID: 1614864188}
   - {fileID: 1423191328}
-  - {fileID: 1802932016}
   - {fileID: 1456979741}
+  - {fileID: 1285591648}
   m_Father: {fileID: 65418423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -25240,7 +25352,7 @@ GameObject:
   - component: {fileID: 1802932018}
   - component: {fileID: 1802932017}
   m_Layer: 5
-  m_Name: S&LPanel
+  m_Name: BGPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25253,14 +25365,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802932015}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1368819580}
   - {fileID: 1116902457}
-  m_Father: {fileID: 1307993836}
+  m_Father: {fileID: 1285591648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

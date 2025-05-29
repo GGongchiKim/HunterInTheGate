@@ -20,8 +20,7 @@ public class AcademyPlayer : MonoBehaviour
 
     [Header("기타 정보")]
     public int gold;
-    public int academyRank;
-    public HunterGrade hunterGrade;
+    public HunterRank hunterRank;
     public DeckData deck;
     public Dictionary<string, int> npcAffinity = new();
 
