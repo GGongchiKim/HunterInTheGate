@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 
-public class A_SceneManager : MonoBehaviour
+public class A_SceneInitializer : MonoBehaviour
 {
-    public static A_SceneManager Instance { get; private set; }
+    public static A_SceneInitializer Instance { get; private set; }
 
     [Header("HUD 패널")]
     public GameObject scg;
     public GameObject informationPanel;
     public GameObject mainMenu;
+
+    [Header("MainMenu 관련")]
+    public GameObject saveLoadPanel;//saveLoadPanel 컨트롤러
+    public GameObject snLPanel; // saveLoad 하위 UI패널
+    public GameObject statusPanel;
 
     [Header("스케줄 관련")]
     public GameObject schedulePanel;          // 스케줄 시스템 전체 루트
@@ -51,16 +56,27 @@ public class A_SceneManager : MonoBehaviour
 
     public void InitializeScene()
     {
+        GameStateManager.Instance.SetPhase(GamePhase.Management);
         InitializeHUD();
         InitializeSchedulePanels();
         InitializeClassPanels();
         InitializeOtherActivityPanels();
+        InitializeMainMenuPanel();
     }
 
     private void InitializeHUD()
     {
         SetActiveGroup(true, scg, informationPanel, mainMenu);
     }
+
+    private void InitializeMainMenuPanel() 
+    {
+        SetActiveGroup(false,statusPanel,snLPanel);
+        
+        saveLoadPanel.SetActive(true);
+        
+    }
+
 
     private void InitializeSchedulePanels()
     {

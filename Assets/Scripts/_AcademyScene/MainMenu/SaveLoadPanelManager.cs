@@ -6,6 +6,9 @@ using SaveSystem;
 
 public class SaveLoadPanelManager : MonoBehaviour
 {
+    [Header("하위 패널")]
+    public GameObject snlPanel;
+
     [Header("세이브 슬롯 UI (Index 0~2)")]
     [SerializeField] private List<SaveSlotUI> saveSlots;
 
@@ -66,6 +69,11 @@ public class SaveLoadPanelManager : MonoBehaviour
 
         SaveManager.Instance.LoadGame(selectedSlotIndex);
         Debug.Log($"[SaveLoadPanelManager] 슬롯 {selectedSlotIndex + 1} 불러오기 시도");
+    }
+
+    public void OnClickClose()
+    {
+        snlPanel.SetActive(false);
     }
 
     public void UpdateAllSlots()

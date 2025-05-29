@@ -139,15 +139,29 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private void HandleDrop(GameObject uiTarget, GameObject worldTarget)
     {
+        switch (GameStateManager.Instance.CurrentPhase)
+        {
+            case GamePhase.Combat:
+                HandleCombatDrop(uiTarget, worldTarget);
+                break;
+
+            case GamePhase.Management:
+                HandleInventoryDrop(uiTarget);
+                break;
+
+            default:
+                ReturnToOriginalPosition();
+                break;
+        }
+    }
+
+    private void HandleCombatDrop(GameObject uiTarget, GameObject worldTarget)
+    {
         bool used = false;
 
         if (cardData.cardEffect != null)
         {
-            if (uiTarget != null)
-            {
-                used = false;
-            }
-            else if (worldTarget != null && cardData.cardEffect.IsValidTarget(worldTarget))
+            if (worldTarget != null && cardData.cardEffect.IsValidTarget(worldTarget))
             {
                 used = cardData.cardEffect.ExecuteEffect(CombatContext.Instance, cardData, worldTarget);
             }
@@ -163,7 +177,24 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
         else
         {
-            rectTransform.anchoredPosition = originalPosition;
+            ReturnToOriginalPosition();
         }
+    }
+
+    private void HandleInventoryDrop(GameObject uiTarget)
+    {
+        if (uiTarget != null && uiTarget.TryGetComponent<DeckPresetUI>(out var presetSlot))
+        {
+            presetSlot.AddCard(cardData.cardId);
+        }
+        else
+        {
+            ReturnToOriginalPosition();
+        }
+    }
+
+    private void ReturnToOriginalPosition()
+    {
+        rectTransform.anchoredPosition = originalPosition;
     }
 }

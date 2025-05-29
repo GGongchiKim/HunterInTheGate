@@ -7,9 +7,6 @@ using SaveSystem;
 public class SaveSlotUI : MonoBehaviour
 {
     [Header("UI 요소들")]
-    [SerializeField] private TextMeshProUGUI playerNameText;
-    [SerializeField] private TextMeshProUGUI gameDateText;
-    [SerializeField] private TextMeshProUGUI hunterRankText;
     [SerializeField] private TextMeshProUGUI lastSaveTimeText;
     [SerializeField] private Image highlightImage;
     [SerializeField] private Button selectButton;
@@ -38,29 +35,12 @@ public class SaveSlotUI : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            playerNameText.text = "저장 없음";
-            gameDateText.text = "";
-            hunterRankText.text = "";
-            lastSaveTimeText.text = "";
+            lastSaveTimeText.text = "No Data";
             return;
         }
 
-        var data = SaveManager.Instance.GetSaveData(slotIndex);
-
-        if (data != null && data.progress != null)
-        {
-            playerNameText.text = data.progress.playerName;
-            gameDateText.text = $"{data.progress.inGameYear}년 {data.progress.inGameWeek}주차";
-            hunterRankText.text = data.progress.hunterRank.ToString();
-            lastSaveTimeText.text = File.GetLastWriteTime(path).ToString("yyyy-MM-dd HH:mm");
-        }
-        else
-        {
-            playerNameText.text = "불러오기 실패";
-            gameDateText.text = "";
-            hunterRankText.text = "";
-            lastSaveTimeText.text = "";
-        }
+        // 파일은 있으나 데이터 유효성 여부는 중요치 않음. 시간만 표시.
+        lastSaveTimeText.text = File.GetLastWriteTime(path).ToString("yyyy-MM-dd HH:mm");
     }
 
     private void OnClick()

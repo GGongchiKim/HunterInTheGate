@@ -30,7 +30,7 @@ public class A_HUDManager : MonoBehaviour
     public void OnClickSaveLoadClose() { saveLoadPanel.SetActive(false); }
     public void OnClickSchedule() { scheduleMenuPanel.SetActive(true);}
 
-    /// <summary>
+    /// <summary> 
     /// 인벤토리 버튼 클릭 시 씬 전환
     /// </summary>
     public void OnClickInventory()

@@ -9,6 +9,7 @@ public class CombatSceneInitializer : MonoBehaviour
 
     private void Awake()
     {
+        GameStateManager.Instance.SetPhase(GamePhase.Combat);
         List<Enemy> enemyList = new List<Enemy> { enemyObject };
         if (additionalEnemies != null)
             enemyList.AddRange(additionalEnemies);

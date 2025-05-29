@@ -256,14 +256,17 @@ MonoBehaviour:
   playerName: 
   health: 100
   maxHealth: 100
-  strength: 10
-  agility: 10
-  magic: 10
-  insight: 10
-  willPower: 10
-  wit: 10
-  charisma: 10
-  luck: 10
+  combat:
+    strength: 0
+    agility: 0
+    magic: 0
+    insight: 0
+    willPower: 0
+    wit: 0
+  relation:
+    charisma: 0
+    luck: 0
+    fame: 0
   actionPoints: 0
   maxActionPoints: 5
   effectHandler: {fileID: 13182755}
@@ -302,50 +305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectPanel: {fileID: 1897190287}
   statusEffectIconPrefab: {fileID: 978466789338078024, guid: 5926f5a7395ac7b45bf1e75108e48cb0, type: 3}
---- !u!1 &19899032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 19899034}
-  - component: {fileID: 19899033}
-  m_Layer: 0
-  m_Name: GameStateManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &19899033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19899032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31205b8eeba7a14f95e4730697f09a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &19899034
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19899032}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -141.16382, y: 40.163666, z: -3.045646}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1502563813}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24405771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,12 +1520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca918206ae49cb4ebfc628eee3035fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 13182753}
-  selectedEnemy: {fileID: 152339820}
+  combatPlayer: {fileID: 0}
   allEnemies: []
-  tempRewardGold: 0
-  tempExpGain: 0
-  tempRewardCards: []
+  selectedEnemy: {fileID: 152339820}
+  rewardGold: 0
+  rewardExp: 0
+  rewardCards: []
 --- !u!4 &335937398
 Transform:
   m_ObjectHideFlags: 0
@@ -4738,7 +4697,6 @@ Transform:
   - {fileID: 1038654375}
   - {fileID: 1625547435}
   - {fileID: 2032445823}
-  - {fileID: 19899034}
   - {fileID: 1184260887}
   - {fileID: 702974535}
   - {fileID: 335937398}
