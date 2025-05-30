@@ -7,7 +7,7 @@ namespace SaveSystem
     public class PlayerInventorySaveData
     {
         public List<CardSaveData> cards = new();
-        public List<DeckPreset> decks = new();
+        public List<DeckSaveData> decks = new();
         public List<EquipmentSaveData> equipments = new();
         public List<ArtifactSaveData> artifacts = new();
     }
@@ -21,10 +21,25 @@ namespace SaveSystem
     }
 
     [Serializable]
-    public class DeckPreset
+    public class DeckSaveData
     {
-        public string presetName;
+        public string deckName;
         public List<string> cardIds = new();  // 카드 ID (중복 허용 가능)
+
+        public bool isSelected = false;       // 현재 탐험에 선택된 덱 여부
+        public bool isFavorite = false;       // 즐겨찾기 여부
+        public int slotIndex = -1;            // UI에서 정렬 유지용 슬롯 번호
+        public string note = "";              // 유저가 적는 메모, 설명 등 (선택사항)
+
+        public DeckSaveData() { }
+
+        public DeckSaveData(string name, List<string> cardIds, bool isSelected = false, int slotIndex = -1)
+        {
+            this.deckName = name;
+            this.cardIds = new List<string>(cardIds);
+            this.isSelected = isSelected;
+            this.slotIndex = slotIndex;
+        }
     }
 
     [Serializable]

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
+using SaveSystem;
 
 namespace Inventory
 {
@@ -72,10 +73,39 @@ namespace Inventory
             RegisterFilterToggleEvents(costMap.Keys);
 
             searchInputField.onValueChanged.AddListener(_ => ApplyFilters());
-
             newDeckButton.onClick.AddListener(AddNewDeck);
 
             RefreshPanel();
+        }
+
+        public void RefreshPanel()
+        {
+            // 기존 덱 UI 제거
+            foreach (var deckUI in deckUIs)
+                Destroy(deckUI.gameObject);
+            deckUIs.Clear();
+
+            // PlayerInventory에서 덱 정보 가져오기
+            var presets = PlayerInventory.Instance.GetAllDeckPresets();
+            foreach (var deck in presets.OrderBy(d => d.slotIndex))
+            {
+                GameObject go = Instantiate(deckPrefab, recipeSlotParent);
+                var deckUI = go.GetComponent<DeckPresetUI>();
+
+                var data = new I_DeckPresetData(deck.deckName)
+                {
+                    cardIds = new List<string>(deck.cardIds),
+                    isFavorite = deck.isFavorite,
+                    isSelected = deck.isSelected,
+                    slotIndex = deck.slotIndex,
+                    note = deck.note
+                };
+
+                deckUI.Initialize(data, this);
+                deckUIs.Add(deckUI);
+            }
+
+            ApplyFilters();
         }
 
         private void InitializeFilterMaps()
@@ -110,11 +140,6 @@ namespace Inventory
         {
             foreach (var toggle in toggles)
                 toggle.onValueChanged.AddListener(_ => ApplyFilters());
-        }
-
-        public void RefreshPanel()
-        {
-            ApplyFilters();
         }
 
         public void ApplyFilters()

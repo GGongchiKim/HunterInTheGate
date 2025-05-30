@@ -20,6 +20,9 @@ namespace Inventory
         [Header("보유 중인 카드")]
         [SerializeField] private List<CardData> allCards = new();
 
+        [Header("보유 중인 덱 프리셋")]
+        [SerializeField] private List<DeckSaveData> allDeckPresets = new(); // <- 변경됨
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -38,15 +41,11 @@ namespace Inventory
         }
 
         // 장비 관련
-        public EquipmentData GetEquipped(EquipType type)
-        {
-            return equippedItems.TryGetValue(type, out var item) ? item : null;
-        }
+        public EquipmentData GetEquipped(EquipType type) =>
+            equippedItems.TryGetValue(type, out var item) ? item : null;
 
-        public void EquipItem(EquipType type, EquipmentData data)
-        {
+        public void EquipItem(EquipType type, EquipmentData data) =>
             equippedItems[type] = data;
-        }
 
         public List<EquipmentData> GetAllEquipments() => allEquipments;
 
@@ -90,6 +89,15 @@ namespace Inventory
             }
         }
 
+        // 덱 프리셋 관련
+        public List<DeckSaveData> GetAllDecks() => allDeckPresets;
+        public void AddDeck(DeckSaveData deck) => allDeckPresets.Add(deck);
+
+        public List<DeckSaveData> GetAllDeckPresets()
+        {
+            return allDeckPresets;
+        }
+
         // 세이브 데이터 변환
         public PlayerInventorySaveData GetSaveData()
         {
@@ -100,7 +108,7 @@ namespace Inventory
                 saveData.cards.Add(new CardSaveData
                 {
                     cardId = card.cardId,
-                    count = 1, // 중복 관리 예정 시 수량 누적 로직 필요
+                    count = 1,
                     upgradeLevel = card.level
                 });
             }
@@ -123,7 +131,31 @@ namespace Inventory
                 });
             }
 
+            // 덱 저장
+            foreach (var deck in allDeckPresets)
+            {
+                saveData.decks.Add(new DeckSaveData
+                {
+                    deckName = deck.deckName,
+                    cardIds = new List<string>(deck.cardIds)
+                });
+            }
+
             return saveData;
+        }
+
+        public void ApplyDeckPresets(List<DeckSaveData> presets)
+        {
+            allDeckPresets.Clear();
+
+            foreach (var preset in presets)
+            {
+                allDeckPresets.Add(new DeckSaveData
+                {
+                    deckName = preset.deckName,
+                    cardIds = new List<string>(preset.cardIds)
+                });
+            }
         }
 
         public void LoadFromData(PlayerInventorySaveData data)
@@ -132,6 +164,7 @@ namespace Inventory
             allEquipments.Clear();
             allArtifacts.Clear();
             equippedItems.Clear();
+            allDeckPresets.Clear();
 
             foreach (var cardSave in data.cards)
             {
@@ -165,7 +198,45 @@ namespace Inventory
                 }
             }
 
-            Debug.Log("[PlayerInventory] 인벤토리 로드 완료");
+            // 덱 복원
+            foreach (var deckSave in data.decks)
+            {
+                allDeckPresets.Add(new DeckSaveData
+                {
+                    deckName = deckSave.deckName,
+                    cardIds = new List<string>(deckSave.cardIds)
+                });
+            }           
+        Debug.Log("[PlayerInventory] 인벤토리 로드 완료");
         }
+
+        public void UpdateDeck(DeckSaveData newData)
+        {
+            var existing = allDeckPresets.Find(d => d.slotIndex == newData.slotIndex);
+            if (existing != null)
+            {
+                // 덮어쓰기
+                existing.deckName = newData.deckName;
+                existing.cardIds = new List<string>(newData.cardIds);
+                existing.isFavorite = newData.isFavorite;
+                existing.isSelected = newData.isSelected;
+                existing.note = newData.note;
+            }
+            else
+            {
+                // 새로 추가
+                allDeckPresets.Add(new DeckSaveData
+                {
+                    deckName = newData.deckName,
+                    cardIds = new List<string>(newData.cardIds),
+                    isFavorite = newData.isFavorite,
+                    isSelected = newData.isSelected,
+                    slotIndex = newData.slotIndex,
+                    note = newData.note
+                });
+            }
+        }
+
+
     }
 }

@@ -21,7 +21,7 @@ public class AcademyPlayer : MonoBehaviour
     [Header("기타 정보")]
     public int gold;
     public HunterRank hunterRank;
-    public DeckData deck;
+    public DeckSaveData deck;
     public Dictionary<string, int> npcAffinity = new();
 
     private const int MaxStatValue = 999;

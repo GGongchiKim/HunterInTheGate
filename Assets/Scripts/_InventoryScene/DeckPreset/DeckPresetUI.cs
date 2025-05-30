@@ -5,6 +5,7 @@ using TMPro;
 using Inventory;
 using System.Linq;
 using UnityEngine.EventSystems;
+using SaveSystem;
 
 public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -18,8 +19,8 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject recipeCardPrefab;
     [SerializeField] private TMP_InputField deckNameInput;
 
-    private DeckData originalData;
-    private DeckData currentData;
+    private I_DeckPresetData originalData;
+    private I_DeckPresetData currentData;
 
     private DeckPanelManager panelManager;
     private bool isOpen = false;
@@ -40,7 +41,7 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
     }
 
-    public void Initialize(DeckData data, DeckPanelManager manager)
+    public void Initialize(I_DeckPresetData data, DeckPanelManager manager)
     {
         originalData = data.DeepCopy();
         currentData = data.DeepCopy();
@@ -53,7 +54,7 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void InitializeEmpty(DeckPanelManager manager)
     {
         panelManager = manager;
-        currentData = new DeckData("New Deck");
+        currentData = new I_DeckPresetData("New Deck");
         originalData = currentData.DeepCopy();
 
         deckNameInput.text = currentData.deckName;
@@ -105,6 +106,19 @@ public class DeckPresetUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         currentData.deckName = deckNameInput.text;
         originalData = currentData.DeepCopy();
+
+        // 저장 데이터로 변환
+        var saveData = new DeckSaveData(currentData.deckName, currentData.cardIds)
+        {
+            isFavorite = currentData.isFavorite,
+            isSelected = currentData.isSelected,
+            slotIndex = currentData.slotIndex,
+            note = currentData.note
+        };
+
+        // 인벤토리에 무조건 덮어쓰기 저장
+        PlayerInventory.Instance.UpdateDeck(saveData);
+
         CloseRecipePanel();
         deckNameInput.interactable = false;
         panelManager?.OnAllDecksClosed();

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 namespace Inventory
 {
     public enum InventoryTabType
@@ -28,16 +27,10 @@ namespace Inventory
             OpenTab(InventoryTabType.Deck);
         }
 
-        /// <summary>
-        /// 버튼에서 연결하기 위한 매개변수 없는 함수들
-        /// </summary>
         public void OpenEquipmentTab() => OpenTab(InventoryTabType.Equipment);
         public void OpenArtifactTab() => OpenTab(InventoryTabType.Artifact);
         public void OpenDeckTab() => OpenTab(InventoryTabType.Deck);
 
-        /// <summary>
-        /// 지정된 탭을 열고 해당 패널을 초기화
-        /// </summary>
         private void OpenTab(InventoryTabType tabType)
         {
             equipmentPanel.SetActive(false);
@@ -60,10 +53,14 @@ namespace Inventory
                     break;
             }
         }
+
+        /// <summary>
+        /// 인벤토리 씬을 닫을 때, 현재 덱 프리셋을 PlayerInventory에 반영(임시 저장)하고 아카데미 씬으로 이동
+        /// </summary>
         public void CloseScene()
         {
+            
             SceneManager.LoadScene("AcademyScene");
-        }
-
+        }      
     }
 }

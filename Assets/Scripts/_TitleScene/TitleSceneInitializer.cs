@@ -1,3 +1,4 @@
+using Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,15 @@ public class TitleSceneInitializer : MonoBehaviour
         if (GameStateManager.Instance != null)
         {
             GameStateManager.Instance.SetPhase(GamePhase.Event);
+        }
+    }
+
+    private void Awake()
+    {
+        if (PlayerInventory.Instance == null)
+        {
+            GameObject prefab = Resources.Load<GameObject>("PlayerInventory");
+            Instantiate(prefab);
         }
     }
 
