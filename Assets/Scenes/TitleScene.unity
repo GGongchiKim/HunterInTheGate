@@ -957,8 +957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce616e334ee5d4bb6971b2fe61eb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeek: 1
-  currentDay: 1
   academyPlayer: {fileID: 0}
   academyPlayerPrefab: {fileID: 1446094891069685504, guid: be9e3ddece40045468969b954ae844b8, type: 3}
   currentScene: 0
@@ -1314,7 +1312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 638987404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 99721149}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &638987404
 MonoBehaviour:
   m_ObjectHideFlags: 0
