@@ -66,13 +66,13 @@ namespace MissionSystem
         }
 
         private void TriggerMission(int triggerWeek)
-        {
-            currentMissionDeadline = triggerWeek + 3; // 3주 유예 기간
+        {            
+            currentMissionDeadline = triggerWeek + 8; 
+
             lastTriggeredWeek = triggerWeek;
             missionCleared = false;
 
             Debug.Log($"[GateMissionManager] 미션 시작! 기한: {currentMissionDeadline}주차까지 클리어 필요");
-            // TODO: 퀘스트 시스템 연동
         }
 
         public void CompleteMission()
