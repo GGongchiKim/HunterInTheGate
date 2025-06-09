@@ -17,7 +17,7 @@ MonoBehaviour:
   sizeDelta: {x: 1366, y: 768}
   sortingOrder: 0
   transitionType: 5
-  transitionDuration: 0.6
+  transitionDuration: 0.5
   holdDuration: 2
   autoProceed: 0
   speeches: []

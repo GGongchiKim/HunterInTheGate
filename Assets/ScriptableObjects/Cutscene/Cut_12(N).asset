@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46002bb2416d6524c912ad0c20c6fad7, type: 3}
+  m_Name: Cut_12(N)
+  m_EditorClassIdentifier: 
+  cutImage: {fileID: 21300000, guid: de98c7e562fb4cb45899d9a38dbd9ead, type: 3}
+  anchoredPosition: {x: 0, y: 0}
+  sizeDelta: {x: 1366, y: 768}
+  sortingOrder: 0
+  transitionType: 5
+  transitionDuration: 0.5
+  holdDuration: 2
+  autoProceed: 0
+  speeches:
+  - speakerName: 
+    text: "\uAC8C\uC774\uD2B8\uAC00 \uC0DD\uACA8\uB09C \uADF8 \uB0A0, \uC804 \uC138\uACC4\uB294
+      \uBB34\uB108\uC84C\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uD558\uC9C0\uB9CC \uADF8\uAC83\uC774 \uC778\uB958\uC758 \uB05D\uC740
+      \uC544\uB2C8\uC5C8\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uC5B4\uB514\uC120\uAC00 \uB098\uD0C0\uB09C \uC774\uB2A5\uB825\uC790\uB4E4\u2014
+      \n\uD6D7\uB0A0 \u2018\uD5CC\uD130\u2019\uB77C \uBD88\uB9AC\uAC8C \uB418\uB294
+      \uC774\uB4E4\uC758 \uCD9C\uD604\uC73C\uB85C \n\uC778\uB958\uB294 \uAC8C\uC774\uD2B8\uB85C\uBD80\uD130
+      \uB098\uC628 \uBAAC\uC2A4\uD130\uB4E4\uC744 \n\uC644\uC804\uD788 \uC12C\uBA78\uD558\uB294
+      \uAC83\uC5D0 \uC131\uACF5\uD588\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uAC8C\uC774\uD2B8\uB85C \uC778\uD55C \uD53C\uD574\uB294 \uB9C9\uB300\uD588\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uC218\uB9CE\uC740 \uB3C4\uC2DC\uAC00 \uC0AC\uB77C\uC84C\uACE0, \uC218\uCC9C\uB9CC\uC758
+      \uC0DD\uBA85\uC774 \n\uADF8\uB0A0\uC744 \uB05D\uC73C\uB85C \uB3CC\uC544\uC624\uC9C0
+      \uBABB\uD588\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uADF8\uB7EC\uB098 \uC560\uB3C4\uB294 \uC624\uB798\uAC00\uC9C0 \uC54A\uC558\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uAC8C\uC774\uD2B8\uC5D0\uC11C \uC3DF\uC544\uC9C4 \uC774\uC138\uACC4\uC758
+      \uBB3C\uC9C8\uB4E4\u2014  \uC0C8\uB85C\uC6B4 \uC5D0\uB108\uC9C0\uC6D0, \uC804\uD22C\uC6A9
+      \uC544\uD2F0\uD329\uD2B8, \uBBF8\uC9C0\uC758 \uC790\uC6D0\uB4E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uADF8\uAC83\uB4E4\uC740 \uC7AC\uB09C\uC758 \uD754\uC801\uC744 \uB36E\uACE0
+      \n\uC0C8\uB85C\uC6B4 \uC0B0\uC5C5\uC758 \uC528\uC557\uC774 \uB418\uC5C8\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uADF8\uB9AC\uACE0 \uC778\uB958\uB294 \uB2E4\uC2DC,\n\uB354\uC6B1 \uCC2C\uB780\uD55C
+      \uBB38\uBA85\uC744 \uD5A5\uD574 \uAC78\uC5B4\uAC00\uAE30 \uC2DC\uC791\uD588\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  fxPrefab: {fileID: 0}
+  fxOffset: {x: 0, y: 0}
+  fxDelay: 0
+  postDelay: 0

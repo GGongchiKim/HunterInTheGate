@@ -27,6 +27,7 @@ namespace CutsceneSystem
         public void Setup(CutPanelData data)
         {
             cutImage.sprite = data.cutImage;
+            rectTransform = GetComponent<RectTransform>();
             rectTransform.anchoredPosition = data.anchoredPosition;
             rectTransform.sizeDelta = data.sizeDelta;
             rectTransform.SetSiblingIndex(data.sortingOrder);
@@ -54,8 +55,6 @@ namespace CutsceneSystem
                 case PanelTransitionType.Flash:
                     yield return FlashEffect(duration);
                     break;
-
-                    // 다른 방식도 확장 가능
             }
         }
 
@@ -65,13 +64,24 @@ namespace CutsceneSystem
             {
                 yield return new WaitForSeconds(speech.delayBefore);
 
-                // 말풍선 출력 (가벼운 버전: Debug or SpeechBubbleManager)
-                Debug.Log($"[{speech.speakerName}] {speech.text}");
+                if (speech.isNarration)
+                {
+                    // 중앙 나레이션 박스 출력
+                    SpeechBubbleManager.Instance.ShowNarration(speech.text);
+                }
+                else
+                {
+                    // 말풍선 출력 (CutPanel의 이미지 하위에 로컬 좌표로 생성)
+                    Transform parent = cutImage.transform;
+                    Vector3 localPosition = speech.offset; // 로컬 기준으로 오프셋 적용
+                    SpeechBubbleManager.Instance.ShowSpeechBubble(speech.speakerName, speech.text, parent, localPosition);
+                }
 
-                // 실제 구현 시 SpeechBubbleManager에서 인스턴스 생성
-                // SpeechBubbleManager.Instance.Show(speech, bubbleAnchor.position + offset);
-
+                // 사용자 입력 대기
                 yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+                // 다음 대사를 위해 말풍선 또는 나레이션 제거
+                SpeechBubbleManager.Instance.Hide();
             }
         }
 
@@ -121,7 +131,6 @@ namespace CutsceneSystem
 
         private IEnumerator FlashEffect(float duration)
         {
-            // 간단한 깜빡임 효과
             canvasGroup.alpha = 0f;
             yield return new WaitForSeconds(duration * 0.2f);
             canvasGroup.alpha = 1f;

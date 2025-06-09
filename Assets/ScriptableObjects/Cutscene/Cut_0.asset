@@ -19,7 +19,7 @@ MonoBehaviour:
   transitionType: 2
   transitionDuration: 1
   holdDuration: 2
-  autoProceed: 1
+  autoProceed: 0
   speeches: []
   fxPrefab: {fileID: 0}
   fxOffset: {x: 0, y: 0}

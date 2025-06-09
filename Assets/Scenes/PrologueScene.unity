@@ -291,7 +291,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -362,6 +362,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f79dd954b4abc7043a9a8b21e3d294bd, type: 2}
   - {fileID: 11400000, guid: 0cb95366a64e13844a7e708196d3a400, type: 2}
   - {fileID: 11400000, guid: 894c704ea6967b14d925d4a38de2ba64, type: 2}
+  - {fileID: 11400000, guid: 419c5fbedcad75248bd2dc93b66c3d10, type: 2}
+  - {fileID: 11400000, guid: e67a4663a3f132a4e84903d9c8626ffb, type: 2}
+  - {fileID: 11400000, guid: 95d298cf7794c9346b6c552d81c23e1d, type: 2}
+  - {fileID: 11400000, guid: 8c152b4b2882c4947a2cd90f481a66c5, type: 2}
+  - {fileID: 11400000, guid: 1b3a5cf5dc6c61e4ba74ef536882e0bb, type: 2}
+  - {fileID: 11400000, guid: e2e4f1f7d41284246a8c573f5026e6a9, type: 2}
+  - {fileID: 11400000, guid: 5a13e94075ca842499c42c1dc74d64d3, type: 2}
+  - {fileID: 11400000, guid: afade1c7395e8bc478ec5d4c4a750849, type: 2}
   cutPanelPrefab: {fileID: 7682001102084715873, guid: 696f3ce34ff13fc4eace979965b3e67f, type: 3}
   panelParent: {fileID: 1919680639}
   autoModeOverride: 1
@@ -523,6 +531,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2060154145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060154146}
+  - component: {fileID: 2060154147}
+  m_Layer: 0
+  m_Name: SpeechBubbleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2060154146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060154145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1113.081, y: 588.47766, z: -1.9091846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060154147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060154145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97811e78ac184bf48a2c282c40394130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speechBubblePrefab: {fileID: 3173439821092601940, guid: 962116f03581ad348bdf8c2839f1aded, type: 3}
+  narrationBoxPrefab: {fileID: 1374619798311177844, guid: f9516cc91233dfa439d36980e0d6961d, type: 3}
+  uiRoot: {fileID: 1919680639}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -531,3 +586,4 @@ SceneRoots:
   - {fileID: 363454864}
   - {fileID: 1956849161}
   - {fileID: 805743091}
+  - {fileID: 2060154146}

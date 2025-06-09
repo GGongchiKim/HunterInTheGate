@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46002bb2416d6524c912ad0c20c6fad7, type: 3}
+  m_Name: Cut_14(N)
+  m_EditorClassIdentifier: 
+  cutImage: {fileID: 21300000, guid: de98c7e562fb4cb45899d9a38dbd9ead, type: 3}
+  anchoredPosition: {x: 0, y: 0}
+  sizeDelta: {x: 1366, y: 768}
+  sortingOrder: 0
+  transitionType: 5
+  transitionDuration: 0.5
+  holdDuration: 2
+  autoProceed: 0
+  speeches:
+  - speakerName: 
+    text: "\uC138\uC0C1\uC740 \uAC8C\uC774\uD2B8\uB97C \uCD95\uBCF5\uC774\uB77C \uB9D0\uD55C\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uBB34\uC218\uD55C \uC790\uC6D0\uACFC \uBCF4\uBB3C\uB4E4\uC744\n\uC544\uB08C\uC5C6\uC774
+      \uC8FC\uB294 '\uC778\uB958\uC758 \uBCF4\uBB3C'\uC774\uB77C \uB9D0\uD55C\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\u2026\uD558\uC9C0\uB9CC \uB098\uB294 \uC78A\uC744 \uC218 \uC5C6\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uB098\uB294, \uC778\uC815\uD560 \uC218 \uC5C6\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  - speakerName: 
+    text: "\uADF8\uB807\uAE30\uC5D0\u2014\u2014"
+    offset: {x: 0, y: 0}
+    delayBefore: 0
+    isNarration: 1
+  fxPrefab: {fileID: 0}
+  fxOffset: {x: 0, y: 0}
+  fxDelay: 0
+  postDelay: 0
