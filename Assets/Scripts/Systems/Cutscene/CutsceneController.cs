@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,11 @@ namespace CutsceneSystem
         public bool autoModeOverride = true;
 
         private GameObject currentPanel;
+
+        /// <summary>
+        /// 컷씬이 끝났을 때 호출되는 외부용 이벤트
+        /// </summary>
+        public event Action OnCutsceneComplete;
 
         private void Start()
         {
@@ -54,7 +60,12 @@ namespace CutsceneSystem
             if (data.fxPrefab != null)
             {
                 yield return new WaitForSeconds(data.fxDelay);
-                Instantiate(data.fxPrefab, currentPanel.transform.position + (Vector3)data.fxOffset, Quaternion.identity, currentPanel.transform);
+                Instantiate(
+                    data.fxPrefab,
+                    currentPanel.transform.position + (Vector3)data.fxOffset,
+                    Quaternion.identity,
+                    currentPanel.transform
+                );
             }
 
             // 진행 방식
@@ -80,7 +91,9 @@ namespace CutsceneSystem
         private void OnCutsceneEnd()
         {
             Debug.Log("Cutscene finished.");
-            // TODO: 다음 씬으로 넘어가기, 튜토리얼 시작 등
+
+            // 이벤트 호출
+            OnCutsceneComplete?.Invoke();
         }
     }
 }

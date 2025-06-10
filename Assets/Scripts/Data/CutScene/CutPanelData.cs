@@ -5,8 +5,8 @@ namespace CutsceneSystem
     public enum PanelTransitionType
     {
         None,
-        SlideIn,
         FadeIn,
+        SlideIn,
         ZoomIn,
         SplitAdd,
         CutIn,       // ºü¸¥ ¾×¼Ç ÄÆ »ðÀÔ¿ë

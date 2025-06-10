@@ -212,6 +212,8 @@ GameObject:
   - component: {fileID: 1108254108292015772}
   - component: {fileID: 7541409487707703216}
   - component: {fileID: 1227717673595110915}
+  - component: {fileID: 4682739822233172245}
+  - component: {fileID: 1540841581761552541}
   m_Layer: 5
   m_Name: CutPanel
   m_TagString: Untagged
@@ -265,6 +267,31 @@ MonoBehaviour:
   cutImage: {fileID: 5156953849355420480}
   bubbleAnchor: {fileID: 5126184013716419884}
   fxLayer: {fileID: 222769550356526959}
+--- !u!114 &4682739822233172245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682001102084715873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83003785ac60324898029780af281c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1540841581761552541}
+--- !u!225 &1540841581761552541
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682001102084715873}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8795166986465806503
 GameObject:
   m_ObjectHideFlags: 0
