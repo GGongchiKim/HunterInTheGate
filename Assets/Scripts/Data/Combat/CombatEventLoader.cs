@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class CombatEventLoader
 {
-    private static Dictionary<string, CombatEvent> cache = new();
+    private static Dictionary<string, CombatEventData> cache = new();
 
-    public static CombatEvent LoadEventById(string eventId)
+    public static CombatEventData LoadEventById(string eventId)
     {
         if (cache.TryGetValue(eventId, out var ce)) return ce;
 
-        var loaded = Resources.Load<CombatEvent>($"CombatEvents/{eventId}");
+        var loaded = Resources.Load<CombatEventData>($"CombatEvents/{eventId}");
         if (loaded != null)
         {
             cache[eventId] = loaded;

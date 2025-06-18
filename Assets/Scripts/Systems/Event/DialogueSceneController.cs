@@ -155,14 +155,32 @@ public class DialogueSceneController : MonoBehaviour
         {
             switch (node.action.actionType)
             {
-                case "LoadScene":
-                    Debug.Log($"Loading scene: {node.action.parameter}");
-                    // GameStateManager.Instance.LoadScene(node.action.parameter);
+                case DialogueActionType.StartCombat:
+                    Debug.Log($"[Action] 전투 시작: {node.action.parameter}");
+                   // GameStateTransfer.combatEventId = node.action.parameter;
+                    //GameStateManager.Instance.LoadScene("CombatScene"); // 전투 씬 이름은 필요시 수정
+                    return; // 씬 이동이므로 이후 로직 실행하지 않음
+
+                case DialogueActionType.BranchDialogue:
+                    var newEvent = DialogueEventLoader.LoadEventById(node.action.parameter);
+                    if (newEvent != null)
+                    {
+                        dialogueData = newEvent;
+                        currentNodeId = newEvent.nodes[0].nodeId;
+                        ShowCurrentNode();
+                    }
+                    else
+                    {
+                        Debug.LogError("[Action] 대화 이벤트 분기 실패: ID = " + node.action.parameter);
+                    }
                     break;
 
-                case "StartCombat":
-                    Debug.Log($"Starting combat: {node.action.parameter}");
-                    // CombatLauncher.StartCombat(node.action.parameter);
+                case DialogueActionType.ModifyStat:
+                    Debug.Log($"[Action] 능력치 변화 (미구현): {node.action.parameter}");
+                    break;
+
+                case DialogueActionType.GainItem:
+                    Debug.Log($"[Action] 아이템 획득 (미구현): {node.action.parameter}");
                     break;
             }
         }

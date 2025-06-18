@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class T_HUDManager : MonoBehaviour
 {
     public void OnClickContinue()
     {
-        SceneManager.LoadScene("AcademyScene");
+        // 튜토리얼 종료 후 아카데미 씬으로 전환
+        SceneTransitionManager.Instance.LoadSceneWithFade("AcademyScene", GamePhase.Management);
     }
 }

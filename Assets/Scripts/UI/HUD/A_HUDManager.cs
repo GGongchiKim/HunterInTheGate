@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class A_HUDManager : MonoBehaviour
 {
@@ -20,24 +19,25 @@ public class A_HUDManager : MonoBehaviour
     }
 
     // 각 버튼에 연결할 전용 함수들
-    public void OnClickStatus(){statusPanel.SetActive(true);}
-    public void OnClickStatusClose(){statusPanel.SetActive(false);}
-    public void OnClickJournal(){journalPanel.SetActive(true);}
-    public void OnClickJournalClose() { journalPanel.SetActive(false); }
-    public void OnClickSetting(){settingPanel.SetActive(true);}
-    public void OnClickSettingClose() { settingPanel.SetActive(false); }
-    public void OnClickSaveLoad(){saveLoadPanel.SetActive(true);}
-    public void OnClickSaveLoadClose() { saveLoadPanel.SetActive(false); }
-    public void OnClickSchedule() { scheduleMenuPanel.SetActive(true);}
+    public void OnClickStatus() { statusPanel.SetActive(true); }
+    public void OnClickStatusClose() { statusPanel.SetActive(false); }
 
-    /// <summary> 
-    /// 인벤토리 버튼 클릭 시 씬 전환
+    public void OnClickJournal() { journalPanel.SetActive(true); }
+    public void OnClickJournalClose() { journalPanel.SetActive(false); }
+
+    public void OnClickSetting() { settingPanel.SetActive(true); }
+    public void OnClickSettingClose() { settingPanel.SetActive(false); }
+
+    public void OnClickSaveLoad() { saveLoadPanel.SetActive(true); }
+    public void OnClickSaveLoadClose() { saveLoadPanel.SetActive(false); }
+
+    public void OnClickSchedule() { scheduleMenuPanel.SetActive(true); }
+
+    /// <summary>
+    /// 인벤토리 버튼 클릭 시 씬 전환 (페이드 포함)
     /// </summary>
     public void OnClickInventory()
     {
-        SceneManager.LoadScene("InventoryScene");
+        SceneTransitionManager.Instance.LoadSceneWithFade("InventoryScene", GamePhase.Management);
     }
-
-   
-    
 }

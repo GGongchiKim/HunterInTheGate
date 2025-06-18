@@ -57,6 +57,9 @@ public class TurnManager : MonoBehaviour
 
         // 🔹 전투 시작 직후, 플레이어 상태이상 갱신
         UpdatePlayerEffects();
+
+        // 🔹 전투 시작 시 턴 대사 출력 (플레이어 턴 1)
+        ShowTurnDialogue(currentTurn, true);
     }
 
     private void InitializeEnemyIntents()
@@ -102,12 +105,13 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("=== 적 턴 시작 ===");
 
-        // 🔹 적들 상태이상 갱신
+        ShowTurnDialogue(currentTurn, false);
+
         foreach (Enemy enemy in CombatContext.Instance.allEnemies)
         {
             if (enemy == null) continue;
 
-            enemy.GetComponent<EffectHandler>()?.UpdateEffects(); // DOT 적용!
+            enemy.GetComponent<EffectHandler>()?.UpdateEffects();
             enemy.PerformTurn();
             yield return new WaitForSeconds(0.2f);
         }
@@ -124,8 +128,25 @@ public class TurnManager : MonoBehaviour
         C_HUDManager.Instance.UpdateTurn(currentTurn);
         CombatContext.Instance.combatPlayer.ResetShield();
 
-        // 🔹 플레이어 상태이상 갱신
         UpdatePlayerEffects();
+
+        ShowTurnDialogue(currentTurn, true);
+    }
+
+    private void ShowTurnDialogue(int turn, bool isPlayerTurn)
+    {
+        CombatEventData currentCombatEvent = CombatContext.Instance.currentCombatEvent;
+        if (currentCombatEvent == null || currentCombatEvent.turnDialogues == null) return;
+
+        foreach (var cd in currentCombatEvent.turnDialogues)
+        {
+            if (cd.timing == (isPlayerTurn ? CombatDialogueTiming.PlayerTurn : CombatDialogueTiming.EnemyTurn) &&
+                cd.turnIndex == turn)
+            {
+                CombatDialogueUI.ShowDialogue(cd.speakerName, cd.text);
+                break;
+            }
+        }
     }
 
     private void DrawCards(int count)
