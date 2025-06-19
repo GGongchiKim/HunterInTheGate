@@ -369,10 +369,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b3a5cf5dc6c61e4ba74ef536882e0bb, type: 2}
   - {fileID: 11400000, guid: e2e4f1f7d41284246a8c573f5026e6a9, type: 2}
   - {fileID: 11400000, guid: 5a13e94075ca842499c42c1dc74d64d3, type: 2}
-  - {fileID: 11400000, guid: afade1c7395e8bc478ec5d4c4a750849, type: 2}
   cutPanelPrefab: {fileID: 7682001102084715873, guid: 696f3ce34ff13fc4eace979965b3e67f, type: 3}
   panelParent: {fileID: 1919680639}
   autoModeOverride: 1
+  nextDialogueId: TUT01
 --- !u!4 &805743091
 Transform:
   m_ObjectHideFlags: 0

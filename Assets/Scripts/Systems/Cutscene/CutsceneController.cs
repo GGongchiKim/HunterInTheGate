@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace CutsceneSystem
 {
     public class CutsceneController : MonoBehaviour
@@ -17,6 +18,9 @@ namespace CutsceneSystem
 
         [Header("설정")]
         public bool autoModeOverride = true;
+
+        [Header("컷씬 종료 후 전환")]
+        [SerializeField] private string nextDialogueId; // 다음 대화 이벤트 ID
 
         private GameObject currentPanel;
 
@@ -94,6 +98,12 @@ namespace CutsceneSystem
 
             // 이벤트 호출
             OnCutsceneComplete?.Invoke();
+
+            // 컷씬 종료 후 대화 이벤트로 전환
+            if (!string.IsNullOrEmpty(nextDialogueId))
+            {
+                SceneTransitionManager.Instance.LoadSceneWithFade("DialogueScene", GamePhase.Event, nextDialogueId);
+            }
         }
     }
 }

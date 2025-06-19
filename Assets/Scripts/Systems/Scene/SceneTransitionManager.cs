@@ -17,10 +17,25 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+            // fadeImage가 연결되어 있고, 그것이 다른 루트 오브젝트라면 같이 처리
+            if (fadeImage != null)
+            {
+                Transform root = fadeImage.transform.root;
+                if (root != transform)
+                {
+                    DontDestroyOnLoad(root.gameObject);
+                }
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
