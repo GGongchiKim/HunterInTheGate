@@ -24,7 +24,7 @@ MonoBehaviour:
     choices: []
     nextNodeId: TUT01-02
     action:
-      actionType: 
+      actionType: 0
       parameter: 
   - nodeId: TUT01-02
     nodeType: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
     choices: []
     nextNodeId: TUT01-03
     action:
-      actionType: 
+      actionType: 0
       parameter: 
   - nodeId: TUT01-03
     nodeType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       jumpTargetIdOrScene: 
     nextNodeId: TUT01-04
     action:
-      actionType: 
+      actionType: 0
       parameter: 
   - nodeId: TUT01-04
     nodeType: 1
@@ -69,8 +69,8 @@ MonoBehaviour:
       nextNodeId: 
       conditions: []
       effects: []
-      jumpType: 2
-      jumpTargetIdOrScene: 
+      jumpType: 3
+      jumpTargetIdOrScene: C_TUT
     - text: "\uC2DC\uAC04\uB3C4 \uC5C6\uC73C\uB2C8 \uBE60\uB974\uAC8C \uD574\uBCF4\uC8E0.
         (\uC804\uD22C \uD29C\uD1A0\uB9AC\uC5BC \uC2A4\uD0B5)"
       nextNodeId: 
@@ -80,5 +80,5 @@ MonoBehaviour:
       jumpTargetIdOrScene: TUT02
     nextNodeId: 
     action:
-      actionType: 
+      actionType: 0
       parameter: 

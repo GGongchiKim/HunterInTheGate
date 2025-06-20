@@ -16,12 +16,12 @@ MonoBehaviour:
   anchoredPosition: {x: 0, y: 0}
   sizeDelta: {x: 1920, y: 1080}
   sortingOrder: 0
-  transitionType: 4
-  transitionDuration: 0.5
-  holdDuration: 2
-  autoProceed: 0
+  transitionType: 7
+  transitionDuration: 5
+  holdDuration: 3
+  autoProceed: 1
   speeches: []
-  fxPrefab: {fileID: 0}
-  fxOffset: {x: 0, y: 0}
-  fxDelay: 0
+  fxPrefab: {fileID: 3762457111272611612, guid: 222c34f7e9c648d449b80cd4c38225f1, type: 3}
+  fxOffset: {x: 150, y: 400}
+  fxDelay: 2
   postDelay: 0

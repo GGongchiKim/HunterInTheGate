@@ -24,17 +24,11 @@ public class SceneDataBridge : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 씬 전환 전에 데이터를 저장합니다.
-    /// </summary>
     public void SetData(string key, object value)
     {
         data[key] = value;
     }
 
-    /// <summary>
-    /// 데이터를 가져오고, 가져온 후 해당 항목은 삭제합니다.
-    /// </summary>
     public T ConsumeData<T>(string key)
     {
         if (data.TryGetValue(key, out object value) && value is T typedValue)
@@ -46,9 +40,6 @@ public class SceneDataBridge : MonoBehaviour
         return default;
     }
 
-    /// <summary>
-    /// 데이터를 존재한 채로 확인만 합니다 (삭제하지 않음).
-    /// </summary>
     public T PeekData<T>(string key)
     {
         if (data.TryGetValue(key, out object value) && value is T typedValue)
@@ -59,9 +50,11 @@ public class SceneDataBridge : MonoBehaviour
         return default;
     }
 
-    /// <summary>
-    /// 전체 데이터 초기화
-    /// </summary>
+    public string GetString(string key)
+    {
+        return ConsumeData<string>(key);
+    }
+
     public void ClearAll()
     {
         data.Clear();

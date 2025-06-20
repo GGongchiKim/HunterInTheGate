@@ -16,7 +16,7 @@ MonoBehaviour:
   anchoredPosition: {x: 0, y: 0}
   sizeDelta: {x: 1366, y: 768}
   sortingOrder: 0
-  transitionType: 5
+  transitionType: 0
   transitionDuration: 0.5
   holdDuration: 2
   autoProceed: 0
@@ -44,11 +44,6 @@ MonoBehaviour:
     isNarration: 1
   - speakerName: 
     text: "\uADF8\uB807\uAE30\uC5D0\u2014\u2014"
-    offset: {x: 0, y: 0}
-    delayBefore: 0
-    isNarration: 1
-  - speakerName: 
-    text: "\uB098\uB294 \uD5CC\uD130\uAC00 \uB418\uAE30\uB85C \uACB0\uC2EC\uD588\uB2E4."
     offset: {x: 0, y: 0}
     delayBefore: 0
     isNarration: 1

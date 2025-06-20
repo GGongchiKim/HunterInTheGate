@@ -37,7 +37,7 @@ namespace CutsceneSystem
         {
             var effect = GetComponent<TransitionEffect>();
             if (effect != null)
-                yield return effect.Play((TransitionType)type, duration);
+                yield return effect.Play(type, duration); //캐스팅 제거
         }
 
         public IEnumerator PlaySpeechSequence(SpeechData[] speeches)
@@ -53,19 +53,15 @@ namespace CutsceneSystem
                 }
                 else
                 {
-                    // 말풍선 출력 (bubbleAnchor의 이미지 하위에 로컬 좌표로 생성)
+                    // 말풍선 출력
                     Transform parent = bubbleAnchor != null ? bubbleAnchor : cutImage.transform;
-                    Vector3 localPosition = speech.offset; // 로컬 기준으로 오프셋 적용
+                    Vector3 localPosition = speech.offset;
                     SpeechBubbleManager.Instance.ShowSpeechBubble(speech.speakerName, speech.text, parent, localPosition);
                 }
 
-                // 사용자 입력 대기
                 yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-                // 다음 대사를 위해 말풍선 또는 나레이션 제거
                 SpeechBubbleManager.Instance.Hide();
             }
         }
-
     }
 }

@@ -369,6 +369,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b3a5cf5dc6c61e4ba74ef536882e0bb, type: 2}
   - {fileID: 11400000, guid: e2e4f1f7d41284246a8c573f5026e6a9, type: 2}
   - {fileID: 11400000, guid: 5a13e94075ca842499c42c1dc74d64d3, type: 2}
+  - {fileID: 11400000, guid: afade1c7395e8bc478ec5d4c4a750849, type: 2}
+  - {fileID: 11400000, guid: ed321ea266d5c804092c40b3c3e71e5b, type: 2}
   cutPanelPrefab: {fileID: 7682001102084715873, guid: 696f3ce34ff13fc4eace979965b3e67f, type: 3}
   panelParent: {fileID: 1919680639}
   autoModeOverride: 1
@@ -578,52 +580,6 @@ MonoBehaviour:
   speechBubblePrefab: {fileID: 3173439821092601940, guid: 962116f03581ad348bdf8c2839f1aded, type: 3}
   narrationBoxPrefab: {fileID: 1374619798311177844, guid: f9516cc91233dfa439d36980e0d6961d, type: 3}
   uiRoot: {fileID: 1919680639}
---- !u!1 &2088049075
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2088049077}
-  - component: {fileID: 2088049078}
-  m_Layer: 0
-  m_Name: CutsceneInitializer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2088049077
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088049075}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1222.1921, y: 744.9144, z: -0.9580405}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2088049078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088049075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90cfb956118f6a46b90a85d19fafe57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutsceneController: {fileID: 805743090}
-  nextSceneName: TitleScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -633,4 +589,3 @@ SceneRoots:
   - {fileID: 1956849161}
   - {fileID: 805743091}
   - {fileID: 2060154146}
-  - {fileID: 2088049077}

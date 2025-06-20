@@ -6,7 +6,7 @@ namespace CutsceneSystem
     public class CutsceneFxUI : MonoBehaviour
     {
         [Header("설정")]
-        public TransitionType transitionType = TransitionType.FadeIn;
+        public PanelTransitionType transitionType = PanelTransitionType.FadeIn;
         public float transitionDuration = 0.5f;
         public float lifeTime = 2.0f; // 연출 후 자동 제거 시간
 

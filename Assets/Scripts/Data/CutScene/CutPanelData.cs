@@ -2,17 +2,6 @@ using UnityEngine;
 
 namespace CutsceneSystem
 {
-    public enum PanelTransitionType
-    {
-        None,
-        FadeIn,
-        SlideIn,
-        ZoomIn,
-        SplitAdd,
-        CutIn,       // ºü¸¥ ¾×¼Ç ÄÆ »ðÀÔ¿ë
-        Flash        // °­ÇÑ °­Á¶ ÄÆ
-    }
-
     [CreateAssetMenu(fileName = "CutPanelData", menuName = "Cutscene/Cut Panel Data")]
     public class CutPanelData : ScriptableObject
     {

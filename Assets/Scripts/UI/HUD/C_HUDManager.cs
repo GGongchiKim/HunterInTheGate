@@ -15,17 +15,13 @@ public class C_HUDManager : MonoBehaviour
     public Transform playerSpriteTransform;
     public RectTransform playerHealthUI;
 
-    [Header("Enemy Health")]
-    public Slider enemyHealthBar;
-    public Text enemyHealthText;
-    public Transform enemySpriteTransform;
-    public RectTransform enemyHealthUI;
+    [Header("Enemy HUD Prefab")]
+    public GameObject enemyHUDPrefab;
+    public Transform enemyHUDParent;
 
     [Header("Status Panel")]
     public Transform playerStatusPanel;
-    public Transform enemyStatusPanel;
     public GameObject statusEffectPrefab;
-    
 
     [Header("패배 패널")]
     public GameObject defeatPanel;
@@ -50,6 +46,8 @@ public class C_HUDManager : MonoBehaviour
 
     private Camera mainCam;
 
+    private Dictionary<Enemy, RectTransform> enemyHealthUIs = new();
+    private Dictionary<Enemy, Transform> enemyStatusPanels = new();
 
     private void Awake()
     {
@@ -70,7 +68,11 @@ public class C_HUDManager : MonoBehaviour
     private void UpdateHealthUIPosition()
     {
         UpdateWorldspaceHealthUI(playerSpriteTransform, playerHealthUI);
-        UpdateWorldspaceHealthUI(enemySpriteTransform, enemyHealthUI);
+
+        foreach (var pair in enemyHealthUIs)
+        {
+            UpdateWorldspaceHealthUI(pair.Key.transform, pair.Value);
+        }
     }
 
     private void UpdateWorldspaceHealthUI(Transform targetTransform, RectTransform uiElement)
@@ -91,6 +93,22 @@ public class C_HUDManager : MonoBehaviour
         }
     }
 
+    public void RegisterEnemyHUD(Enemy enemy, GameObject hud)
+    {
+        RectTransform hpBar = hud.transform.Find("EnemyHpBar")?.GetComponent<RectTransform>();
+        Transform statusPanel = hud.transform.Find("EnemyStatusPanel");
+
+        if (hpBar != null)
+            enemyHealthUIs[enemy] = hpBar;
+        if (statusPanel != null)
+            enemyStatusPanels[enemy] = statusPanel;
+    }
+
+    public Transform GetEnemyStatusPanel(Enemy enemy)
+    {
+        return enemyStatusPanels.TryGetValue(enemy, out Transform panel) ? panel : null;
+    }
+
     public void UpdatePlayerHealth(int currentHP, int maxHP, int shield = 0)
     {
         if (playerHealthBar != null)
@@ -109,37 +127,6 @@ public class C_HUDManager : MonoBehaviour
                 : $"{currentHP} / {maxHP}";
         }
     }
-
-    public void UpdateEnemyHealth(int currentHealth, int maxHealth, int shield = 0)
-    {
-        Debug.Log("적 체력바 호출");
-
-        if (enemyHealthBar != null)
-        {
-            enemyHealthBar.maxValue = maxHealth;
-            enemyHealthBar.value = currentHealth;
-
-            Color barColor = shield > 0 ? new Color(0.3f, 0.8f, 1f) : Color.red;
-            enemyHealthBar.fillRect.GetComponent<Image>().color = barColor;
-
-        }
-
-        if (enemyHealthText != null)
-        {
-            enemyHealthText.text = shield > 0
-            ? $"{currentHealth} / {maxHealth} + {shield}"
-            : $"{currentHealth} / {maxHealth}";
-        }
-    }
-    public void HideEnemyHealthUI()
-    {
-        if (enemyHealthBar != null)
-            enemyHealthBar.gameObject.SetActive(false);
-
-        if (enemyHealthText != null)
-            enemyHealthText.gameObject.SetActive(false);
-    }
-
 
     public void UpdateActionPoints(int currentAP)
     {
@@ -238,5 +225,6 @@ public class C_HUDManager : MonoBehaviour
         }
     }
 
+    
 
 }

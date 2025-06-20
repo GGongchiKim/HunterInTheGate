@@ -19,14 +19,14 @@ public class Enemy : MonoBehaviour
 
     [Header("Components")]
     private Animator animator;
-    public EnemyIntentUI intentUI;
     public EffectHandler effectHandler;
+    private EnemyHUDHandler enemyHUD;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        intentUI = GetComponentInChildren<EnemyIntentUI>();
         effectHandler = GetComponent<EffectHandler>();
+        enemyHUD = GetComponentInChildren<EnemyHUDHandler>();
     }
 
     public void Initialize(EnemyData data)
@@ -39,15 +39,7 @@ public class Enemy : MonoBehaviour
         currentPatternIndex = 0;
         isDead = false;
 
-        if (intentUI != null)
-            intentUI.UpdateIntent(GetNextPattern());
-    }
-
-    public void SetIntentUI(EnemyIntentUI ui)
-    {
-        intentUI = ui;
-        if (intentUI != null)
-            intentUI.UpdateIntent(GetNextPattern());
+        enemyHUD?.UpdateIntent(GetNextPattern());
     }
 
     public void TakeDamage(int damage)
@@ -56,7 +48,6 @@ public class Enemy : MonoBehaviour
 
         int modifiedDamage = damage;
 
-        // 🔹 디버프 (예: 취약) 적용
         if (effectHandler != null)
         {
             foreach (var effect in effectHandler.GetActiveEffects())
@@ -68,7 +59,7 @@ public class Enemy : MonoBehaviour
                     {
                         modifiedDamage = Mathf.RoundToInt(modifiedDamage * multiplier);
                         Debug.Log($"[디버프 적용] {enemyName} 추가 피해 {multiplier}배 → 최종 {modifiedDamage} 피해");
-                        break; // 하나만 적용 (필요시 변경 가능)
+                        break;
                     }
                 }
             }
@@ -88,7 +79,7 @@ public class Enemy : MonoBehaviour
             health -= damageAfterShield;
         }
 
-        C_HUDManager.Instance.UpdateEnemyHealth(health, maxHealth, currentShield);
+        enemyHUD?.UpdateHealth(health, maxHealth, currentShield);
 
         if (health <= 0)
         {
@@ -103,14 +94,14 @@ public class Enemy : MonoBehaviour
     public void AddShield(int amount)
     {
         currentShield += amount;
-        C_HUDManager.Instance.UpdateEnemyHealth(health, maxHealth, currentShield);
+        enemyHUD?.UpdateHealth(health, maxHealth, currentShield);
     }
 
     public void ApplyEffect(StatusEffect effect, int sourceDamage = 0)
     {
         if (effectHandler != null)
         {
-            effectHandler.AddEffect(effect, sourceDamage); // ✅ sourceDamage 넘겨줌
+            effectHandler.AddEffect(effect, sourceDamage);
             Debug.Log($"[Enemy] {enemyName}에 {effect.effectName} 효과 적용됨 (sourceDamage={sourceDamage})");
         }
         else
@@ -119,15 +110,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void PlayAttackAnimation()
-    {
-        animator?.SetTrigger("OnAttack");
-    }
-
-    public void PlayDefenseAnimation()
-    {
-        animator?.SetTrigger("OnDefense");
-    }
+    public void PlayAttackAnimation() => animator?.SetTrigger("OnAttack");
+    public void PlayDefenseAnimation() => animator?.SetTrigger("OnDefense");
 
     public void PlayAttackedAnimation(float delay = 0.28f)
     {
@@ -167,7 +151,7 @@ public class Enemy : MonoBehaviour
         if (patternToUse != data.specialPattern && data.normalPatterns.Count > 0)
             currentPatternIndex = (currentPatternIndex + 1) % data.normalPatterns.Count;
 
-        intentUI?.UpdateIntent(GetNextPattern());
+        enemyHUD?.UpdateIntent(GetNextPattern());
     }
 
     private void ExecutePattern(EnemyActionPattern pattern)
@@ -199,13 +183,8 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-
         animator?.SetTrigger("OnDeath");
-
-        C_HUDManager.Instance.HideEnemyHealthUI();
-
-        if (intentUI != null)
-            intentUI.gameObject.SetActive(false);
+        enemyHUD?.HideHUD();
 
         StartCoroutine(DelayedDeathCleanup(1.5f));
     }
@@ -216,5 +195,7 @@ public class Enemy : MonoBehaviour
 
         CombatContext.Instance.allEnemies.Remove(this);
         Destroy(gameObject);
+
+        TurnManager.Instance.CheckVictoryCondition();
     }
 }

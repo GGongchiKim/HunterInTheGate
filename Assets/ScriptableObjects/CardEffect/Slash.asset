@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0cf9659cb781e48b4e526fb130f10c, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
+  statusEffect: {fileID: 11400000, guid: b00d5a9601844e14a8b77d3b75f0bd6f, type: 2}
   targetType: 0
-  attackCount: 1
   baseDamage: 10
-  enemyDebuff: {fileID: 0}
-  playerBuff: {fileID: 0}
+  attackCount: 1
   strengthMultiplier: 2
+  agilityMultiplier: 0
+  insightMultiplier: 0

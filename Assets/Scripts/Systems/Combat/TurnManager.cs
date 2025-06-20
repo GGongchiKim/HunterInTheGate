@@ -10,9 +10,6 @@ public class TurnManager : MonoBehaviour
     public DeckManager deckManager;
     public HandManager handManager;
 
-    [Header("적 인텐트 UI")]
-    public GameObject enemyIntentPrefab;
-
     [Header("전투 설정")]
     public int initialDrawCount = 5;
     public int drawCountPerTurn = 2;
@@ -41,6 +38,8 @@ public class TurnManager : MonoBehaviour
     {
         deckManager.InitializeCombatDeck();
 
+        C_HUDManager.Instance.playerSpriteTransform = CombatContext.Instance.combatPlayer.transform;
+
         currentTurn = 1;
         SetActionPoints(baseActionPoints);
 
@@ -51,47 +50,14 @@ public class TurnManager : MonoBehaviour
         C_HUDManager.Instance.UpdateTurn(currentTurn);
         CombatContext.Instance.combatPlayer.ResetShield();
 
-        InitializeEnemyIntents();
-        C_DeckViewerManager.Instance.ForceRefreshAll();
-        C_DeckViewerManager.Instance.ForceUpdateCounts();
-
         // 🔹 전투 시작 직후, 플레이어 상태이상 갱신
         UpdatePlayerEffects();
 
-        // 🔹 전투 시작 시 턴 대사 출력 (플레이어 턴 1)
+        // 🔹 전투 시작 시 턴 대사 출력
         ShowTurnDialogue(currentTurn, true);
-    }
 
-    private void InitializeEnemyIntents()
-    {
-        foreach (Enemy enemy in CombatContext.Instance.allEnemies)
-        {
-            if (enemy == null || enemy.intentUI != null) continue;
-
-            GameObject uiObj = Instantiate(enemyIntentPrefab);
-            uiObj.transform.SetParent(enemy.transform, worldPositionStays: true);
-            uiObj.transform.position = enemy.transform.position + new Vector3(0, 2f, 0);
-            uiObj.transform.localScale = Vector3.one;
-
-            EnemyIntentUI intentUI = uiObj.GetComponent<EnemyIntentUI>();
-            if (intentUI == null)
-            {
-                Debug.LogError("EnemyIntentUI 컴포넌트가 없습니다!");
-                continue;
-            }
-
-            SpriteRenderer sr = enemy.GetComponentInChildren<SpriteRenderer>();
-            if (sr != null)
-            {
-                intentUI.targetEnemySprite = sr.transform;
-            }
-            else
-            {
-                Debug.LogWarning($"[{enemy.name}]에게 SpriteRenderer가 없습니다.");
-            }
-
-            enemy.SetIntentUI(intentUI);
-        }
+        C_DeckViewerManager.Instance.ForceRefreshAll();
+        C_DeckViewerManager.Instance.ForceUpdateCounts();
     }
 
     public void EndTurn()
@@ -183,5 +149,45 @@ public class TurnManager : MonoBehaviour
     private void UpdatePlayerEffects()
     {
         CombatContext.Instance.combatPlayer.GetComponent<EffectHandler>()?.UpdateEffects();
+    }
+
+    private void HandleCombatEnd(bool playerWon)
+    {
+        var eventData = CombatContext.Instance.currentCombatEvent;
+
+        if (playerWon)
+        {
+            string nextId = eventData.onWinDialogueId;
+            if (!string.IsNullOrEmpty(nextId))
+            {
+                Debug.Log($"[CombatEnd] 승리 → 다음 대화 이벤트로 이동: {nextId}");
+                SceneTransitionManager.Instance.LoadSceneWithFade("DialogueScene", GamePhase.Event, nextId);
+            }
+            else
+            {
+                Debug.LogWarning("[CombatEnd] 승리했지만 다음 대화 이벤트 ID가 비어 있습니다.");
+            }
+        }
+        else
+        {
+            if (eventData.onLoseGameOver)
+            {
+                Debug.Log("[CombatEnd] 패배 → GameOver 패널 표시");
+                // GameOverUI.Instance.Show();
+            }
+            else
+            {
+                Debug.LogWarning("[CombatEnd] 패배했지만 GameOver 처리 설정이 없습니다.");
+            }
+        }
+    }
+
+    public void CheckVictoryCondition()
+    {
+        if (CombatContext.Instance.allEnemies.Count == 0)
+        {
+            Debug.Log("[TurnManager] 모든 적 처치됨 → 즉시 승리 판정");
+            HandleCombatEnd(playerWon: true);
+        }
     }
 }

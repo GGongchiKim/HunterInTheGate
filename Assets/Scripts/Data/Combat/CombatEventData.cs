@@ -15,6 +15,10 @@ public class CombatEventData : ScriptableObject
 
     [Header("Turn Dialogue")]
     public List<CombatDialogue> turnDialogues = new(); // 기본 초기화
+
+    [Header("결과 분기 처리")]
+    public string onWinDialogueId;
+    public bool onLoseGameOver;
 }
 
 [Serializable]
@@ -23,6 +27,7 @@ public class CombatDialogue
     public int turnIndex;
     public CombatDialogueTiming timing; // PlayerTurn or EnemyTurn
     public string speakerName;
+
     [TextArea]
     public string text;
 }

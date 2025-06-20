@@ -16,7 +16,7 @@ MonoBehaviour:
   anchoredPosition: {x: 0, y: 0}
   sizeDelta: {x: 1366, y: 768}
   sortingOrder: 0
-  transitionType: 5
+  transitionType: 0
   transitionDuration: 0.5
   holdDuration: 2
   autoProceed: 0
