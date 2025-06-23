@@ -50,11 +50,9 @@ public class TurnManager : MonoBehaviour
         C_HUDManager.Instance.UpdateTurn(currentTurn);
         CombatContext.Instance.combatPlayer.ResetShield();
 
-        // 🔹 전투 시작 직후, 플레이어 상태이상 갱신
         UpdatePlayerEffects();
 
-        // 🔹 전투 시작 시 턴 대사 출력
-        ShowTurnDialogue(currentTurn, true);
+        PlayDialogueForTurn(currentTurn, true);
 
         C_DeckViewerManager.Instance.ForceRefreshAll();
         C_DeckViewerManager.Instance.ForceUpdateCounts();
@@ -71,7 +69,7 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("=== 적 턴 시작 ===");
 
-        ShowTurnDialogue(currentTurn, false);
+        PlayDialogueForTurn(currentTurn, false);
 
         foreach (Enemy enemy in CombatContext.Instance.allEnemies)
         {
@@ -96,22 +94,31 @@ public class TurnManager : MonoBehaviour
 
         UpdatePlayerEffects();
 
-        ShowTurnDialogue(currentTurn, true);
+        PlayDialogueForTurn(currentTurn, true);
     }
 
-    private void ShowTurnDialogue(int turn, bool isPlayerTurn)
+    private void PlayDialogueForTurn(int turn, bool isPlayerTurn)
     {
-        CombatEventData currentCombatEvent = CombatContext.Instance.currentCombatEvent;
-        if (currentCombatEvent == null || currentCombatEvent.turnDialogues == null) return;
+        var evt = CombatContext.Instance.currentCombatEvent;
 
-        foreach (var cd in currentCombatEvent.turnDialogues)
+        CombatDialogueTiming timing = isPlayerTurn
+            ? CombatDialogueTiming.PlayerTurn
+            : CombatDialogueTiming.EnemyTurn;
+
+        if (evt is TutorialCombatEventData tutorialEvent)
         {
-            if (cd.timing == (isPlayerTurn ? CombatDialogueTiming.PlayerTurn : CombatDialogueTiming.EnemyTurn) &&
-                cd.turnIndex == turn)
+            var entries = DialogueEntryConverter.FromTutorialHints(tutorialEvent.tutorialHints, turn, timing);
+            if (entries.Count > 0)
             {
-                CombatDialogueUI.ShowDialogue(cd.speakerName, cd.text);
-                break;
+                CombatDialogueController.Instance.EnqueueDialogues(entries);
+                return;
             }
+        }
+
+        var normalEntries = DialogueEntryConverter.FromCombatDialogues(evt.turnDialogues, turn, timing);
+        if (normalEntries.Count > 0)
+        {
+            CombatDialogueController.Instance.EnqueueDialogues(normalEntries);
         }
     }
 
@@ -125,7 +132,7 @@ public class TurnManager : MonoBehaviour
     {
         if (deckManager == null || handManager == null)
         {
-            Debug.LogWarning("덱 또는 핸드 매니저가 설정되지 않았습니다.");
+            Debug.LogWarning("데크 또는 핸드 매니저가 설정되지 않았습니다.");
             return;
         }
 

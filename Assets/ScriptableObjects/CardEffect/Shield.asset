@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362c82e7acd23fa49aa99e0bf4103ca0, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  statusEffect: {fileID: 11400000, guid: b00d5a9601844e14a8b77d3b75f0bd6f, type: 2}
+  statusEffect: {fileID: 0}
   healAmount: 0
-  shieldAmount: 20
-  magicMultiplier: 1
+  shieldAmount: 10
+  magicMultiplier: 0
   willPowerMultiplier: 0

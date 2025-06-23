@@ -9,16 +9,18 @@ using TMPro;
 public class EnemyHUDHandler : MonoBehaviour
 {
     [Header("HUD 요소")]
-    public Slider healthBar;
-    public TextMeshProUGUI healthText;
-    public RectTransform hudRoot; // 전체 UI 루트 위치 갱신용
-    public Transform statusEffectPanel;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private RectTransform hudRoot; // 전체 UI 루트 위치 갱신용
+    [SerializeField] private Transform statusEffectPanel;
 
     [Header("행동 예고 (Intent UI)")]
-    public EnemyIntentUI intentUI;
+    [SerializeField] private EnemyIntentUI intentUI;
 
     private Enemy targetEnemy;
     private Camera mainCam;
+
+    private Transform intentAnchor; // 중복 방지를 위한 앵커 캐시
 
     /// <summary>
     /// 적 유닛 연결 및 카메라 초기화
@@ -28,10 +30,22 @@ public class EnemyHUDHandler : MonoBehaviour
         targetEnemy = enemy;
         mainCam = Camera.main;
 
-        //  의도 UI의 대상 위치 설정
+        // 체력바는 발 위치 기준으로 LateUpdate에서 위치 갱신
+
+        // 의도 UI의 대상 위치 설정 (머리 위 기준)
         if (intentUI != null)
         {
-            intentUI.targetEnemySprite = enemy.transform;
+            SpriteRenderer sr = enemy.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                Vector3 headPos = new Vector3(sr.bounds.center.x, sr.bounds.max.y + 0.2f, sr.bounds.center.z);
+                intentAnchor = CreateAnchor(headPos);
+                intentUI.targetEnemyWorldPosition = intentAnchor;
+            }
+            else
+            {
+                intentUI.targetEnemyWorldPosition = enemy.transform;
+            }
         }
     }
 
@@ -40,7 +54,7 @@ public class EnemyHUDHandler : MonoBehaviour
         if (targetEnemy == null || mainCam == null || hudRoot == null) return;
 
         SpriteRenderer sr = targetEnemy.GetComponentInChildren<SpriteRenderer>();
-        if (sr != null)
+        if (sr != null && sr.bounds.size != Vector3.zero)
         {
             Vector3 foot = new Vector3(sr.bounds.center.x, sr.bounds.min.y - 0.05f, sr.bounds.center.z);
             hudRoot.position = mainCam.WorldToScreenPoint(foot);
@@ -88,5 +102,19 @@ public class EnemyHUDHandler : MonoBehaviour
     {
         if (hudRoot != null)
             hudRoot.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 지정한 월드 위치에 고정된 UI용 앵커를 생성합니다.
+    /// </summary>
+    private Transform CreateAnchor(Vector3 worldPos)
+    {
+        if (intentAnchor != null) return intentAnchor; // 이미 있다면 재사용
+
+        GameObject anchor = new GameObject("IntentAnchor");
+        anchor.transform.SetParent(targetEnemy.transform); // 부모 설정
+        anchor.transform.position = worldPos;
+        intentAnchor = anchor.transform;
+        return intentAnchor;
     }
 }

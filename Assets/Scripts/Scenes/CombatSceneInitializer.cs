@@ -41,9 +41,8 @@ public class CombatSceneInitializer : MonoBehaviour
         GameObject playerGO = Instantiate(combatPlayerPrefab);
         CombatPlayer combatPlayer = playerGO.GetComponent<CombatPlayer>();
         combatPlayer.LoadFromAcademy(academyPlayer);
-        DontDestroyOnLoad(playerGO); // 씬 유지 필요 시
+        DontDestroyOnLoad(playerGO);
 
-        // 🔹 CombatPlayer의 상태효과 패널 연결
         var playerEffectHandler = combatPlayer.GetComponent<EffectHandler>();
         if (playerEffectHandler != null)
         {
@@ -58,28 +57,27 @@ public class CombatSceneInitializer : MonoBehaviour
             Enemy enemy = enemyGO.GetComponent<Enemy>();
             enemy.Initialize(enemyData);
 
-            // 🔹 적 전용 HUD 생성 및 등록
             GameObject hudGO = Instantiate(enemyHUDPrefab, C_HUDManager.Instance.enemyHUDParent);
             var hudHandler = hudGO.GetComponent<EnemyHUDHandler>();
             if (hudHandler != null)
             {
                 hudHandler.Initialize(enemy);
                 hudHandler.UpdateHealth(enemy.health, enemy.maxHealth, enemy.currentShield);
+
+                // 🔥 Enemy.cs의 enemyHUD 필드에 명시적으로 연결
+                enemy.enemyHUD = hudHandler;
+
+                var effectHandler = enemy.GetComponent<EffectHandler>();
+                if (effectHandler != null)
+                {
+                    effectHandler.statusEffectPanel = hudHandler.GetStatusPanel();
+                }
             }
 
             C_HUDManager.Instance.RegisterEnemyHUD(enemy, hudGO);
-
-            // 🔹 Enemy의 상태효과 패널 연결
-            var effectHandler = enemy.GetComponent<EffectHandler>();
-            if (effectHandler != null && hudHandler != null)
-            {
-                effectHandler.statusEffectPanel = hudHandler.GetStatusPanel();
-            }
-
             enemyList.Add(enemy);
         }
 
-        // CombatContext 초기화
         CombatContext.Instance.InitializeFromAcademy(academyPlayer, enemyList, evt);
         CombatContext.Instance.combatPlayer = combatPlayer;
 
@@ -97,7 +95,6 @@ public class CombatSceneInitializer : MonoBehaviour
         }
 
         C_HUDManager.Instance.UpdatePlayerHealth(player.health, player.maxHealth);
-
         TurnManager.Instance.StartCombat();
     }
 }

@@ -347,30 +347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutPanels:
   - {fileID: 11400000, guid: ceb7f8f4bc82d4149b9bccc201e8befa, type: 2}
-  - {fileID: 11400000, guid: 154d29e2899d3764e9205415dd3682ab, type: 2}
-  - {fileID: 11400000, guid: ef8a8d6b5830b0443b73952fd55ff6b8, type: 2}
-  - {fileID: 11400000, guid: 13b22163672cc4c4eaf86226bfb6892d, type: 2}
-  - {fileID: 11400000, guid: 84576495403c30744b33508e85c0f9de, type: 2}
-  - {fileID: 11400000, guid: 355f33f816adbbc46995cf0db572d14b, type: 2}
-  - {fileID: 11400000, guid: 12edf17cdc12d36468e9aabcbb19e330, type: 2}
-  - {fileID: 11400000, guid: f8572ebdd6fcc2543b4bb5d57502bf83, type: 2}
-  - {fileID: 11400000, guid: 0c71360ddd68ddd4ca41e24ab2b0d074, type: 2}
-  - {fileID: 11400000, guid: b0cab31f3fae5224b9e9f3ba9877f3d4, type: 2}
-  - {fileID: 11400000, guid: 8800cc9c58f33b242b0ee7b89b3496fe, type: 2}
-  - {fileID: 11400000, guid: b808d29ccd93a14478dbbfb6a64c7b73, type: 2}
-  - {fileID: 11400000, guid: 236c7908560c3b64d8903efb163dbb9d, type: 2}
-  - {fileID: 11400000, guid: f79dd954b4abc7043a9a8b21e3d294bd, type: 2}
-  - {fileID: 11400000, guid: 0cb95366a64e13844a7e708196d3a400, type: 2}
-  - {fileID: 11400000, guid: 894c704ea6967b14d925d4a38de2ba64, type: 2}
-  - {fileID: 11400000, guid: 419c5fbedcad75248bd2dc93b66c3d10, type: 2}
-  - {fileID: 11400000, guid: e67a4663a3f132a4e84903d9c8626ffb, type: 2}
-  - {fileID: 11400000, guid: 95d298cf7794c9346b6c552d81c23e1d, type: 2}
-  - {fileID: 11400000, guid: 8c152b4b2882c4947a2cd90f481a66c5, type: 2}
-  - {fileID: 11400000, guid: 1b3a5cf5dc6c61e4ba74ef536882e0bb, type: 2}
-  - {fileID: 11400000, guid: e2e4f1f7d41284246a8c573f5026e6a9, type: 2}
-  - {fileID: 11400000, guid: 5a13e94075ca842499c42c1dc74d64d3, type: 2}
-  - {fileID: 11400000, guid: afade1c7395e8bc478ec5d4c4a750849, type: 2}
-  - {fileID: 11400000, guid: ed321ea266d5c804092c40b3c3e71e5b, type: 2}
   cutPanelPrefab: {fileID: 7682001102084715873, guid: 696f3ce34ff13fc4eace979965b3e67f, type: 3}
   panelParent: {fileID: 1919680639}
   autoModeOverride: 1

@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [Header("Components")]
     private Animator animator;
     public EffectHandler effectHandler;
-    private EnemyHUDHandler enemyHUD;
+    public EnemyHUDHandler enemyHUD;
 
     private void Awake()
     {

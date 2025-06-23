@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc80234a18b5afb42ba4fe4021ceb26c, type: 3}
+  m_Script: {fileID: 11500000, guid: 28ca483a38ee76a4181507ea6792ae16, type: 3}
   m_Name: C_TUT
   m_EditorClassIdentifier: 
   eventId: C_TUT
@@ -18,4 +18,103 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc134b0e30d7faf4ba6dc5974e51ac7d, type: 2}
   turnDialogues: []
   onWinDialogueId: TUT03
-  onLoseGameOver: 0
+  onLoseGameOver: 1
+  tutorialHints:
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uB4DC\uB514\uC5B4 \uCCAB \uC2E4\uC804\uC774\uB124. \uC785\uD559\uC2DC\uD5D8\uC774\uB77C
+      \uADF8\uB7F0\uC9C0 \uC801\uC740 \uADF8\uB9AC \uAC15\uD558\uC9C0 \uC54A\uC73C\uB2C8,
+      \uC774\uBC88 \uAE30\uD68C\uC5D0 \uB0B4 \uB2A5\uB825\uC744 \uC810\uAC80\uD574\uB450\uB294\uAC8C
+      \uC88B\uACA0\uC5B4."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uB0B4\uAC00 \uD5CC\uD130\uB85C \uAC01\uC131\uD558\uBA70 \uC5BB\uC740
+      \uB2A5\uB825\uC740 '\uCE74\uB4DC\uD654'\uC640 '\uD589\uB3D9\uC608\uCE21'\uC774\uC57C."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "'\uCE74\uB4DC\uD654' \uB2A5\uB825\uC73C\uB85C\uB294 \uB0B4\uAC00 \uC774\uD574\uD558\uAC70\uB098
+      \uC9C1\uC811 \uC2B5\uB4DD\uD55C \uAE30\uC220\uC744 \uCE74\uB4DC\uC758 \uD615\uD0DC\uB85C
+      \uC0AC\uC6A9\uD560 \uC218 \uC788\uACE0,"
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "'\uD589\uB3D9\uC608\uCE21' \uB2A5\uB825\uC73C\uB85C\uB294 \uC0C1\uB300\uAC00
+      \uD560 \uD589\uB3D9\uC744 \uC5B4\uB290 \uC815\uB3C4 \uBC94\uC704 \uC548\uC5D0\uC11C
+      \uC608\uCE21\uD560 \uC218 \uC788\uC5B4."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uC138\uC0C1\uC5D0 \uC54C\uB824\uC9C4 S\uAE09 \uB2A5\uB825\uB4E4\uACFC
+      \uBE44\uAD50\uD558\uBA74 \uD654\uB824\uD568\uC740 \uB5A8\uC5B4\uC9C0\uC9C0\uB9CC
+      \uB450 \uB2A5\uB825\uC744 \uC804\uB7B5\uC801\uC73C\uB85C \uC870\uD569\uD558\uBA74
+      \uC5B4\uB5A4 \uC801\uC774\uB4E0 \uCDA9\uBD84\uD788 \uC774\uAE38 \uC218 \uC788\uC5B4."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uC6B0\uC120\uC740 \uC801\uC774 \uACF5\uACA9\uC744 \uC900\uBE44\uC911\uC774\uB2C8\uAE4C,
+      '\uBC29\uC5B4' \uCE74\uB4DC\uBD80\uD130 \uC0AC\uC6A9\uD558\uC790. \uCE74\uB4DC\uB294
+      \uC190\uD328\uC5D0\uC11C \uB4DC\uB798\uADF8\uD574\uC11C \uC801\uC808\uD55C
+      \uB300\uC0C1 \uC704\uC5D0 \uB4DC\uB86D\uD558\uB294 \uAC83\uC73C\uB85C \uC0AC\uC6A9\uD560
+      \uC218 \uC788\uC5B4."
+    highlightCard: 1
+    highlightEnemy: 0
+    forceCardId: C_G_Shield
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uC88B\uC544. \uC774\uBBF8 \uBC29\uC5B4\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD588\uC9C0\uB9CC
+      \uD589\uB3D9\uCF54\uC2A4\uD2B8\uAC00 \uD5C8\uB77D\uD558\uB294 \uC774\uC0C1
+      \uB0A8\uC740 \uCE74\uB4DC\uB97C \uC5F0\uC18D\uD574\uC11C \uC0AC\uC6A9\uD560
+      \uC218 \uC788\uC5B4. "
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uADF8\uB7FC \uB0A8\uB294 \uCF54\uC2A4\uD2B8\uB85C\uB294 \uACF5\uACA9\uCE74\uB4DC\uB97C
+      \uC368\uBCF4\uC790. \uBC29\uBC95\uC740 \uB611\uAC19\uC544. \uACF5\uACA9 \uCE74\uB4DC\uB97C
+      \uBAA9\uD45C\uB85C\uD558\uB294 \uC801 \uC704\uC5D0 \uB4DC\uB86D\uD558\uBA74
+      \uB3FC."
+    highlightCard: 1
+    highlightEnemy: 1
+    forceCardId: C_S_Slash
+  - turnIndex: 1
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uCF54\uC2A4\uD2B8\uC640 \uC190\uD328\uB97C \uBCF4\uCDA9\uD558\uACE0 \uC2F6\uC73C\uBA74
+      \uD134 \uC885\uB8CC \uBC84\uD2BC\uC744 \uB20C\uB7EC \uC804\uD22C\uB97C \uC9C4\uD589\uC2DC\uD0A4\uC790."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  - turnIndex: 2
+    timing: 0
+    speakerName: "\uC11C\uC608\uB9B0"
+    text: "\uC88B\uC544. \uBBF8\uB9AC \uC368\uB454 \uBC29\uC5B4\uCE74\uB4DC \uB355\uBD84\uC5D0
+      \uD53C\uD574\uB97C \uC644\uC804\uD788 \uB9C9\uC544\uB0C8\uC5B4. \uBCC4\uB85C
+      \uAC15\uD55C \uC801\uC740 \uC544\uB2C8\uB2C8\uAE4C \uC2AC\uC2AC \uC4F0\uB7EC\uD2B8\uB9AC\uC790.
+      \n\uB0B4\uAC00 \uAC00\uC9C4 \uB2A5\uB825\uB4E4\uB9CC \uC798 \uD65C\uC6A9\uD558\uBA74
+      \uADF8\uB9AC \uC5B4\uB835\uC9C0 \uC54A\uC744\uAC70\uC57C."
+    highlightCard: 0
+    highlightEnemy: 0
+    forceCardId: 
+  tutorialObjectives: []
+  restrictCardUse: 1

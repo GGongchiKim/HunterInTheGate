@@ -129,6 +129,26 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         return null;
     }
 
+    /// <summary>
+    /// 카드 UI 이미지의 RaycastTarget을 켜거나 끕니다.
+    /// </summary>
+    public void SetRaycastBlock(bool isBlocked)
+    {
+        // 현재 오브젝트 및 자식 전체에서 Image와 TMP_Text 컴포넌트 검색
+        var images = GetComponentsInChildren<Image>(includeInactive: true);
+        foreach (var img in images)
+        {
+            img.raycastTarget = !isBlocked;
+        }
+
+        var texts = GetComponentsInChildren<TextMeshProUGUI>(includeInactive: true);
+        foreach (var text in texts)
+        {
+            text.raycastTarget = !isBlocked;
+        }
+    }
+
+
     private GameObject GetWorldRaycastTarget()
     {
         Vector2 rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -173,6 +193,15 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (used)
         {
+            if (!TutorialCombatHelper.IsCardUsable(cardData.cardId))
+            {
+                Debug.Log($"[CardUI] 튜토리얼 제한으로 인해 카드 사용 불가: {cardData.cardId}");
+                ReturnToOriginalPosition();
+                return;
+            }
+
+            Debug.Log($"[CardUI] 카드 사용됨: {cardData.cardId}");
+            TutorialCombatHelper.OnCardUsed(cardData.cardId);
             HandManager.Instance.RemoveCardFromHand(gameObject, cardData);
         }
         else

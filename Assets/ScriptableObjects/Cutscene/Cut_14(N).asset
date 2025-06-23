@@ -47,6 +47,11 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     delayBefore: 0
     isNarration: 1
+  - speakerName: 
+    text: "\uB098\uB294 \uD5CC\uD130\uAC00 \uB418\uAE30\uB85C \uACB0\uC2EC\uD588\uB2E4."
+    offset: {x: 0, y: 0}
+    delayBefore: 1
+    isNarration: 1
   fxPrefab: {fileID: 0}
   fxOffset: {x: 0, y: 0}
   fxDelay: 0
