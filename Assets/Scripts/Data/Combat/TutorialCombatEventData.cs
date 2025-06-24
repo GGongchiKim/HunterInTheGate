@@ -24,7 +24,10 @@ public class TutorialTurnHint
     public bool highlightCard;
     public bool highlightEnemy;
 
-    public string forceCardId; 
+    public string forceCardId;
+
+    [Tooltip("강조할 UI 오브젝트 식별자 (예: TurnEndButton, CardArea 등)")]
+    public string highlightTargetId; // 추가됨
 }
 
 [Serializable]

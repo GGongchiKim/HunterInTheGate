@@ -7,7 +7,6 @@ public static class TutorialCombatHelper
 {
     private static string allowedCardId = null;
     private static bool requireCardUseToProceed = false;
-
     private static System.Action onTutorialStepCompleted;
 
     /// <summary>
@@ -32,14 +31,6 @@ public static class TutorialCombatHelper
     }
 
     /// <summary>
-    /// 대사 진행 조건 충족 여부
-    /// </summary>
-    public static bool CanProceedToNextDialogue()
-    {
-        return !requireCardUseToProceed;
-    }
-
-    /// <summary>
     /// 특정 카드만 사용하도록 제한
     /// </summary>
     public static void AllowOnlyCard(string cardId)
@@ -61,23 +52,29 @@ public static class TutorialCombatHelper
     /// </summary>
     public static void OnCardUsed(string usedCardId)
     {
-        if (requireCardUseToProceed && usedCardId == allowedCardId)
+        if (!requireCardUseToProceed) return;
+
+        if (usedCardId == allowedCardId)
         {
-            Debug.Log($"[Tutorial] 허용된 카드({usedCardId}) 사용됨 → 다음 대사 진행");
-            ClearCardRestriction();
-            DisableAllCardRaycast();
-            onTutorialStepCompleted?.Invoke();
+            Debug.Log($"[Tutorial] 허용된 카드({usedCardId}) 사용됨 → 다음 대사 자동 진행");
+            TryInvokeStepComplete();
         }
     }
 
     /// <summary>
-    /// 카드 제한 해제 및 콜백 초기화
+    /// 콜백 실행 및 상태 초기화
     /// </summary>
-    public static void ClearCardRestriction()
+    private static void TryInvokeStepComplete()
     {
-        allowedCardId = null;
         requireCardUseToProceed = false;
-        onTutorialStepCompleted = null;
+        allowedCardId = null;
+        DisableAllCardRaycast();
+
+        if (onTutorialStepCompleted != null)
+        {
+            onTutorialStepCompleted.Invoke();
+            onTutorialStepCompleted = null;
+        }
     }
 
     /// <summary>
@@ -107,20 +104,35 @@ public static class TutorialCombatHelper
     // UI 강조 기능
     public static void HighlightPlayerHand()
     {
-        Debug.Log("[TutorialHighlight] 손패 카드 강조 예정");
-        // TODO: 실제 카드에 Outline 등 강조 효과 추가
+        TutorialHighlighter.HighlightHandArea();
     }
 
-    public static void HighlightEnemy()
+    public static void HighlightEnemyIntendUI()
     {
-        Debug.Log("[TutorialHighlight] 적 강조 예정");
-        // TODO: 적 HUD에 강조 테두리 또는 애니메이션 표시
+        if (CombatContext.Instance.allEnemies.Count > 0)
+        {
+            TutorialHighlighter.HighlightFirstEnemyIntent();
+        }
+    }
+
+    public static void HighlightCardById(string cardId)
+    {
+        TutorialHighlighter.HighlightCardById(cardId);
+    }
+
+    public static void HighlightTurnEndButton()
+    {
+        TutorialHighlighter.HighlightTurnEndButton();
+    }
+
+    public static void HighlightTargetById(string targetId)
+    {
+        TutorialHighlighter.HighlightByTargetId(targetId);
     }
 
     public static void ClearHighlights()
     {
-        Debug.Log("[TutorialHighlight] 강조 효과 제거");
-        // TODO: 모든 하이라이트 제거 로직 구현
+        TutorialHighlighter.ClearAllHighlights();
     }
 
     /// <summary>
@@ -129,13 +141,18 @@ public static class TutorialCombatHelper
     public static void ApplyHint(TutorialTurnHint hint, System.Action onStepComplete = null)
     {
         if (hint.highlightCard) HighlightPlayerHand();
-        if (hint.highlightEnemy) HighlightEnemy();
+        if (hint.highlightEnemy) HighlightEnemyIntendUI();
+
+        if (!string.IsNullOrEmpty(hint.highlightTargetId))
+        {
+            HighlightTargetById(hint.highlightTargetId);
+        }
 
         if (!string.IsNullOrEmpty(hint.forceCardId))
         {
             AllowOnlyCard(hint.forceCardId);
             RegisterOnStepComplete(onStepComplete);
-            EnableRaycastForAllowedCard(); 
+            EnableRaycastForAllowedCard();
         }
     }
 
@@ -145,7 +162,9 @@ public static class TutorialCombatHelper
     public static void ClearAllTutorialState()
     {
         ClearHighlights();
-        ClearCardRestriction();
+        allowedCardId = null;
+        requireCardUseToProceed = false;
+        onTutorialStepCompleted = null;
         DisableAllCardRaycast();
     }
 }

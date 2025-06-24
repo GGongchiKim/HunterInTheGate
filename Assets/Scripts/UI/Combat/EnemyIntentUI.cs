@@ -23,8 +23,10 @@ public class EnemyIntentUI : MonoBehaviour
 
     [Header("위치 참조")]
     public Transform targetEnemyWorldPosition; // EnemyHUDHandler에서 지정
-
     private Camera mainCamera;
+
+    public Enemy linkedEnemy;
+
 
     private void Awake()
     {

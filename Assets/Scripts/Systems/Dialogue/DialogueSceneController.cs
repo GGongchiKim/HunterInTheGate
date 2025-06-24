@@ -157,7 +157,12 @@ public class DialogueSceneController : MonoBehaviour
                 break;
 
             case DialogueJumpType.Scene:
-                Debug.Log($"Scene jump: {choice.jumpTargetIdOrScene}");
+                SceneTransitionManager.Instance.LoadSceneWithFade(
+                    "AcademyScene",
+                    GamePhase.Management,
+                    choice.jumpTargetIdOrScene
+                );
+
                 break;
 
             case DialogueJumpType.Battle:

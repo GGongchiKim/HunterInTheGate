@@ -8,6 +8,7 @@ using TMPro;
 /// </summary>
 public class EnemyHUDHandler : MonoBehaviour
 {
+
     [Header("HUD 요소")]
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -19,7 +20,6 @@ public class EnemyHUDHandler : MonoBehaviour
 
     private Enemy targetEnemy;
     private Camera mainCam;
-
     private Transform intentAnchor; // 중복 방지를 위한 앵커 캐시
 
     /// <summary>
@@ -30,11 +30,11 @@ public class EnemyHUDHandler : MonoBehaviour
         targetEnemy = enemy;
         mainCam = Camera.main;
 
-        // 체력바는 발 위치 기준으로 LateUpdate에서 위치 갱신
-
-        // 의도 UI의 대상 위치 설정 (머리 위 기준)
+        // Intent UI 초기화
         if (intentUI != null)
         {
+            intentUI.linkedEnemy = enemy; // 튜토리얼 등에서 참조 가능하도록 연결
+
             SpriteRenderer sr = enemy.GetComponentInChildren<SpriteRenderer>();
             if (sr != null)
             {
@@ -48,6 +48,18 @@ public class EnemyHUDHandler : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 이 HUD가 연결된 적을 반환합니다.
+    /// </summary>
+    public Enemy GetLinkedEnemy() => targetEnemy;
+
+    /// <summary>
+    /// 이 HUD에 연결된 Intent UI를 반환합니다.
+    /// </summary>
+    public EnemyIntentUI GetIntentUI() => intentUI;
+
+
 
     private void LateUpdate()
     {
@@ -109,10 +121,10 @@ public class EnemyHUDHandler : MonoBehaviour
     /// </summary>
     private Transform CreateAnchor(Vector3 worldPos)
     {
-        if (intentAnchor != null) return intentAnchor; // 이미 있다면 재사용
+        if (intentAnchor != null) return intentAnchor;
 
         GameObject anchor = new GameObject("IntentAnchor");
-        anchor.transform.SetParent(targetEnemy.transform); // 부모 설정
+        anchor.transform.SetParent(targetEnemy.transform);
         anchor.transform.position = worldPos;
         intentAnchor = anchor.transform;
         return intentAnchor;

@@ -71,6 +71,7 @@ public class C_HUDManager : MonoBehaviour
 
         foreach (var pair in enemyHealthUIs)
         {
+            if (pair.Key == null) continue; // 🔐 예외 방지: 이미 파괴된 Enemy
             UpdateWorldspaceHealthUI(pair.Key.transform, pair.Value);
         }
     }
@@ -127,6 +128,32 @@ public class C_HUDManager : MonoBehaviour
                 : $"{currentHP} / {maxHP}";
         }
     }
+
+    /// <summary>
+    /// 적이 사망하거나 제거될 때 해당 적의 HUD 정보 정리
+    /// </summary>
+    public void UnregisterEnemy(Enemy enemy)
+    {
+        if (enemy == null) return;
+
+        if (enemyHealthUIs.ContainsKey(enemy))
+        {
+            enemyHealthUIs.Remove(enemy);
+            Debug.Log($"[HUDManager] 적 HP UI 해제됨: {enemy.name}");
+        }
+
+        if (enemyStatusPanels.ContainsKey(enemy))
+        {
+            enemyStatusPanels.Remove(enemy);
+            Debug.Log($"[HUDManager] 적 상태 패널 해제됨: {enemy.name}");
+        }
+
+        // Intent UI까지 관리 중이라면 이 부분도 필요할 수 있음
+        // enemyIntentSlots.RemoveAll(slot => slot.linkedEnemy == enemy);
+    }
+
+
+
 
     public void UpdateActionPoints(int currentAP)
     {

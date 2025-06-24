@@ -6,7 +6,7 @@ public class CombatDialogueController : MonoBehaviour
     public static CombatDialogueController Instance { get; private set; }
 
     private Queue<DialogueEntry> dialogueQueue = new();
-    private bool isActive = false; // 현재 대화가 진행 중인지 상태 플래그
+    private bool isActive = false;
     public bool IsDialogueActive() => isActive;
 
     private void Awake()
@@ -42,13 +42,15 @@ public class CombatDialogueController : MonoBehaviour
     {
         Debug.Log($"[CombatDialogueController] TryDisplayNext() 호출됨. 큐 개수: {dialogueQueue.Count}");
 
+        //  추가된 부분: 이전 강조 효과 제거
+        TutorialCombatHelper.ClearHighlights();
+
         if (dialogueQueue.Count == 0)
         {
             Debug.Log("[CombatDialogueController] 대사 큐 종료 → 패널 숨김 + 전투 재개 예정");
             isActive = false;
             CombatDialogueUI.HideAllDialogue();
             SetCardRaycastState(true);
-            TutorialCombatHelper.ClearCardRestriction();
             return;
         }
 
@@ -57,11 +59,8 @@ public class CombatDialogueController : MonoBehaviour
 
         CombatDialogueUI.ShowDialogue(next.isPlayer, next.speakerName, next.text);
 
-        if (!string.IsNullOrEmpty(next.forceCardId))
-        {
-            TutorialCombatHelper.ApplyHint(next.hint, OnTutorialStepComplete);
-            Debug.Log("[CombatDialogueController] 튜토리얼 조건 대사 → 카드 사용 대기");
-        }
+        //  hint 여부와 관계없이 콜백 항상 등록
+        TutorialCombatHelper.ApplyHint(next.hint, OnTutorialStepComplete);
     }
 
     public void OnClickDialogue()
@@ -88,7 +87,6 @@ public class CombatDialogueController : MonoBehaviour
         Debug.Log("[CombatDialogueController] 튜토리얼 조건 완료됨 → 다음 대사로 진행");
         TryDisplayNext();
     }
-
 
     private void SetCardRaycastState(bool enabled)
     {

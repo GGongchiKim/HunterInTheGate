@@ -23,5 +23,5 @@ MonoBehaviour:
     choices: []
     nextNodeId: 
     action:
-      actionType: 
+      actionType: 0
       parameter: 

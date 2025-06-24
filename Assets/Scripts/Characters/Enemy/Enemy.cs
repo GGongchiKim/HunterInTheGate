@@ -186,6 +186,9 @@ public class Enemy : MonoBehaviour
         animator?.SetTrigger("OnDeath");
         enemyHUD?.HideHUD();
 
+        // 💡 HUD 정보 정리
+        C_HUDManager.Instance?.UnregisterEnemy(this);
+
         StartCoroutine(DelayedDeathCleanup(1.5f));
     }
 

@@ -20,6 +20,24 @@ MonoBehaviour:
     speakerName: "\uAD50\uAD00"
     portraitSpriteId: TScg_Default
     choices: []
+    nextNodeId: TUT03-02
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: TUT03-02
+    nodeType: 1
+    text: "\uADF8\uB7FC \uC9C0\uAE08\uBD80\uD130\uB294 \uC774 \uC544\uCE74\uB370\uBBF8\uC5D0\uC11C\uC758
+      \uC0DD\uD65C\uC5D0 \uB300\uD574 \uAC04\uB2E8\uD788 \uC548\uB0B4\uD574\uC8FC\uC9C0.
+      \uC900\uBE44\uB410\uB098?"
+    speakerName: "\uAD50\uAD00"
+    portraitSpriteId: TScg_Default
+    choices:
+    - text: "\uB124. \uC900\uBE44\uB410\uC2B5\uB2C8\uB2E4."
+      nextNodeId: 
+      conditions: []
+      effects: []
+      jumpType: 2
+      jumpTargetIdOrScene: AcademyScene
     nextNodeId: 
     action:
       actionType: 0

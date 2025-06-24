@@ -30,6 +30,7 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: 
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -38,15 +39,17 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: 
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
     text: "'\uCE74\uB4DC\uD654' \uB2A5\uB825\uC73C\uB85C\uB294 \uB0B4\uAC00 \uC774\uD574\uD558\uAC70\uB098
       \uC9C1\uC811 \uC2B5\uB4DD\uD55C \uAE30\uC220\uC744 \uCE74\uB4DC\uC758 \uD615\uD0DC\uB85C
       \uC0AC\uC6A9\uD560 \uC218 \uC788\uACE0,"
-    highlightCard: 0
+    highlightCard: 1
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: CardArea
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -54,8 +57,9 @@ MonoBehaviour:
       \uD560 \uD589\uB3D9\uC744 \uC5B4\uB290 \uC815\uB3C4 \uBC94\uC704 \uC548\uC5D0\uC11C
       \uC608\uCE21\uD560 \uC218 \uC788\uC5B4."
     highlightCard: 0
-    highlightEnemy: 0
+    highlightEnemy: 1
     forceCardId: 
+    highlightTargetId: EnemyIntent
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -66,6 +70,7 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: 
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -74,9 +79,10 @@ MonoBehaviour:
       \uC190\uD328\uC5D0\uC11C \uB4DC\uB798\uADF8\uD574\uC11C \uC801\uC808\uD55C
       \uB300\uC0C1 \uC704\uC5D0 \uB4DC\uB86D\uD558\uB294 \uAC83\uC73C\uB85C \uC0AC\uC6A9\uD560
       \uC218 \uC788\uC5B4."
-    highlightCard: 1
+    highlightCard: 0
     highlightEnemy: 0
     forceCardId: C_G_Shield
+    highlightTargetId: C_G_Shield
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -87,6 +93,7 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: 
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -94,9 +101,10 @@ MonoBehaviour:
       \uC368\uBCF4\uC790. \uBC29\uBC95\uC740 \uB611\uAC19\uC544. \uACF5\uACA9 \uCE74\uB4DC\uB97C
       \uBAA9\uD45C\uB85C\uD558\uB294 \uC801 \uC704\uC5D0 \uB4DC\uB86D\uD558\uBA74
       \uB3FC."
-    highlightCard: 1
-    highlightEnemy: 1
+    highlightCard: 0
+    highlightEnemy: 0
     forceCardId: C_S_Slash
+    highlightTargetId: C_S_Slash
   - turnIndex: 1
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -105,6 +113,7 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: TurnEnd
   - turnIndex: 2
     timing: 0
     speakerName: "\uC11C\uC608\uB9B0"
@@ -116,5 +125,6 @@ MonoBehaviour:
     highlightCard: 0
     highlightEnemy: 0
     forceCardId: 
+    highlightTargetId: 
   tutorialObjectives: []
   restrictCardUse: 1

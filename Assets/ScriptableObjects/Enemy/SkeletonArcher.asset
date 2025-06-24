@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 544e0941c4c41eb438c2e336e8f91e80, type: 3}
-  m_Name: NewEnemyData
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  enemyName: 
-  sprite: {fileID: 0}
-  maxHealth: 0
+  enemyName: SkeletionArcher
+  sprite: {fileID: 21300000, guid: 771e5923707c41d488adadce40484be3, type: 3}
+  maxHealth: 128
   isBoss: 0
   normalPatterns: []
   specialPattern:
@@ -22,6 +22,6 @@ MonoBehaviour:
     description: 
     damage: 0
     shield: 0
-    debuffToApply: {fileID: 0}
+    statusEffect: {fileID: 0}
     icon: {fileID: 0}
     animationTrigger: 
