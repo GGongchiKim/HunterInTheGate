@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d6b2b8589364341b1365052d5ec54e, type: 3}
+  m_Name: Concentration
+  m_EditorClassIdentifier: 
+  effectId: BUFF02
+  effectName: "\uCD08\uC9D1\uC911"
+  effectType: 0
+  description: "\uB2E4\uC74C\uC758 \uACF5\uACA9\uC744 \uC704\uD574 \uBC29\uC5B4\uC790\uC138\uB97C
+    \uCDE8\uD55C \uCC44 \uBAA8\uB4E0 \uC815\uC2E0\uC744 \uC9D1\uC911\uD569\uB2C8\uB2E4."
+  icon: {fileID: 21300000, guid: 8748f2f5cd5d5784b9f3d62191c15bbf, type: 3}
+  iconColor: {r: 1, g: 0.8228265, b: 0, a: 1}
+  defaultDuration: 2
+  canStack: 0
+  maxStack: 0
+  flatBonusDamage: 0
+  percentBonusDamage: 100
+  receivedDamageMultiplier: 0
+  givenDamageReduction: 0
+  healReductionRate: 0
+  dotPercentDamage: 0
+  logicTemplate: {fileID: 0}

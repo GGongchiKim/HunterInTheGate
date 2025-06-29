@@ -16,12 +16,32 @@ MonoBehaviour:
   nodes:
   - nodeId: TUT02-01
     nodeType: 0
-    text: "\uD558. \uC790\uC2E0\uAC10\uB9CC \uBD10\uB3C4 \uC54C\uACA0\uAD70. \uB10C
-      \uD569\uACA9\uC774\uB2E4."
-    speakerName: "\uAD50\uAD00"
-    portraitSpriteId: TScg_Default
+    text: "\uB9C8\uBB3C\uC744 \uB208\uC55E\uC5D0 \uB450\uACE0\uB3C4 \uC804\uD600
+      \uBB34\uC11C\uC6CC\uD558\uC9C0 \uC54A\uB124? \uB9C8\uC74C\uC5D0 \uB4DC\uB2C8\uAE4C
+      \uADF8\uB0E5 \uD569\uACA9\uC2DC\uCF1C\uC904\uAC8C. \uB300\uC2E0 \uC774 \uC77C\uC740
+      \uBE44\uBC00\uB85C \uD574\uC918~?"
+    speakerName: "\uB9AC\uB098\uB9AC\uB098"
+    portraitSpriteId: MagicTeacher_Default
     choices: []
+    nextNodeId: TUT02-02
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: TUT02-02
+    nodeType: 1
+    text: "\uADF8\uB7FC \uACE7\uBC14\uB85C \uAC15\uB2F9\uC73C\uB85C \uAC00\uBD10.
+      \uC2AC\uC2AC \uC785\uD559\uC2DD\uC774 \uC2DC\uC791\uB420\uAC70\uC57C."
+    speakerName: "\uB9AC\uB098\uB9AC\uB098"
+    portraitSpriteId: MagicTeacher_Default
+    choices:
+    - text: "\uC544... \uB124. \uADF8\uB7FC \uAC00\uBCF4\uACA0\uC2B5\uB2C8\uB2E4."
+      nextNodeId: 
+      conditions: []
+      effects: []
+      jumpType: 1
+      jumpTargetIdOrScene: "\uC785\uD559\uC2DD01"
     nextNodeId: 
     action:
       actionType: 0
       parameter: 
+  backgroundSpriteId: TrainingArenaBG

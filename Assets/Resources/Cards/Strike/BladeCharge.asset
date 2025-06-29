@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
+  m_Name: BladeCharge
+  m_EditorClassIdentifier: 
+  cardName: "\uCE7C\uB0A0\uC9C8\uC8FC"
+  cardId: C_S_BladeCharge
+  cardCost: 2
+  level: 1
+  cardType: 0
+  rarity: 3
+  cardEffect: {fileID: 11400000, guid: a41f9cf8bbb38c64b9829d0b55ec0b19, type: 2}
+  cardDescription: "\uC120\uD0DD\uD55C \uC801\uC5D0\uAC8C \uADFC\uB825 x 2\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+  cardSprite: {fileID: 21300000, guid: 9d36c41ee171e5940ba06b9e7e47723d, type: 3}

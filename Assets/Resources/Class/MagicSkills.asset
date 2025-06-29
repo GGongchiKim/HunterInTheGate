@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e32c367037421c4ab63730b506f2628, type: 3}
+  m_Name: MagicSkills
+  m_EditorClassIdentifier: 
+  className: MagicSkills
+  description: lv1
+  classIcon: {fileID: 21300000, guid: 7903fed7525db55459c11e6f0475e773, type: 3}
+  classType: 0
+  statModifiers:
+  - statType: 2
+    amount: 10
+  - statType: 4
+    amount: 5
+  previewCards:
+  - {fileID: 11400000, guid: aa2732c4a04daea4e8622064d223818c, type: 2}
+  - {fileID: 11400000, guid: 1e03df5f1053af34b8b3fa2e64c4f5f2, type: 2}
+  - {fileID: 11400000, guid: 9c48b5e73b06be543bdcc1ad9b5e3523, type: 2}
+  - {fileID: 11400000, guid: 6f88c93b4fc75144d9b6a3089ac6dbc5, type: 2}
+  rewardPool:
+  - {fileID: 11400000, guid: aa2732c4a04daea4e8622064d223818c, type: 2}
+  - {fileID: 11400000, guid: 84ae089bd5edd9e4792d2bfa52f59b33, type: 2}
+  - {fileID: 11400000, guid: 24876afcae6d28a4982d5f2ed0ddca71, type: 2}
+  - {fileID: 11400000, guid: 1e03df5f1053af34b8b3fa2e64c4f5f2, type: 2}
+  - {fileID: 11400000, guid: 9c48b5e73b06be543bdcc1ad9b5e3523, type: 2}
+  - {fileID: 11400000, guid: 6f88c93b4fc75144d9b6a3089ac6dbc5, type: 2}
+  - {fileID: 11400000, guid: 0ec06f9c04715d2409472f3a07794d85, type: 2}
+  frontImageSprite: {fileID: 21300000, guid: 7da34202ee986e849b78418f2d5e093a, type: 3}
+  resultSuccess: {fileID: 21300000, guid: 3b188a815f9a9e04196b1c563fe50e96, type: 3}
+  resultGreatSuccess: {fileID: 21300000, guid: f22c4036fb0501145944d1780584848a, type: 3}
+  resultFailure: {fileID: 21300000, guid: 655286b102ee04e48b22c7d0f284b473, type: 3}

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a464df6d79e1047b56f92742e3a72c, type: 3}
+  m_Name: GATE_FadedCastle06
+  m_EditorClassIdentifier: 
+  eventId: GATE_FadedCastle06
+  nodes:
+  - nodeId: GATE_FadedCastle06-01
+    nodeType: 0
+    text: "\u2026\uC81C\uAE38. \uC84C\uB2E4."
+    speakerName: "\uC774\uB3C4\uACAC"
+    portraitSpriteId: Rival_Default
+    choices: []
+    nextNodeId: GATE_FadedCastle06-02
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_FadedCastle06-02
+    nodeType: 0
+    text: "(\uAC80\uC744 \uB0B4\uBC00\uBA70) \uC57D\uC18D\uC774\uB2C8\uAE4C\u2026
+      \uAC00\uC838\uAC00."
+    speakerName: "\uC774\uB3C4\uACAC"
+    portraitSpriteId: Rival_Default
+    choices: []
+    nextNodeId: GATE_FadedCastle06-03
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_FadedCastle06-03
+    nodeType: 0
+    text: "(\uAC80\uC744 \uBC1B\uC544\uB4E4\uBA70) \uC758\uC678\uB85C \uACB0\uACFC\uB97C
+      \uB2F4\uB2F4\uD788 \uBC1B\uC544\uB4E4\uC774\uB124."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: GATE_FadedCastle06-04
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_FadedCastle06-04
+    nodeType: 0
+    text: "\uC2DC\uB044\uB7EC. \uB098\uB3C4 \uC790\uC874\uC2EC\uC774 \uC788\uC73C\uB2C8
+      \uC57D\uC18D\uC740 \uC9C0\uCF1C. \uB2E4\uC74C\uC5D0\uB294 \uAF2D \uC774\uACA8\uC11C
+      \uADF8 \uAC80 \uB2E4\uC2DC \uB3CC\uB824\uBC1B\uC744\uD14C\uB2C8\uAE4C \uAE68\uB057\uC774
+      \uC368\uB77C."
+    speakerName: "\uC774\uB3C4\uACAC"
+    portraitSpriteId: Rival_Default
+    choices: []
+    nextNodeId: GATE_FadedCastle06-05
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_FadedCastle06-05
+    nodeType: 0
+    text: "\uADF8\uB7F4 \uC218 \uC788\uB2E4\uBA74 \uB9C8\uC74C\uB300\uB85C \uD574."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: GATE_FadedCastle06-06
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_FadedCastle06-06
+    nodeType: 1
+    text: "\uADF8\uB7FC \uC218\uACE0."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices:
+    - text: "(\uC544\uCE74\uB370\uBBF8\uB85C \uB3CC\uC544\uAC04\uB2E4)"
+      nextNodeId: 
+      conditions: []
+      effects: []
+      jumpType: 2
+      jumpTargetIdOrScene: AcademyScene
+    nextNodeId: 
+    action:
+      actionType: 0
+      parameter: 
+  backgroundSpriteId: FadedCastleEventBG

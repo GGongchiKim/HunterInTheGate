@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e32c367037421c4ab63730b506f2628, type: 3}
+  m_Name: RangerSkills
+  m_EditorClassIdentifier: 
+  className: RangerSkills
+  description: lv1
+  classIcon: {fileID: 21300000, guid: 7a39d27cb62eb304e93e03cb7ef8304f, type: 3}
+  classType: 0
+  statModifiers:
+  - statType: 1
+    amount: 10
+  - statType: 3
+    amount: 5
+  previewCards:
+  - {fileID: 11400000, guid: a3feeea89f2ba8947bb74ca81fd96e26, type: 2}
+  - {fileID: 11400000, guid: 2abaf5f84df334845a84739c23a1e728, type: 2}
+  - {fileID: 11400000, guid: 7f50a0f9c727eb04aadf54c50874cbbe, type: 2}
+  - {fileID: 11400000, guid: 79ecff9e3dc85fa46951fa89f6a52a67, type: 2}
+  rewardPool:
+  - {fileID: 11400000, guid: a3feeea89f2ba8947bb74ca81fd96e26, type: 2}
+  - {fileID: 11400000, guid: 2abaf5f84df334845a84739c23a1e728, type: 2}
+  - {fileID: 11400000, guid: 7f50a0f9c727eb04aadf54c50874cbbe, type: 2}
+  - {fileID: 11400000, guid: 79ecff9e3dc85fa46951fa89f6a52a67, type: 2}
+  - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
+  - {fileID: 11400000, guid: 75c50a9d19cf6f34bb5ca44f042d5d2c, type: 2}
+  - {fileID: 11400000, guid: ade3e35a621ddbf4ea6147a07b04aa5f, type: 2}
+  frontImageSprite: {fileID: 21300000, guid: ee14c48e59b9967459dd2d6b47e3cc59, type: 3}
+  resultSuccess: {fileID: 21300000, guid: 8953db0370bf27340b5e942f2c21d5ed, type: 3}
+  resultGreatSuccess: {fileID: 21300000, guid: fb7e3ab071bbb0f409763462a7ad464b, type: 3}
+  resultFailure: {fileID: 21300000, guid: d58bb990cfe68ba4d9484da301e31a26, type: 3}

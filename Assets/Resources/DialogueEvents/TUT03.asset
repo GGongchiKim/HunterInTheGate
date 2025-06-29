@@ -16,9 +16,10 @@ MonoBehaviour:
   nodes:
   - nodeId: TUT03-01
     nodeType: 0
-    text: "\uC81C\uBC95\uC774\uAD70. \uD569\uACA9\uC774\uB2E4."
-    speakerName: "\uAD50\uAD00"
-    portraitSpriteId: TScg_Default
+    text: "\uC624. \uC2E0\uAE30\uD55C \uB2A5\uB825\uC744 \uC4F0\uB124? \uC88B\uC740
+      \uAD6C\uACBD\uC774 \uB410\uC5B4. \uACB0\uACFC\uB294 \uBB3C\uB860 \uD569\uACA9\uC774\uC57C."
+    speakerName: "\uB9AC\uB098\uB9AC\uB098"
+    portraitSpriteId: MagicTeacher_Default
     choices: []
     nextNodeId: TUT03-02
     action:
@@ -26,19 +27,19 @@ MonoBehaviour:
       parameter: 
   - nodeId: TUT03-02
     nodeType: 1
-    text: "\uADF8\uB7FC \uC9C0\uAE08\uBD80\uD130\uB294 \uC774 \uC544\uCE74\uB370\uBBF8\uC5D0\uC11C\uC758
-      \uC0DD\uD65C\uC5D0 \uB300\uD574 \uAC04\uB2E8\uD788 \uC548\uB0B4\uD574\uC8FC\uC9C0.
-      \uC900\uBE44\uB410\uB098?"
-    speakerName: "\uAD50\uAD00"
-    portraitSpriteId: TScg_Default
+    text: "\uAC15\uB2F9\uC73C\uB85C \uAC00\uBD10. \uC2AC\uC2AC \uC785\uD559\uC2DD\uC774
+      \uC2DC\uC791\uB420\uAC70\uC57C."
+    speakerName: "\uB9AC\uB098\uB9AC\uB098"
+    portraitSpriteId: MagicTeacher_Default
     choices:
-    - text: "\uB124. \uC900\uBE44\uB410\uC2B5\uB2C8\uB2E4."
+    - text: "\uB124. \uADF8\uB7FC \uAC00\uBCF4\uACA0\uC2B5\uB2C8\uB2E4."
       nextNodeId: 
       conditions: []
       effects: []
-      jumpType: 2
-      jumpTargetIdOrScene: AcademyScene
+      jumpType: 1
+      jumpTargetIdOrScene: "\uC785\uD559\uC2DD01"
     nextNodeId: 
     action:
       actionType: 0
       parameter: 
+  backgroundSpriteId: TrainingArenaBG

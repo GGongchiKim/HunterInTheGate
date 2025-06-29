@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a464df6d79e1047b56f92742e3a72c, type: 3}
+  m_Name: "\uC785\uD559\uC2DD02"
+  m_EditorClassIdentifier: 
+  eventId: "\uC785\uD559\uC2DD02"
+  nodes:
+  - nodeId: "\uC785\uD559\uC2DD02-01"
+    nodeType: 0
+    text: "\uC544\uCE74\uB370\uBBF8\uB294 \uC790\uC728\uC801\uC778 \uD6C8\uB828\uACFC
+      \uC2E4\uC2B5 \uD0DC\uB3C4\uB97C \uC911\uC2DC\uD558\uBA70, \uC774\uC5D0 \uB530\uB77C
+      \uD559\uC0DD\uB4E4\uC740 \uB9E4\uC8FC \uC6D0\uD558\uB294 \uC2A4\uCF00\uC904\uC5D0
+      \uB530\uB77C \uD65C\uB3D9\uD560 \uC218 \uC788\uC5B4."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-02"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-02"
+    nodeType: 0
+    text: " \uC2A4\uCF00\uC904\uC740 \uC218\uC5C5, \uAC8C\uC774\uD2B8 \uD0D0\uC0AC,
+      \uC678\uCD9C, \uD734\uC2DD, \uCD1D \uB124 \uC885\uB958\uB85C \uAD6C\uC131\uB418\uC5B4
+      \uC788\uC5B4.  \uC9C0\uAE08\uBD80\uD130 \uAC01 \uC2A4\uCF00\uC904\uC5D0 \uB300\uD574\uC11C
+      \uC124\uBA85\uD560\uD14C\uB2C8 \uC798 \uB4E4\uC5B4\uB450\uB3C4\uB85D."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-03"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-03"
+    nodeType: 0
+    text: "\uC6B0\uC120 \uC218\uC5C5\uC5D0\uC11C\uB294 \uAC8C\uC774\uD2B8 \uD0D0\uC0AC\uB97C
+      \uC704\uD55C \uAE30\uC220\uACFC \uB2A5\uB825\uC744 \uC2B5\uB4DD\uD560 \uC218
+      \uC788\uB2E4. \uD5CC\uD130\uC758 \uB2E4\uC591\uD55C \uB2A5\uB825\uC5D0 \uB9DE\uCDB0
+      \uC5EC\uB7EC \uC885\uB958\uC758 \uC218\uC5C5\uC774 \uC900\uBE44\uB418\uC5B4
+      \uC788\uC73C\uB2C8, \uC790\uC2E0\uC5D0\uAC8C \uD544\uC694\uD55C \uC218\uC5C5\uC744
+      \uC798 \uCC3E\uC544\uC11C \uB4E3\uB294 \uAC83\uC774 \uC911\uC694\uD560\uAC70\uB2E4."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-04"
+    action:
+      actionType: 1
+      parameter: "\uC785\uD559\uC2DD03"
+  - nodeId: "\uC785\uD559\uC2DD02-04"
+    nodeType: 0
+    text: "\uAC8C\uC774\uD2B8 \uD0D0\uC0AC\uB97C \uD1B5\uD574\uC11C\uB294 \uC2E4\uC804
+      \uACBD\uD5D8\uC744 \uC5BB\uC744 \uC218 \uC788\uB294 \uAE30\uD68C\uC778 \uB3D9\uC2DC\uC5D0
+      \uD5CC\uD130\uB85C\uC11C\uC758 \uD3C9\uAC00\uB3C4 \uB192\uC77C \uC218 \uC788\uB2E4.
+      \uC6B4\uC774 \uC88B\uB2E4\uBA74 \uAC1C\uC778\uC758 \uC804\uD22C\uB825\uC744
+      \uC601\uAD6C\uC801\uC73C\uB85C \uD5A5\uC0C1\uC2DC\uD0A4\uB294 \uC544\uD2F0\uD329\uD2B8\uB3C4
+      \uC5BB\uC744 \uC218 \uC788\uC73C\uB2C8, \uC2E4\uB825\uC744 \uCDA9\uBD84\uD788
+      \uC313\uC558\uB2E4\uACE0 \uC5EC\uAE30\uBA74 \uC801\uADF9\uC801\uC73C\uB85C
+      \uC5EC\uB7EC \uAC8C\uC774\uD2B8\uC5D0 \uB3C4\uC804\uD574\uBCF4\uB3C4\uB85D."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-05"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-05"
+    nodeType: 0
+    text: " \uC678\uCD9C\uC740 \uC7A5\uBE44 \uAD6C\uC785\uC774\uB098 \uD559\uC0DD
+      \uAC04 \uAD50\uB958\uB97C \uD1B5\uD574 \uC815\uBCF4\uB97C \uC5BB\uB294 \uC218\uB2E8\uC774\uBA70,
+      \uD734\uC2DD\uC740 \uD53C\uB85C \uD68C\uBCF5\uACFC \uCEE8\uB514\uC158 \uAD00\uB9AC\uB97C
+      \uC704\uD55C \uC2DC\uAC04\uC774\uB2E4. \uC815\uBCF4 \uD655\uBCF4\uB098 \uCEE8\uB514\uC158
+      \uAD00\uB9AC \uC5ED\uC2DC \uD5CC\uD130\uC758 \uC911\uC694\uD55C \uB2A5\uB825\uC774\uB2C8
+      \uADF8 \uC5B4\uB290 \uCABD\uB3C4 \uC18C\uD758\uD788 \uD558\uC9C0 \uC54A\uB294\uAC8C
+      \uC88B\uC744\uAC70\uB2E4."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-06"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-06"
+    nodeType: 0
+    text: "\uC678\uCD9C\uC774\uB77C... \uC7AC\uBC0C\uACA0\uB2E4! \uC6B0\uB9AC \uB2E4\uC74C\uC5D0
+      \uC0C1\uC810\uC774\uB098 \uAC19\uC774 \uAC00\uBCFC\uB798? \uBB34\uC2A8 \uBB3C\uD488\uC774
+      \uC788\uC744\uC9C0 \uAD81\uAE08\uD574."
+    speakerName: "\uAC15\uD558\uC601"
+    portraitSpriteId: Friend_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-07"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-07"
+    nodeType: 0
+    text: "\uD655\uC2E4\uD788 \uB098\uC058\uC9C0 \uC54A\uC744\uC9C0\uB3C4 \uBAA8\uB974\uACA0\uB124.
+      \uAC8C\uC774\uD2B8 \uD0D0\uC0AC\uC5D0 \uC5B4\uB5A4 \uBB3C\uAC74\uC774 \uC720\uC6A9\uD560\uC9C0
+      \uBBF8\uB9AC \uC54C \uC218\uB3C4 \uC788\uC744\uD14C\uACE0."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Smile
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-08"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-08"
+    nodeType: 0
+    text: "\uC77C\uC815 \uC8FC\uAE30\uB9C8\uB2E4 \uC544\uCE74\uB370\uBBF8\uC5D0\uC11C
+      \uAC01 \uD559\uC0DD \uBCC4\uB85C \uC9C0\uC815\uD55C \uBAA9\uD45C \uAC8C\uC774\uD2B8\uAC00
+      \uBC1C\uD45C\uB418\uBA70, \uAE30\uD55C \uB0B4 \uD1A0\uBC8C\uD558\uC9C0 \uBABB\uD560
+      \uACBD\uC6B0\uC5D0\uB294 \uC81C\uC7AC\uAC00 \uB530\uB978\uB2E4."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-09"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-09"
+    nodeType: 0
+    text: "\uCCAB \uBC88\uC9F8\uB85C \uAE30\uD55C\uC744 \uC5B4\uAE38 \uC2DC\uC5D0\uB294
+      \uACBD\uACE0 \uC870\uCE58, \uB450 \uBC88\uC9F8\uB294 \uD1F4\uD559\uC774\uB2E4.
+      \uC774\uB294 \uC790\uC728 \uC18D\uC5D0\uC11C\uB3C4 \uCC45\uC784\uAC10\uC744
+      \uC783\uC9C0 \uC54A\uAC8C \uD558\uAE30 \uC704\uD55C \uC544\uCE74\uB370\uBBF8\uC758
+      \uBC29\uCE68\uC774\uB2C8 \uD56D\uC0C1 \uC131\uC2E4\uD788 \uC218\uD589\uD558\uB3C4\uB85D."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-10"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-10"
+    nodeType: 0
+    text: "\uD5C9... \uD1F4\uD559\uAE4C\uC9C0? \uC0DD\uAC01\uBCF4\uB2E4 \uBE61\uC138\uB124.."
+    speakerName: "\uAC15\uD558\uC601"
+    portraitSpriteId: Friend_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-11"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-11"
+    nodeType: 0
+    text: "\uADF8\uCE58\uB9CC \uD655\uC2E4\uD788 \uADF8\uB7F0 \uADDC\uCE59\uC774
+      \uC5C6\uC73C\uBA74 \uAE34\uC7A5\uAC10\uC774 \uD480\uB9B4 \uC218\uB3C4 \uC788\uC744
+      \uAC83 \uAC19\uC544. \uC790\uC728\uC801\uC73C\uB85C \uC2A4\uCF00\uC904\uC744
+      \uC815\uD558\uB294 \uBC29\uC2DD\uC774\uB2C8\uAE4C."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-12"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-12"
+    nodeType: 0
+    text: "\uC124\uBA85\uC740 \uC774\uC0C1\uC774\uB2E4. \uADF8\uB7FC \uAC01\uC790
+      \uBC30\uC815\uB41C \uAE30\uC219\uC0AC\uB85C \uC774\uB3D9\uD558\uB3C4\uB85D."
+    speakerName: "\uCC44\uC5EC\uC6B8"
+    portraitSpriteId: SwordTeacher_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-13"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-13"
+    nodeType: 0
+    text: "\uB098\uB294 \uAE30\uC219\uC0AC A\uB3D9\uC778\uB370 \uC608\uB9B0\uC774
+      \uB10C \uC5B4\uB290 \uCABD\uC774\uC57C?"
+    speakerName: "\uAC15\uD558\uC601"
+    portraitSpriteId: Friend_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-14"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-14"
+    nodeType: 0
+    text: "\uC544. \uB098\uB294 B\uB3D9\uC774\uB124. \uADF8\uB7FC \uC5EC\uAE30\uC11C
+      \uD5E4\uC5B4\uC838\uC57C\uACA0\uB2E4."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-15"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-15"
+    nodeType: 0
+    text: "\uC870\uAE08 \uC544\uC27D\uC9C0\uB9CC.. \uC5B4\uCA54 \uC218 \uC5C6\uC9C0.
+      \uADF8\uB7FC \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uC790~\uC608\uB9B0\uC544!"
+    speakerName: "\uAC15\uD558\uC601"
+    portraitSpriteId: Friend_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-16"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-16"
+    nodeType: 0
+    text: "\uC751. \uC218\uC5C5 \uB54C \uBCF4\uC790."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: "\uC785\uD559\uC2DD02-17"
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: "\uC785\uD559\uC2DD02-17"
+    nodeType: 2
+    text: 
+    speakerName: 
+    portraitSpriteId: 
+    choices: []
+    nextNodeId: 
+    action:
+      actionType: 1
+      parameter: "\uC785\uD559\uC2DD03"
+  backgroundSpriteId: ClassRoomBG

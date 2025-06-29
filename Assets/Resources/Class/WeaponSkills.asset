@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e32c367037421c4ab63730b506f2628, type: 3}
+  m_Name: WeaponSkills
+  m_EditorClassIdentifier: 
+  className: WeaponSkill
+  description: Lv1
+  classIcon: {fileID: 21300000, guid: 995b16ea5e90038458a5df865a888ab9, type: 3}
+  classType: 0
+  statModifiers:
+  - statType: 0
+    amount: 10
+  - statType: 1
+    amount: 5
+  previewCards:
+  - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
+  - {fileID: 11400000, guid: 2abaf5f84df334845a84739c23a1e728, type: 2}
+  - {fileID: 11400000, guid: 0ec06f9c04715d2409472f3a07794d85, type: 2}
+  - {fileID: 11400000, guid: 78f97e9cbd585064e9c10014d6ee4c1e, type: 2}
+  rewardPool:
+  - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
+  - {fileID: 11400000, guid: 2abaf5f84df334845a84739c23a1e728, type: 2}
+  - {fileID: 11400000, guid: 0ec06f9c04715d2409472f3a07794d85, type: 2}
+  - {fileID: 11400000, guid: 78f97e9cbd585064e9c10014d6ee4c1e, type: 2}
+  - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}
+  - {fileID: 11400000, guid: 79ecff9e3dc85fa46951fa89f6a52a67, type: 2}
+  frontImageSprite: {fileID: 21300000, guid: 1dba890fffbc71143833d3dd6d6dc08c, type: 3}
+  resultSuccess: {fileID: 21300000, guid: eccae0d8f14d23f44a443be143d86abc, type: 3}
+  resultGreatSuccess: {fileID: 21300000, guid: cec4e559f646e5c4c9a68794f418ed9f, type: 3}
+  resultFailure: {fileID: 21300000, guid: d24d820cb5a73a34ba750a93fe9487b6, type: 3}

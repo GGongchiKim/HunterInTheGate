@@ -11,6 +11,9 @@ public class DialogueEvent : ScriptableObject
     public string eventId;                         // 이벤트 고유 ID (디버그, 연동용)
     public List<DialogueNode> nodes = new();       // 이 이벤트에 포함된 모든 노드 리스트
 
+    [Header("연출용")]
+    public string backgroundSpriteId;
+
     /// <summary>
     /// nodeId로 노드 찾기
     /// </summary>

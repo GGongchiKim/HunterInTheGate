@@ -1,12 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DialogueSceneController : MonoBehaviour
 {
     [Header("Dialogue")]
     [SerializeField] private DialogueEvent dialogueData;
+
+    [Header("대화 타이핑 효과 처리")]
+    private Coroutine typingCoroutine;               // 현재 실행 중인 코루틴 참조
+    private bool isTyping = false;                   // 타이핑 중 여부
 
     [Header("UI")]
     [SerializeField] private Image playerScg;
@@ -15,6 +20,7 @@ public class DialogueSceneController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject choicesPanel;
     [SerializeField] private Button choiceButtonPrefab;
+    [SerializeField] private Image backgroundImage;
 
     private string currentNodeId;
     private List<Button> activeChoiceButtons = new();
@@ -47,6 +53,13 @@ public class DialogueSceneController : MonoBehaviour
 
     void ShowCurrentNode()
     {
+        if (!string.IsNullOrEmpty(dialogueData.backgroundSpriteId))
+        {
+            Sprite bgSprite = Resources.Load<Sprite>("BG/" + dialogueData.backgroundSpriteId);
+            if (bgSprite != null)
+                backgroundImage.sprite = bgSprite;
+        }
+
         DialogueNode node = FindNodeById(currentNodeId);
         if (node == null)
         {
@@ -75,8 +88,8 @@ public class DialogueSceneController : MonoBehaviour
     void ShowDialogueBase(DialogueNode node)
     {
         speakerNameText.text = node.speakerName;
-        dialogueText.text = node.text;
 
+        // SCG 이미지 처리
         bool isPlayer = IsPlayer(node.speakerName);
         Sprite sprite = null;
 
@@ -101,11 +114,45 @@ public class DialogueSceneController : MonoBehaviour
             inactiveImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
         else
             inactiveImage.color = new Color(1, 1, 1, 0);
+
+        //  텍스트 타이핑 처리 시작
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+        typingCoroutine = StartCoroutine(TypeText(node.text));
     }
 
-    System.Collections.IEnumerator WaitForClickThenAdvance(string nextNodeId)
+    IEnumerator TypeText(string fullText)
     {
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        isTyping = true;
+        dialogueText.text = "";
+
+        for (int i = 0; i < fullText.Length; i++)
+        {
+            // 클릭 시 전체 출력
+            if (Input.GetMouseButtonDown(0))
+            {
+                dialogueText.text = fullText;
+                break;
+            }
+
+            dialogueText.text += fullText[i];
+            yield return new WaitForSeconds(0.02f); // 타이핑 속도
+        }
+
+        isTyping = false;
+    }
+
+
+    IEnumerator WaitForClickThenAdvance(string nextNodeId)
+    {
+        // 출력 완료 전엔 클릭 무시
+        yield return new WaitUntil(() =>
+            Input.GetMouseButtonDown(0) && !isTyping
+        );
+
+        // 클릭 후 잠깐 딜레이
+        yield return new WaitForSeconds(0.1f);
+
         currentNodeId = nextNodeId;
         ShowCurrentNode();
     }

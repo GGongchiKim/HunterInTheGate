@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
+  m_Name: BladeParry
+  m_EditorClassIdentifier: 
+  cardName: "\uD328\uB9C1 \uC790\uC138"
+  cardId: C_G_BladeParry
+  cardCost: 1
+  level: 1
+  cardType: 1
+  rarity: 3
+  cardEffect: {fileID: 11400000, guid: 0560640f5a889d8478cc80cb8d848f25, type: 2}
+  cardDescription: "10(+0.3 AGI, INS)\uB9CC\uD07C\uC758 \uD53C\uD574\uB97C \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  cardSprite: {fileID: 21300000, guid: 2ea3db443d1027740a69e0f6a28f4b3a, type: 3}

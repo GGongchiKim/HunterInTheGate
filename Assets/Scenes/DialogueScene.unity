@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67e9b667f3493e34caa289211f42c4da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa7c7df573baa86468d3d99874547c54, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 746eda2afb48233429330e8f248dfed7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc2d9f81d41995d42bba978170859c42, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1bc1c0e6cc1874449863110016f8a2b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc391712dbafd9e4c88a765dec6af9a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1456,6 +1456,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1858665246}
   choicesPanel: {fileID: 1615241359}
   choiceButtonPrefab: {fileID: 8347935538464845234, guid: 269a9abf8dd74ee409e45692b326bf7f, type: 3}
+  backgroundImage: {fileID: 191064615}
 --- !u!4 &1264139550
 Transform:
   m_ObjectHideFlags: 0

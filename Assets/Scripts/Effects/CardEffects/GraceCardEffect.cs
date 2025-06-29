@@ -8,7 +8,11 @@ public class GraceCardEffect : CardEffect
     public int shieldAmount = 0;
 
     [Header("능력치 보정 배율")]
-    public float magicMultiplier = 1.0f;
+    public float strengthMultiplier = 0.0f;
+    public float agilityMultiplier = 0.0f;
+    public float insightMultiplier = 0.0f;
+    public float magicMultiplier = 0.0f;
+    public float witMultiplier = 0.0f;
     public float willPowerMultiplier = 0.0f;
 
     public override bool AllowsGlobalDrop() => false;
@@ -40,8 +44,18 @@ public class GraceCardEffect : CardEffect
         int level = context.combatPlayer.GetCardLevel(cardData);
         float levelBonus = (level == 2) ? 1.1f : (level == 3 ? 1.25f : 1f);
 
-        int finalHeal = Mathf.RoundToInt((healAmount + context.combatPlayer.combat.magic * magicMultiplier) * levelBonus);
-        int finalShield = Mathf.RoundToInt((shieldAmount + context.combatPlayer.combat.willPower * willPowerMultiplier) * levelBonus);
+        int finalHeal = Mathf.RoundToInt((healAmount + context.combatPlayer.combat.strength * strengthMultiplier +
+            context.combatPlayer.combat.agility * agilityMultiplier +
+            context.combatPlayer.combat.insight * insightMultiplier +
+            context.combatPlayer.combat.magic * magicMultiplier +
+            context.combatPlayer.combat.willPower * willPowerMultiplier +
+            context.combatPlayer.combat.wit * witMultiplier) * levelBonus);
+        int finalShield = Mathf.RoundToInt((shieldAmount + context.combatPlayer.combat.strength * strengthMultiplier +
+            context.combatPlayer.combat.agility * agilityMultiplier +
+            context.combatPlayer.combat.insight * insightMultiplier +
+            context.combatPlayer.combat.magic * magicMultiplier +
+            context.combatPlayer.combat.willPower * willPowerMultiplier +
+            context.combatPlayer.combat.wit * witMultiplier) * levelBonus);
 
         // 🔹 회복
         if (finalHeal > 0)

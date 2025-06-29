@@ -12,9 +12,13 @@ public class StrikeCardEffect : CardEffect
     public int attackCount = 1;
 
     [Header("능력치 보정 배율")]
-    public float strengthMultiplier = 1.0f;
+    public float strengthMultiplier = 0.0f;
     public float agilityMultiplier = 0.0f;
     public float insightMultiplier = 0.0f;
+    public float magicMultiplier = 0.0f;
+    public float witMultiplier = 0.0f;
+    public float willPowerMultiplier = 0.0f;
+  
 
     public override bool AllowsGlobalDrop() => targetType == AttackTargetType.All;
 
@@ -59,7 +63,10 @@ public class StrikeCardEffect : CardEffect
             (baseDamage +
             context.combatPlayer.combat.strength * strengthMultiplier +
             context.combatPlayer.combat.agility * agilityMultiplier +
-            context.combatPlayer.combat.insight * insightMultiplier)
+            context.combatPlayer.combat.insight * insightMultiplier +
+            context.combatPlayer.combat.magic * magicMultiplier +
+            context.combatPlayer.combat.willPower * willPowerMultiplier + 
+            context.combatPlayer.combat.wit * witMultiplier )
             * levelBonus
         );
 

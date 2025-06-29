@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
+  m_Name: VulnerableTactic
+  m_EditorClassIdentifier: 
+  cardName: "\uCDE8\uC57D\uD654 \uC804\uC220"
+  cardId: C_T_VelnerableTactic
+  cardCost: 1
+  level: 1
+  cardType: 2
+  rarity: 0
+  cardEffect: {fileID: 11400000, guid: 2e079f46d9facc140bf1cab0d5ade9f6, type: 2}
+  cardDescription: "\uC120\uD0DD\uD55C \uB300\uC0C1\uC5D0\uAC8C \uCDE8\uC57D\uC744
+    \uAC81\uB2C8\uB2E4."
+  cardSprite: {fileID: 21300000, guid: 702f76ed83776944d9174b02b450433b, type: 3}

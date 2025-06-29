@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc80234a18b5afb42ba4fe4021ceb26c, type: 3}
+  m_Name: C_RuinedCity05
+  m_EditorClassIdentifier: 
+  eventId: C_RuinedCity05
+  backgroundSpriteId: RuinedCity
+  enemies:
+  - {fileID: 11400000, guid: ce0e67edc34ae214787d4c2c0abaaa22, type: 2}
+  turnDialogues: []
+  onWinDialogueId: GATE_RuinedCity06
+  onLoseGameOver: 0

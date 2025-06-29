@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a464df6d79e1047b56f92742e3a72c, type: 3}
+  m_Name: GATE_RuinedCity05
+  m_EditorClassIdentifier: 
+  eventId: GATE_RuinedCity05
+  nodes:
+  - nodeId: GATE_RuinedCity05-01
+    nodeType: 0
+    text: "\u2026\uC774\uC0C1\uD558\uB2E4. \uC55E\uCABD\uC5D0\uC11C \uB9C8\uB825\uC774
+      \uC9D9\uC5B4\uC9C0\uACE0 \uC788\uC5B4."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: GATE_RuinedCity05-02
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_RuinedCity05-02
+    nodeType: 0
+    text: "\uC774 \uB2E4\uC74C \uAD6C\uC5ED\uC5D4, \uC774 \uAC8C\uC774\uD2B8\uB97C
+      \uC9C0\uD0A4\uB294 \uC218\uBB38\uC7A5\uC774 \uC788\uC744\uC9C0\uB3C4 \uBAA8\uB974\uACA0\uC5B4."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: GATE_RuinedCity05-03
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_RuinedCity05-03
+    nodeType: 0
+    text: "\uC7A5\uBE44\uB791 \uCEE8\uB514\uC158\uC744 \uB2E4\uC2DC \uD55C\uBC88
+      \uD655\uC778\uD558\uACE0 \uAC00\uC790."
+    speakerName: "\uC11C\uC608\uB9B0"
+    portraitSpriteId: PScg_Default
+    choices: []
+    nextNodeId: GATE_RuinedCity05-04
+    action:
+      actionType: 0
+      parameter: 
+  - nodeId: GATE_RuinedCity05-04
+    nodeType: 2
+    text: 
+    speakerName: 
+    portraitSpriteId: 
+    choices: []
+    nextNodeId: 
+    action:
+      actionType: 0
+      parameter: C_RuinedCity05
+  backgroundSpriteId: RuinedCityBG

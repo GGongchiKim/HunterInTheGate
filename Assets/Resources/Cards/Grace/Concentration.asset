@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2ad4fe12d3b9d4eb327a7b479022e0, type: 3}
+  m_Name: Concentration
+  m_EditorClassIdentifier: 
+  cardName: "\uB9C8\uB825 \uC9D1\uC911"
+  cardId: C_S_Concentration
+  cardCost: 5
+  level: 1
+  cardType: 1
+  rarity: 3
+  cardEffect: {fileID: 11400000, guid: 378b4000245f2c64eb9d920c5549ac2e, type: 2}
+  cardDescription: "50(0.5 MAG)\uC758 \uD53C\uD574\uB97C \uBC29\uC5B4\uD558\uBA70
+    \uC9D1\uC911 \uC0C1\uD0DC\uB85C \uC9C4\uC785\uD569\uB2C8\uB2E4."
+  cardSprite: {fileID: 21300000, guid: b659c469904362d479b731277f7d0f0a, type: 3}

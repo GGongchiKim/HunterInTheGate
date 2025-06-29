@@ -19,5 +19,6 @@ MonoBehaviour:
   cardType: 0
   rarity: 0
   cardEffect: {fileID: 11400000, guid: 46aa9a887105f954bb922edbc14c7a22, type: 2}
-  cardDescription: "5 + 0.2*STR\uC758 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
-  cardSprite: {fileID: 21300000, guid: 995b16ea5e90038458a5df865a888ab9, type: 3}
+  cardDescription: "\uC120\uD0DD\uD55C \uC801\uC5D0\uAC8C 5(+0.2 STR)\uC758 \uD53C\uD574\uB97C
+    \uC785\uD799\uB2C8\uB2E4."
+  cardSprite: {fileID: 21300000, guid: 37d4a3e0d846f304d8503fc0b6901649, type: 3}
