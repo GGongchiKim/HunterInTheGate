@@ -22,11 +22,27 @@ public class Enemy : MonoBehaviour
     public EffectHandler effectHandler;
     public EnemyHUDHandler enemyHUD;
 
+    [Header("Sprite Targets")]
+    private SpriteRenderer mainRenderer;
+    private SpriteRenderer shadowRenderer;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         effectHandler = GetComponent<EffectHandler>();
         enemyHUD = GetComponentInChildren<EnemyHUDHandler>();
+
+        // 🔍 SpriteRenderer 할당
+        var spriteRoot = transform.Find("EnemySprite");
+        if (spriteRoot != null)
+        {
+            mainRenderer = spriteRoot.GetComponent<SpriteRenderer>();
+            var shadow = spriteRoot.Find("EnemyShadow");
+            if (shadow != null)
+            {
+                shadowRenderer = shadow.GetComponent<SpriteRenderer>();
+            }
+        }
     }
 
     public void Initialize(EnemyData data)
@@ -39,7 +55,29 @@ public class Enemy : MonoBehaviour
         currentPatternIndex = 0;
         isDead = false;
 
+        ApplyEnemySprite();
+
         enemyHUD?.UpdateIntent(GetNextPattern());
+    }
+
+    private void ApplyEnemySprite()
+    {
+        if (data.enemySprite != null)
+        {
+            if (mainRenderer != null)
+                mainRenderer.sprite = data.enemySprite;
+            else
+                Debug.LogWarning($"[Enemy:{enemyName}] mainRenderer가 할당되지 않았습니다.");
+
+            if (shadowRenderer != null)
+                shadowRenderer.sprite = data.enemySprite;
+            else
+                Debug.LogWarning($"[Enemy:{enemyName}] shadowRenderer가 할당되지 않았습니다.");
+        }
+        else
+        {
+            Debug.LogWarning($"[Enemy:{enemyName}] SO에서 enemySprite가 비어있습니다.");
+        }
     }
 
     public void TakeDamage(int damage)
@@ -115,12 +153,15 @@ public class Enemy : MonoBehaviour
 
     public void PlayAttackedAnimation(float delay = 0.28f)
     {
+        if (isDead || this == null) return;
         StartCoroutine(DelayedAttackedCoroutine(delay));
     }
 
     private IEnumerator DelayedAttackedCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
+
+        if (this == null || isDead) yield break; 
         animator?.SetTrigger("OnAttacked");
     }
 
@@ -186,9 +227,7 @@ public class Enemy : MonoBehaviour
         animator?.SetTrigger("OnDeath");
         enemyHUD?.HideHUD();
 
-        // 💡 HUD 정보 정리
         C_HUDManager.Instance?.UnregisterEnemy(this);
-
         StartCoroutine(DelayedDeathCleanup(1.5f));
     }
 

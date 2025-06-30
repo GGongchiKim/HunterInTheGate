@@ -15,8 +15,7 @@ MonoBehaviour:
   eventId: C_FadedCastle03
   backgroundSpriteId: FadedCastleBG
   enemies:
-  - {fileID: 11400000, guid: 88750080c5182c445a705d08786b81e1, type: 2}
-  - {fileID: 11400000, guid: 1a17ca65ce8ef5b4a9e4e3aeb1e2777f, type: 2}
+  - {fileID: 11400000, guid: 6533898f54120304a9366ad607cc5d67, type: 2}
   - {fileID: 11400000, guid: 6533898f54120304a9366ad607cc5d67, type: 2}
   turnDialogues: []
   onWinDialogueId: GATE_FadedCastle04

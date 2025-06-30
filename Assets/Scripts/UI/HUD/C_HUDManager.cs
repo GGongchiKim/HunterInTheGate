@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class C_HUDManager : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class C_HUDManager : MonoBehaviour
     [Header("Enemy HUD Prefab")]
     public GameObject enemyHUDPrefab;
     public Transform enemyHUDParent;
+
+    [Header("Deck/Discard Count UI")]
+    [SerializeField] private TextMeshProUGUI deckCountText;
+    [SerializeField] private TextMeshProUGUI discardCountText;
+
+    [Header("Deck Viewer Panel")]
+    [SerializeField] private GameObject deckViewerPanel;
+
 
     [Header("Status Panel")]
     public Transform playerStatusPanel;
@@ -58,7 +67,24 @@ public class C_HUDManager : MonoBehaviour
 
         flashCoroutines = new Coroutine[apBeads.Length];
         mainCam = Camera.main;
+
     }
+
+    private void Start()
+    {
+        // 기존 코드 유지 + 덱 카운트 이벤트 연결
+        if (DeckManager.Instance != null)
+        {
+            DeckManager.Instance.OnDeckChanged += UpdateDeckAndDiscardCount;
+            DeckManager.Instance.OnDiscardChanged += UpdateDeckAndDiscardCount;
+        }
+
+        UpdateDeckAndDiscardCount();
+    }
+
+
+
+
 
     private void LateUpdate()
     {
@@ -252,6 +278,63 @@ public class C_HUDManager : MonoBehaviour
         }
     }
 
-    
+    private void OnDestroy()
+    {
+        if (DeckManager.Instance != null)
+        {
+            DeckManager.Instance.OnDeckChanged -= UpdateDeckAndDiscardCount;
+            DeckManager.Instance.OnDiscardChanged -= UpdateDeckAndDiscardCount;
+        }
+    }
+
+    /// <summary>
+    /// 외부에서 생성된 DeckViewerPanel을 등록함 (비활성 상태)
+    /// </summary>
+    public void SetDeckViewerPanel(GameObject panel)
+    {
+        if (panel == null)
+        {
+            Debug.LogWarning("[C_HUDManager] SetDeckViewerPanel() 호출됨 - 전달된 panel이 null입니다.");
+            return;
+        }
+
+        deckViewerPanel = panel;
+        deckViewerPanel.SetActive(false);
+
+        Debug.Log("[C_HUDManager] DeckViewerPanel이 성공적으로 등록되었습니다.");
+    }
+
+
+    public void UpdateDeckAndDiscardCount()
+    {
+        if (deckCountText != null && DeckManager.Instance != null)
+        {
+            int count = DeckManager.Instance.GetCombatDeck().Count;
+            deckCountText.text = count.ToString();
+        }
+
+        if (discardCountText != null && DeckManager.Instance != null)
+        {
+            int count = DeckManager.Instance.GetDiscardPile().Count;
+            discardCountText.text = count.ToString();
+        }
+    }
+
+    public void OpenDeckView()
+    {
+        if (C_DeckViewerManager.Instance != null)
+            C_DeckViewerManager.Instance.OpenDeckOnly();
+        else
+            Debug.LogWarning("DeckViewerManager가 존재하지 않습니다.");
+    }
+
+    public void OpenDiscardView()
+    {
+        if (C_DeckViewerManager.Instance != null)
+            C_DeckViewerManager.Instance.OpenDiscardOnly();
+        else
+            Debug.LogWarning("DeckViewerManager가 존재하지 않습니다.");
+    }
+
 
 }

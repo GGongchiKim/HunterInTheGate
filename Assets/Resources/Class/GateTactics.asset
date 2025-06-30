@@ -16,7 +16,11 @@ MonoBehaviour:
   description: lv1
   classIcon: {fileID: 21300000, guid: 52119c06534ce854889415d70848c1ce, type: 3}
   classType: 2
-  statModifiers: []
+  statModifiers:
+  - statType: 3
+    amount: 10
+  - statType: 1
+    amount: 5
   previewCards:
   - {fileID: 11400000, guid: 75c50a9d19cf6f34bb5ca44f042d5d2c, type: 2}
   - {fileID: 11400000, guid: 2a510ff66846e504ba27ec1c4cfc4c8d, type: 2}

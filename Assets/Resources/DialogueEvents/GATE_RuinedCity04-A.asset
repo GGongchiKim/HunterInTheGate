@@ -44,8 +44,18 @@ MonoBehaviour:
     speakerName: "\uC11C\uC608\uB9B0"
     portraitSpriteId: PScg_Default
     choices: []
-    nextNodeId: GATE_RuinedCity05-01
+    nextNodeId: GATE_RuinedCity04-A-04
     action:
       actionType: 0
       parameter: 
+  - nodeId: GATE_RuinedCity04-A-04
+    nodeType: 2
+    text: 
+    speakerName: 
+    portraitSpriteId: 
+    choices: []
+    nextNodeId: 
+    action:
+      actionType: 1
+      parameter: GATE_RuinedCity05
   backgroundSpriteId: RuinedCityBG

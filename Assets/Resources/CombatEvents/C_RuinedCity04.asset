@@ -16,8 +16,7 @@ MonoBehaviour:
   backgroundSpriteId: RuinedCity
   enemies:
   - {fileID: 11400000, guid: 928a20ab5fbb67549aa5c45b4648aefe, type: 2}
-  - {fileID: 11400000, guid: 0c16d8b645007014a9d399b7c8cba52c, type: 2}
-  - {fileID: 11400000, guid: 0c16d8b645007014a9d399b7c8cba52c, type: 2}
+  - {fileID: 11400000, guid: 928a20ab5fbb67549aa5c45b4648aefe, type: 2}
   turnDialogues: []
   onWinDialogueId: GATE_RuinedCity04-A
   onLoseGameOver: 0

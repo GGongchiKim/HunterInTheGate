@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class CombatSceneInitializer : MonoBehaviour
 {
+    [Header("전투 매니저 프리팹 그룹")]
+    [SerializeField] private GameObject managerGroupPrefab;
+
+    [Header("전투 덱뷰어 패널 프리팹")]
+    [SerializeField] private GameObject deckViewerPanelPrefab;
+
     [Header("전투 적 프리팹")]
     [SerializeField] private GameObject enemyPrefab;
 
@@ -12,9 +18,36 @@ public class CombatSceneInitializer : MonoBehaviour
     [Header("전투 적 HUD 프리팹")]
     [SerializeField] private GameObject enemyHUDPrefab;
 
+    [Header("적 위치 배치 기준점 (중앙 기준)")]
+    [SerializeField] private Transform enemySpawnCenter;
+
+    [Header("적 간격 배수 (sprite 크기 기준)")]
+    [SerializeField] private float spacingBase = 2.0f;
+
     private void Awake()
     {
         GameStateManager.Instance.SetPhase(GamePhase.Combat);
+
+        if (managerGroupPrefab != null)
+        {
+            Instantiate(managerGroupPrefab);
+        }
+        else
+        {
+            Debug.LogError("[CombatSceneInitializer] managerGroupPrefab이 설정되지 않았습니다.");
+        }
+
+        if (deckViewerPanelPrefab != null)
+        {
+            Transform canvasParent = C_HUDManager.Instance.transform;
+            GameObject panelInstance = Instantiate(deckViewerPanelPrefab, canvasParent);
+            panelInstance.SetActive(false);
+            C_HUDManager.Instance.SetDeckViewerPanel(panelInstance);
+        }
+        else
+        {
+            Debug.LogError("[CombatSceneInitializer] deckViewerPanelPrefab이 설정되지 않았습니다.");
+        }
 
         string eventId = SceneDataBridge.Instance.GetString("EventId");
         if (string.IsNullOrEmpty(eventId))
@@ -30,7 +63,6 @@ public class CombatSceneInitializer : MonoBehaviour
             return;
         }
 
-        // AcademyPlayer → CombatPlayer 변환
         var academyPlayer = GameContext.Instance.academyPlayer;
         if (academyPlayer == null)
         {
@@ -41,22 +73,45 @@ public class CombatSceneInitializer : MonoBehaviour
         GameObject playerGO = Instantiate(combatPlayerPrefab);
         CombatPlayer combatPlayer = playerGO.GetComponent<CombatPlayer>();
         combatPlayer.LoadFromAcademy(academyPlayer);
-        DontDestroyOnLoad(playerGO);
 
         var playerEffectHandler = combatPlayer.GetComponent<EffectHandler>();
         if (playerEffectHandler != null)
-        {
             playerEffectHandler.statusEffectPanel = C_HUDManager.Instance.playerStatusPanel;
-        }
 
-        // 적 생성 및 개별 HUD 생성
+        // === 적 배치 위치 계산 ===
         List<Enemy> enemyList = new();
-        foreach (var enemyData in evt.enemies)
+        float currentX = 0f;
+        float previousHalfWidth = 0f;
+
+        for (int i = 0; i < evt.enemies.Count; i++)
         {
+            var enemyData = evt.enemies[i];
             GameObject enemyGO = Instantiate(enemyPrefab);
             Enemy enemy = enemyGO.GetComponent<Enemy>();
             enemy.Initialize(enemyData);
 
+            // 스프라이트 크기 측정
+            Transform spriteTF = enemyGO.transform.Find("EnemySprite");
+            SpriteRenderer sr = spriteTF?.GetComponent<SpriteRenderer>();
+            float currentHalfWidth = (sr != null && sr.sprite != null) ? sr.sprite.bounds.size.x / 2f : 0.5f;
+
+            // 위치 계산
+            if (i == 0)
+            {
+                currentX = 0f;
+            }
+            else
+            {
+                currentX += (previousHalfWidth + currentHalfWidth) * spacingBase;
+            }
+
+            float offset = -((evt.enemies.Count - 1) / 2f) * currentX; // 중앙 정렬용
+            Vector3 spawnPos = enemySpawnCenter != null ? enemySpawnCenter.position : Vector3.zero;
+            enemyGO.transform.position = spawnPos + new Vector3(currentX + offset, 0, 0);
+
+            previousHalfWidth = currentHalfWidth;
+
+            // === HUD 생성 및 연결 ===
             GameObject hudGO = Instantiate(enemyHUDPrefab, C_HUDManager.Instance.enemyHUDParent);
             var hudHandler = hudGO.GetComponent<EnemyHUDHandler>();
             if (hudHandler != null)
@@ -64,7 +119,6 @@ public class CombatSceneInitializer : MonoBehaviour
                 hudHandler.Initialize(enemy);
                 hudHandler.UpdateHealth(enemy.health, enemy.maxHealth, enemy.currentShield);
 
-                // 🔥 Enemy.cs의 enemyHUD 필드에 명시적으로 연결
                 enemy.enemyHUD = hudHandler;
 
                 var effectHandler = enemy.GetComponent<EffectHandler>();

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 214720029075426158}
   - component: {fileID: 8648967053919602587}
   m_Layer: 0
-  m_Name: GoblinSprite
+  m_Name: EnemySprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 1684170601161604139}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1321, y: -760, z: 3.301855}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a30306c912ebdb48ac7fc05ec125486, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 771e5923707c41d488adadce40484be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,7 +216,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 2.56, y: 3.84}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -236,12 +236,12 @@ GameObject:
   - component: {fileID: 124209940432290939}
   - component: {fileID: 1115567784309042748}
   m_Layer: 0
-  m_Name: GoblinShadow
+  m_Name: EnemyShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &124209940432290939
 Transform:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a30306c912ebdb48ac7fc05ec125486, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5eba94967aa303143bc9f57ca6d2dbd0, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
@@ -361,8 +361,8 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   currentShield: 0
-  intentUI: {fileID: 0}
   effectHandler: {fileID: 5132618113257222728}
+  enemyHUD: {fileID: 0}
 --- !u!95 &7710596741260064136
 Animator:
   serializedVersion: 5

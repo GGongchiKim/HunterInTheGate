@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonKnight
   m_EditorClassIdentifier: 
   enemyName: SkeletonKnight
-  sprite: {fileID: 21300000, guid: ae076be83c96b9d41b1fb09875a79e74, type: 3}
+  enemySprite: {fileID: 21300000, guid: ae076be83c96b9d41b1fb09875a79e74, type: 3}
   maxHealth: 240
   isBoss: 0
   normalPatterns:

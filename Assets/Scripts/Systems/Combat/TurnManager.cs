@@ -19,15 +19,35 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        
+        if (deckManager == null)
+            deckManager = FindObjectOfType<DeckManager>();
+
+        if (handManager == null)
+            handManager = FindObjectOfType<HandManager>();
+
+        if (deckManager == null || handManager == null)
+        {
+            Debug.LogError("[TurnManager] DeckManager 또는 HandManager를 찾을 수 없습니다.");
+        }
     }
 
     public void StartCombat()
     {
         if (CombatContext.Instance.combatPlayer == null)
         {
-            Debug.LogError("GameContext가 초기화되지 않았습니다.");
+            Debug.LogError("[TurnManager] CombatContext에 플레이어가 없습니다.");
             return;
         }
 
@@ -51,11 +71,9 @@ public class TurnManager : MonoBehaviour
         CombatContext.Instance.combatPlayer.ResetShield();
 
         UpdatePlayerEffects();
-
         PlayDialogueForTurn(currentTurn, true);
 
-        C_DeckViewerManager.Instance.ForceRefreshAll();
-        C_DeckViewerManager.Instance.ForceUpdateCounts();
+        C_DeckViewerManager.Instance?.ForceRefreshAll();
     }
 
     public void EndTurn()
@@ -81,7 +99,6 @@ public class TurnManager : MonoBehaviour
         }
 
         Debug.Log("=== 플레이어 턴 시작 ===");
-
         StartPlayerTurn();
     }
 
@@ -93,24 +110,20 @@ public class TurnManager : MonoBehaviour
         CombatContext.Instance.combatPlayer.ResetShield();
 
         UpdatePlayerEffects();
-
         PlayDialogueForTurn(currentTurn, true);
     }
 
     private void PlayDialogueForTurn(int turn, bool isPlayerTurn)
     {
         var evt = CombatContext.Instance.currentCombatEvent;
-
-        CombatDialogueTiming timing = isPlayerTurn
-            ? CombatDialogueTiming.PlayerTurn
-            : CombatDialogueTiming.EnemyTurn;
+        CombatDialogueTiming timing = isPlayerTurn ? CombatDialogueTiming.PlayerTurn : CombatDialogueTiming.EnemyTurn;
 
         if (evt is TutorialCombatEventData tutorialEvent)
         {
             var entries = DialogueEntryConverter.FromTutorialHints(tutorialEvent.tutorialHints, turn, timing);
             if (entries.Count > 0)
             {
-                CombatDialogueController.Instance.EnqueueDialogues(entries);
+                CombatDialogueController.Instance?.EnqueueDialogues(entries);
                 return;
             }
         }
@@ -118,12 +131,18 @@ public class TurnManager : MonoBehaviour
         var normalEntries = DialogueEntryConverter.FromCombatDialogues(evt.turnDialogues, turn, timing);
         if (normalEntries.Count > 0)
         {
-            CombatDialogueController.Instance.EnqueueDialogues(normalEntries);
+            CombatDialogueController.Instance?.EnqueueDialogues(normalEntries);
         }
     }
 
     private void DrawCards(int count)
     {
+        if (deckManager == null || handManager == null)
+        {
+            Debug.LogWarning("[TurnManager] 카드 드로우 실패: deckManager 또는 handManager가 null");
+            return;
+        }
+
         List<CardData> drawn = deckManager.DrawCards(count);
         handManager.AddCardsToHand(drawn);
     }
@@ -132,7 +151,7 @@ public class TurnManager : MonoBehaviour
     {
         if (deckManager == null || handManager == null)
         {
-            Debug.LogWarning("데크 또는 핸드 매니저가 설정되지 않았습니다.");
+            Debug.LogWarning("[전술카드] 추가 드로우 실패: 매니저 null");
             return;
         }
 
@@ -145,7 +164,7 @@ public class TurnManager : MonoBehaviour
     {
         if (CombatContext.Instance.combatPlayer == null)
         {
-            Debug.LogWarning("플레이어가 null입니다.");
+            Debug.LogWarning("[TurnManager] 플레이어가 null입니다.");
             return;
         }
 

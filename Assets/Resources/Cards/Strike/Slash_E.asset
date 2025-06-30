@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 0}
   targetType: 0
-  baseDamage: 5
+  baseDamage: 500
   attackCount: 1
   strengthMultiplier: 0.2
   agilityMultiplier: 0
   insightMultiplier: 0
+  magicMultiplier: 0
+  witMultiplier: 0
+  willPowerMultiplier: 0

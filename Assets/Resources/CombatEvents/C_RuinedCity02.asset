@@ -15,7 +15,6 @@ MonoBehaviour:
   eventId: C_RuinedCity02
   backgroundSpriteId: RuinedCity
   enemies:
-  - {fileID: 11400000, guid: cc134b0e30d7faf4ba6dc5974e51ac7d, type: 2}
   - {fileID: 11400000, guid: 0c16d8b645007014a9d399b7c8cba52c, type: 2}
   turnDialogues: []
   onWinDialogueId: GATE_RuinedCity03

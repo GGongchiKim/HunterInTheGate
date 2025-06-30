@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293002ff0341ef44997dc922a6950a36, type: 3}
+  m_Name: G_FadedCastle
+  m_EditorClassIdentifier: 
+  gateId: G_FadedCastle
+  gateName: Faded Castle
+  gateIcon: {fileID: 21300000, guid: 9d8cb3679a775c445981967e07bd532f, type: 3}
+  monsterSprites:
+  - {fileID: 21300000, guid: 771e5923707c41d488adadce40484be3, type: 3}
+  - {fileID: 21300000, guid: ae076be83c96b9d41b1fb09875a79e74, type: 3}
+  - {fileID: 21300000, guid: b395d388badff5e4eb869326f2ebcd92, type: 3}
+  artifacts:
+  - title: "\uC740\uBE5B \uCE7C\uB0A0"
+    image: {fileID: 21300000, guid: 9c3447474d3610345aecbba733f54161, type: 3}
+    description: "\uCD5C\uB300 AP\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  - title: "\uC9C4\uD64D\uBE5B \uC5F4\uC1E0"
+    image: {fileID: 21300000, guid: 5e52db92fd7333842b6ab7fa8898b76f, type: 3}
+    description: "\uC218\uC0C1\uD55C \uC7A5\uC2DD\uC774 \uB2EC\uB824\uC788\uC2B5\uB2C8\uB2E4."
+  - title: "\uC6B4\uBA85\uC758 \uBAA8\uB798\uC2DC\uACC4"
+    image: {fileID: 21300000, guid: 88f2fcd6a42dcf440b672390ba9b3e3a, type: 3}
+    description: "\uD134 \uC885\uB8CC \uC2DC 10% \uD655\uB960\uB85C \uCD94\uAC00
+      \uD134\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4. (\uC804\uD22C\uB2F9 1\uBC88)"
+  - title: "\uBBFC\uCCA9\uC758 \uC601\uC57D"
+    image: {fileID: 21300000, guid: d44baa660cc84014091d6de98255e0f9, type: 3}
+    description: "\uBBFC\uCCA9\uC774 5 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  dialogueEventId: GATE_FadedCastle01

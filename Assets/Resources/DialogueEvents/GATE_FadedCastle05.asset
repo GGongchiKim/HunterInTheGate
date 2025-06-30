@@ -137,4 +137,4 @@ MonoBehaviour:
     action:
       actionType: 0
       parameter: C_FadedCastle04
-  backgroundSpriteId: FadedCastleEventBG
+  backgroundSpriteId: FadedCastleTopBG

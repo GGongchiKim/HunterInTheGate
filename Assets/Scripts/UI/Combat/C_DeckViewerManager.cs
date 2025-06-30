@@ -5,59 +5,47 @@ using UnityEngine.UI;
 
 public class C_DeckViewerManager : MonoBehaviour
 {
-
-
     public static C_DeckViewerManager Instance { get; private set; }
 
     [Header("UI Parents")]
-    public Transform deckParent;          // 전투 덱 카드들이 나올 부모 오브젝트
-    public Transform discardParent;       // 버려진 덱 카드들이 나올 부모 오브젝트
+    [SerializeField] private Transform deckParent;
+    [SerializeField] private Transform discardParent;
 
     [Header("Card UI Prefab")]
-    public GameObject cardUIPrefab;        // 카드 하나당 보여줄 UI 프리팹
+    [SerializeField] private GameObject cardUIPrefab;
 
     [Header("Close Button")]
-    public Button closeButton;             // 덱뷰어 닫기 버튼 (선택)
+    [SerializeField] private Button closeButton;
 
     [Header("Deck&Discard Panel")]
-    public GameObject deckPanel;
+    [SerializeField] private GameObject deckPanel;
 
     [Header("Texts")]
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI descriptionText;
-
-    [Header("Count Texts")]
-    public TextMeshProUGUI deckCountText;
-    public TextMeshProUGUI discardCountText;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
     private void Awake()
     {
+        // ✅ Singleton 보장
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+            return;
+        }
 
         if (closeButton != null)
+        {
             closeButton.onClick.AddListener(CloseViewer);
+        }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        if (DeckManager.Instance != null)
-        {
-            DeckManager.Instance.OnDeckChanged += UpdateDeckCount;
-            DeckManager.Instance.OnDiscardChanged += UpdateDiscardCount;
-        }
-
-    }
-
-    private void OnDestroy()
-    {
-        if (DeckManager.Instance != null)
-        {
-            DeckManager.Instance.OnDeckChanged -= UpdateDeckCount;
-            DeckManager.Instance.OnDiscardChanged -= UpdateDiscardCount;
-        }
+        ForceRefreshAll(); // 버튼으로 활성화될 때마다 새로 갱신
     }
 
     /// <summary>
@@ -65,7 +53,7 @@ public class C_DeckViewerManager : MonoBehaviour
     /// </summary>
     public void OpenDeckOnly()
     {
-        deckPanel.SetActive(true);
+        if (deckPanel != null) deckPanel.SetActive(true);
         ClearAllCards();
         RefreshDeck();
 
@@ -78,7 +66,7 @@ public class C_DeckViewerManager : MonoBehaviour
     /// </summary>
     public void OpenDiscardOnly()
     {
-        deckPanel.SetActive(true);
+        if (deckPanel != null) deckPanel.SetActive(true);
         ClearAllCards();
         RefreshDiscard();
 
@@ -86,38 +74,32 @@ public class C_DeckViewerManager : MonoBehaviour
         if (descriptionText != null) descriptionText.text = "This is a list of cards used or discarded during this battle.";
     }
 
-    /// <summary>
-    /// 덱 뷰어를 닫는다
-    /// </summary>
     public void CloseViewer()
     {
         ClearAllCards();
-        deckPanel.SetActive(false);
+        if (deckPanel != null) deckPanel.SetActive(false);
     }
 
-    /// <summary>
-    /// 전투 덱만 갱신
-    /// </summary>
     private void RefreshDeck()
     {
+        if (deckParent == null || DeckManager.Instance == null) return;
+
         List<CardData> combatDeck = DeckManager.Instance.GetCombatDeck();
         RefreshList(combatDeck, deckParent);
     }
 
-    /// <summary>
-    /// 버림패만 갱신
-    /// </summary>
     private void RefreshDiscard()
     {
+        if (discardParent == null || DeckManager.Instance == null) return;
+
         List<CardData> discardPile = DeckManager.Instance.GetDiscardPile();
         RefreshList(discardPile, discardParent);
     }
 
-    /// <summary>
-    /// 카드 리스트를 부모 아래에 갱신
-    /// </summary>
     private void RefreshList(List<CardData> cards, Transform parent)
     {
+        if (parent == null || cardUIPrefab == null) return;
+
         foreach (Transform child in parent)
         {
             Destroy(child.gameObject);
@@ -130,59 +112,29 @@ public class C_DeckViewerManager : MonoBehaviour
 
             if (cardUI != null)
             {
-                cardUI.Setup(card); // 카드 데이터로 초기화
+                cardUI.Setup(card);
                 cardUI.SetInteractable(false);
             }
             else
             {
-                Debug.LogWarning("CardUI 컴포넌트가 프리팹에 없습니다!");
+                Debug.LogWarning("[C_DeckViewerManager] CardUI 컴포넌트가 프리팹에 없습니다!");
             }
         }
     }
 
-    /// <summary>
-    /// 덱뷰어를 닫을 때 기존 카드 오브젝트 제거
-    /// </summary>
     private void ClearAllCards()
     {
-        foreach (Transform child in deckParent)
-            Destroy(child.gameObject);
-        foreach (Transform child in discardParent)
-            Destroy(child.gameObject);
-    }
+        if (deckParent != null)
+        {
+            foreach (Transform child in deckParent)
+                Destroy(child.gameObject);
+        }
 
-    private void UpdateDeckCount()
-    {
-        if (deckCountText != null)
+        if (discardParent != null)
         {
-            int count = DeckManager.Instance.GetCombatDeck().Count;
-            Debug.Log($"[UpdateDeckCount] 호출됨: 현재 덱 카드 수 = {count}");
-            deckCountText.text = count.ToString();
+            foreach (Transform child in discardParent)
+                Destroy(child.gameObject);
         }
-        else
-        {
-            Debug.LogWarning("[UpdateDeckCount] deckCountText가 null입니다!");
-        }
-    }
-
-    private void UpdateDiscardCount()
-    {
-        if (discardCountText != null)
-        {
-            int count = DeckManager.Instance.GetDiscardPile().Count;
-            Debug.Log($"[UpdateDiscardCount] 호출됨: 현재 버린 패 카드 수 = {count}");
-            discardCountText.text = count.ToString();
-        }
-        else
-        {
-            Debug.LogWarning("[UpdateDiscardCount] discardCountText가 null입니다!");
-        }
-    }
-
-    public void ForceUpdateCounts()
-    {           
-      UpdateDeckCount();
-      UpdateDiscardCount();
     }
 
     public void ForceRefreshAll()
@@ -190,5 +142,4 @@ public class C_DeckViewerManager : MonoBehaviour
         RefreshDeck();
         RefreshDiscard();
     }
-
 }

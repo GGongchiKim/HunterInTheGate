@@ -85,8 +85,18 @@ MonoBehaviour:
     speakerName: "\uC11C\uC608\uB9B0"
     portraitSpriteId: PScg_Default
     choices: []
+    nextNodeId: GATE_FadedCastle04-08
+    action:
+      actionType: 1
+      parameter: 
+  - nodeId: GATE_FadedCastle04-08
+    nodeType: 2
+    text: 
+    speakerName: 
+    portraitSpriteId: 
+    choices: []
     nextNodeId: 
     action:
-      actionType: 0
-      parameter: 
+      actionType: 1
+      parameter: GATE_FadedCastle05
   backgroundSpriteId: FadedCastleEventBG

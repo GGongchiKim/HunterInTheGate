@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoblinKnight
   m_EditorClassIdentifier: 
   enemyName: GoblinKnight
-  sprite: {fileID: 21300000, guid: 29d92597f57713c4c8f18904c2151077, type: 3}
+  enemySprite: {fileID: 21300000, guid: 29d92597f57713c4c8f18904c2151077, type: 3}
   maxHealth: 71
   isBoss: 0
   normalPatterns:

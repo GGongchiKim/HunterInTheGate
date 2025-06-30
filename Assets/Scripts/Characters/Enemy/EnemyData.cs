@@ -6,9 +6,15 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public string enemyName;
-    public Sprite sprite;
+
+    [Header("Visual")]
+    public Sprite enemySprite;
+
+    [Header("Stats")]
     public int maxHealth;
     public bool isBoss;
+
+    [Header("Action Patterns")]
     public List<EnemyActionPattern> normalPatterns;
     public EnemyActionPattern specialPattern; // optional
 }

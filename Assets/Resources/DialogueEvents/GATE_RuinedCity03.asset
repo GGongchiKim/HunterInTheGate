@@ -44,7 +44,7 @@ MonoBehaviour:
       conditions: []
       effects: []
       jumpType: 1
-      jumpTargetIdOrScene: GATE_RuinedCity04
+      jumpTargetIdOrScene: GATE_RuinedCity04-B
     nextNodeId: 
     action:
       actionType: 0

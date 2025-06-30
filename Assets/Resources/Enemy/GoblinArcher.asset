@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoblinArcher
   m_EditorClassIdentifier: 
   enemyName: GoblinArcher
-  sprite: {fileID: 21300000, guid: 75b40b93e12150040a1c7abc0ade94a5, type: 3}
+  enemySprite: {fileID: 21300000, guid: 75b40b93e12150040a1c7abc0ade94a5, type: 3}
   maxHealth: 45
   isBoss: 0
   normalPatterns:

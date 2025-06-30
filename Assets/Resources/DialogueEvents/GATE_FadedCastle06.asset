@@ -85,4 +85,4 @@ MonoBehaviour:
     action:
       actionType: 0
       parameter: 
-  backgroundSpriteId: FadedCastleEventBG
+  backgroundSpriteId: FadedCastleTopBG

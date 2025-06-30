@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classNameText: {fileID: 9147384386177475887}
+  iconSprite: {fileID: 4610022967996355075}
 --- !u!114 &4510757399809894306
 MonoBehaviour:
   m_ObjectHideFlags: 0

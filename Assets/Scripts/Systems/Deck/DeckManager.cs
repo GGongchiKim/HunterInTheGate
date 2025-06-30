@@ -5,10 +5,13 @@ public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance { get; private set; }
 
-    [SerializeField] private List<CardData> permanentDeck = new List<CardData>();
-    [SerializeField] private List<CardData> temporaryDeck = new List<CardData>();
-    [SerializeField] private List<CardData> discardPile = new List<CardData>();
-    [SerializeField] private List<CardData> combatDeck = new List<CardData>();
+    [Header("덱 구성")]
+    [SerializeField] private List<CardData> permanentDeck = new();
+    [SerializeField] private List<CardData> temporaryDeck = new();
+
+    [Header("전투 중 덱 상태")]
+    [SerializeField] private List<CardData> combatDeck = new();
+    [SerializeField] private List<CardData> discardPile = new();
 
     public event System.Action OnDeckChanged;
     public event System.Action OnDiscardChanged;
@@ -16,43 +19,60 @@ public class DeckManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+            return;
+        }
     }
 
+    /// <summary>
+    /// 전투 시작 시 전투용 덱을 초기화한다
+    /// </summary>
     public void InitializeCombatDeck()
     {
         combatDeck.Clear();
+        discardPile.Clear();
+
         combatDeck.AddRange(permanentDeck);
         combatDeck.AddRange(temporaryDeck);
+
         ShuffleList(combatDeck);
-        Debug.Log("이니셜 컴뱃 - 덱변화 인보크");
+
+        Debug.Log("[DeckManager] 전투 덱 초기화 완료");
         OnDeckChanged?.Invoke();
         OnDiscardChanged?.Invoke();
     }
 
+    /// <summary>
+    /// 덱에서 카드를 드로우한다
+    /// </summary>
     public List<CardData> DrawCards(int count)
     {
-        List<CardData> drawnCards = new List<CardData>();
+        List<CardData> drawnCards = new();
 
         for (int i = 0; i < count; i++)
         {
-            if (combatDeck.Count == 0)
+            if (combatDeck.Count == 0 && discardPile.Count > 0)
             {
-                if (discardPile.Count > 0)
-                    ReshuffleDiscardIntoCombatDeck();
+                ReshuffleDiscardIntoCombatDeck();
             }
+
             if (combatDeck.Count > 0)
             {
-                drawnCards.Add(combatDeck[0]);
-                
+                CardData drawn = combatDeck[0];
                 combatDeck.RemoveAt(0);
-                Debug.Log("드로우카드 - 덱변화 인보크");
+                drawnCards.Add(drawn);
+
+                Debug.Log($"[Draw] 카드 [{drawn.cardName}] 드로우됨");
                 OnDeckChanged?.Invoke();
             }
             else
             {
+                Debug.Log("[Draw] 드로우 실패: 덱이 비어 있음");
                 break;
             }
         }
@@ -60,54 +80,62 @@ public class DeckManager : MonoBehaviour
         return drawnCards;
     }
 
+    /// <summary>
+    /// 단일 카드 버림
+    /// </summary>
     public void DiscardCard(CardData card)
     {
-        if (card == null) return;
+        if (card == null)
+        {
+            Debug.LogWarning("[DiscardCard] 카드가 null입니다.");
+            return;
+        }
 
         discardPile.Add(card);
-        Debug.Log($"[DiscardPile] 카드 [{card.cardName}]가 버려졌습니다. 현재 버린 더미 수: {discardPile.Count}");
-        Debug.Log("디스카드 - 버림패변화 인보크");
+        Debug.Log($"[Discard] 카드 [{card.cardName}]가 버려졌습니다 (현재 {discardPile.Count}장)");
         OnDiscardChanged?.Invoke();
-       
     }
 
+    /// <summary>
+    /// 복수 카드 버림
+    /// </summary>
     public void DiscardCards(List<CardData> cards)
     {
-        if (cards == null || cards.Count == 0) return;
+        if (cards == null || cards.Count == 0)
+        {
+            Debug.LogWarning("[DiscardCards] 전달된 카드 리스트가 비어 있습니다.");
+            return;
+        }
 
         discardPile.AddRange(cards);
-        Debug.Log("디스카드카드즈 - 버림패변화 인보크");
+        Debug.Log($"[Discard] 카드 {cards.Count}장 버려짐 (총 버림 {discardPile.Count}장)");
         OnDiscardChanged?.Invoke();
     }
 
+    /// <summary>
+    /// 버린 더미를 다시 전투 덱으로 셔플
+    /// </summary>
     private void ReshuffleDiscardIntoCombatDeck()
     {
         combatDeck.AddRange(discardPile);
         discardPile.Clear();
         ShuffleList(combatDeck);
-        Debug.Log("리셔플 - 덱변화 인보크");
+
+        Debug.Log("[DeckManager] 버린 패를 덱으로 셔플");
         OnDeckChanged?.Invoke();
         OnDiscardChanged?.Invoke();
     }
 
-    private void ShuffleList(List<CardData> list)
-    {
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int randomIndex = Random.Range(0, i + 1);
-            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
-        }
-    }
-
+    /// <summary>
+    /// 카드 완전 제거 (소멸)
+    /// </summary>
     public void ExhaustCard(CardData card)
     {
         if (card == null)
         {
-            Debug.LogWarning("ExhaustCard() - 카드가 null입니다.");
+            Debug.LogWarning("[ExhaustCard] 카드가 null입니다.");
             return;
         }
-
-        Debug.Log($"[Exhaust] 카드 [{card.cardName}]가 완전히 제거됩니다.");
 
         bool changed = false;
 
@@ -117,9 +145,25 @@ public class DeckManager : MonoBehaviour
 
         if (changed)
         {
-          
+            Debug.Log($"[Exhaust] 카드 [{card.cardName}] 완전히 제거됨");
             OnDeckChanged?.Invoke();
             OnDiscardChanged?.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning($"[Exhaust] 카드 [{card.cardName}]를 제거할 수 없습니다 (덱에 없음)");
+        }
+    }
+
+    /// <summary>
+    /// 리스트 셔플
+    /// </summary>
+    private void ShuffleList(List<CardData> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
         }
     }
 

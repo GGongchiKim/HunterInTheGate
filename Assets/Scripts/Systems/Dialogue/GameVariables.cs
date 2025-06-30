@@ -4,7 +4,7 @@ public static class GameVariables
 {
     // 내부 변수 저장소 (모든 값은 object로 저장)
     private static Dictionary<string, object> variables = new();
-
+    public static string CurrentDialogueEventId;
     // --- Setter ---
 
     public static void Set(string key, int value) => variables[key] = value;

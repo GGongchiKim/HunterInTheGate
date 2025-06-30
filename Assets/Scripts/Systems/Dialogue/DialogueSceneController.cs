@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +29,7 @@ public class DialogueSceneController : MonoBehaviour
     void Start()
     {
         string eventId = SceneDataBridge.Instance.ConsumeData<string>("EventId");
+
         if (!string.IsNullOrEmpty(eventId))
         {
             DialogueEvent loadedEvent = DialogueEventLoader.LoadEventById(eventId);
@@ -46,6 +48,10 @@ public class DialogueSceneController : MonoBehaviour
             Debug.LogWarning("Dialogue data is empty or not assigned.");
             return;
         }
+
+        // SCG 기본값: 완전 투명으로 초기화
+        if (playerScg != null) playerScg.color = new Color(1f, 1f, 1f, 0f);
+        if (npcScg != null) npcScg.color = new Color(1f, 1f, 1f, 0f);
 
         currentNodeId = dialogueData.nodes[0].nodeId;
         ShowCurrentNode();
@@ -89,7 +95,6 @@ public class DialogueSceneController : MonoBehaviour
     {
         speakerNameText.text = node.speakerName;
 
-        // SCG 이미지 처리
         bool isPlayer = IsPlayer(node.speakerName);
         Sprite sprite = null;
 
@@ -106,20 +111,27 @@ public class DialogueSceneController : MonoBehaviour
         }
         else
         {
+            // 스프라이트 없을 경우 이미지도 null + 투명화 처리
             activeImage.sprite = null;
-            activeImage.color = new Color(1, 1, 1, 0);
+            activeImage.color = new Color(1f, 1f, 1f, 0f);
         }
 
+        // 상대방 이미지 흐리게 (스프라이트 없으면 그냥 투명)
         if (inactiveImage.sprite != null)
+        {
             inactiveImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+        }
         else
-            inactiveImage.color = new Color(1, 1, 1, 0);
+        {
+            inactiveImage.color = new Color(1f, 1f, 1f, 0f);
+        }
 
-        //  텍스트 타이핑 처리 시작
+        //  텍스트 타이핑 처리
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
         typingCoroutine = StartCoroutine(TypeText(node.text));
     }
+
 
     IEnumerator TypeText(string fullText)
     {
@@ -232,6 +244,12 @@ public class DialogueSceneController : MonoBehaviour
             {
                 case DialogueActionType.StartCombat:
                     Debug.Log($"[Action] 전투 시작: {node.action.parameter}");
+                    SceneTransitionManager.Instance.LoadSceneWithFade(
+                    "CombatScene",
+                    GamePhase.Combat,
+                    node.action.parameter)
+;
+
                     return;
 
                 case DialogueActionType.BranchDialogue:

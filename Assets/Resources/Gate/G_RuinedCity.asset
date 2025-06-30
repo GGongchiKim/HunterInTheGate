@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293002ff0341ef44997dc922a6950a36, type: 3}
+  m_Name: G_RuinedCity
+  m_EditorClassIdentifier: 
+  gateId: G_RuinedCity
+  gateName: RuinedCity
+  gateIcon: {fileID: 21300000, guid: f6b513481a7066544a5eef2cd3d429aa, type: 3}
+  monsterSprites:
+  - {fileID: 21300000, guid: 9a30306c912ebdb48ac7fc05ec125486, type: 3}
+  - {fileID: 21300000, guid: 75b40b93e12150040a1c7abc0ade94a5, type: 3}
+  - {fileID: 21300000, guid: 29d92597f57713c4c8f18904c2151077, type: 3}
+  artifacts:
+  - title: "\uBAA8\uD5D8\uC790\uC758 \uBC30\uB0AD"
+    image: {fileID: 21300000, guid: 4862fec541767764ca923b377241ee7e, type: 3}
+    description: "\uB9E4\uD134 \uD55C \uC7A5\uC758 \uCD94\uAC00 \uB4DC\uB85C\uC6B0\uB97C
+      \uD68D\uB4DD\uD569\uB2C8\uB2E4."
+  - title: "\uC5C5\uD654\uC758 \uAC80"
+    image: {fileID: 21300000, guid: 995b16ea5e90038458a5df865a888ab9, type: 3}
+    description: "\uB9E4\uD134 \uC785\uD788\uB294 \uD654\uC0C1\uC758 \uD53C\uD574\uB7C9\uC774
+      50% \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  - title: C.A.P
+    image: {fileID: 21300000, guid: 3b8cfe1206e57d947ae336d51b921fa9, type: 3}
+    description: "\uCCB4\uB825\uC774 10 \uC0C1\uC2B9\uD569\uB2C8\uB2E4"
+  - title: "\uB9E4\uB825\uC758 \uBC18\uC9C0"
+    image: {fileID: 21300000, guid: 66d85cf1752bcd94c8647fab012469db, type: 3}
+    description: "\uB9E4\uB825\uC774 10 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  dialogueEventId: GATE_RuinedCity01

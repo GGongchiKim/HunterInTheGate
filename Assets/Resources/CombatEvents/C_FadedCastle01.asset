@@ -17,7 +17,6 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 928a20ab5fbb67549aa5c45b4648aefe, type: 2}
   - {fileID: 11400000, guid: 928a20ab5fbb67549aa5c45b4648aefe, type: 2}
-  - {fileID: 11400000, guid: 928a20ab5fbb67549aa5c45b4648aefe, type: 2}
   turnDialogues: []
   onWinDialogueId: GATE_FadedCastle02
   onLoseGameOver: 0

@@ -14,6 +14,7 @@ public class ClassPanelManager : MonoBehaviour
     public GameObject classSlotPanel;
 
     [Header("정보 패널 내부 UI")]
+    public Image classIconImage;
     public TMP_Text classNameText;
     public TMP_Text stat1NameText;
     public TMP_Text stat1ValueText;
@@ -77,9 +78,17 @@ public class ClassPanelManager : MonoBehaviour
         classSlotPanel.SetActive(isActive);
     }
 
+    public void OnClickReturn() 
+    {
+        this.gameObject.SetActive(false);
+    
+    
+    }
+
     private void UpdateClassInfoPanel()
     {
         classNameText.text = selectedClass.className;
+        classIconImage.sprite = selectedClass.classIcon;
         stat1NameText.text = stat1ValueText.text = stat2NameText.text = stat2ValueText.text = "";
 
         if (selectedClass.statModifiers.Count > 0)
@@ -119,4 +128,7 @@ public class ClassPanelManager : MonoBehaviour
         if (amount <= -1) return "-";
         return "";
     }
+
+    
+
 }
