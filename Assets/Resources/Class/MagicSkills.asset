@@ -22,9 +22,9 @@ MonoBehaviour:
   - statType: 4
     amount: 5
   previewCards:
+  - {fileID: 11400000, guid: 84ae089bd5edd9e4792d2bfa52f59b33, type: 2}
   - {fileID: 11400000, guid: aa2732c4a04daea4e8622064d223818c, type: 2}
   - {fileID: 11400000, guid: 1e03df5f1053af34b8b3fa2e64c4f5f2, type: 2}
-  - {fileID: 11400000, guid: 9c48b5e73b06be543bdcc1ad9b5e3523, type: 2}
   - {fileID: 11400000, guid: 6f88c93b4fc75144d9b6a3089ac6dbc5, type: 2}
   rewardPool:
   - {fileID: 11400000, guid: aa2732c4a04daea4e8622064d223818c, type: 2}
