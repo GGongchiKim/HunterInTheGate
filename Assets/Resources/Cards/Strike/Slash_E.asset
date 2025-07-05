@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 0}
   targetType: 0
-  baseDamage: 500
+  baseDamage: 10
   attackCount: 1
   strengthMultiplier: 0.2
   agilityMultiplier: 0

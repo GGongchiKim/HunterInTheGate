@@ -150,5 +150,8 @@ public class CombatSceneInitializer : MonoBehaviour
 
         C_HUDManager.Instance.UpdatePlayerHealth(player.health, player.maxHealth);
         TurnManager.Instance.StartCombat();
+
+        AudioManager.Instance?.PlayBGM("CombatBGM", true);
+
     }
 }

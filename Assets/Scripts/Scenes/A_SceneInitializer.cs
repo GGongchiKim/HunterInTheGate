@@ -52,6 +52,9 @@ public class A_SceneInitializer : MonoBehaviour
 
         if (scheduleManager != null)
             scheduleManager.InitScheduleMenuButtons(); // 버튼 초기화는 Start 이후에 안전하게 호출
+
+        AudioManager.Instance?.PlayBGM("AcademyBGM",true);
+
     }
 
     public void InitializeScene()
