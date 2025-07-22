@@ -1,3 +1,5 @@
+using Inventory;
+using SaveSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,13 +31,9 @@ public class CombatSceneInitializer : MonoBehaviour
         GameStateManager.Instance.SetPhase(GamePhase.Combat);
 
         if (managerGroupPrefab != null)
-        {
             Instantiate(managerGroupPrefab);
-        }
         else
-        {
             Debug.LogError("[CombatSceneInitializer] managerGroupPrefab이 설정되지 않았습니다.");
-        }
 
         if (deckViewerPanelPrefab != null)
         {
@@ -45,9 +43,7 @@ public class CombatSceneInitializer : MonoBehaviour
             C_HUDManager.Instance.SetDeckViewerPanel(panelInstance);
         }
         else
-        {
             Debug.LogError("[CombatSceneInitializer] deckViewerPanelPrefab이 설정되지 않았습니다.");
-        }
 
         string eventId = SceneDataBridge.Instance.GetString("EventId");
         if (string.IsNullOrEmpty(eventId))
@@ -70,15 +66,38 @@ public class CombatSceneInitializer : MonoBehaviour
             return;
         }
 
+        // 플레이어 생성 및 설정
         GameObject playerGO = Instantiate(combatPlayerPrefab);
         CombatPlayer combatPlayer = playerGO.GetComponent<CombatPlayer>();
         combatPlayer.LoadFromAcademy(academyPlayer);
 
+        // 선택된 덱 적용 및 DeckManager 초기화
+        DeckSaveData selectedDeck = SceneDataBridge.Instance.ConsumeData<DeckSaveData>("SelectedDeck");
+        if (selectedDeck != null)
+        {
+            combatPlayer.LoadDeck(selectedDeck);
+
+            List<CardData> cardList = new();
+            foreach (string cardId in selectedDeck.cardIds)
+            {
+                var card = CardDatabase.Instance.GetCardById(cardId);
+                if (card != null)
+                    cardList.Add(card);
+            }
+            DeckManager.Instance.InitializeCombatDeck(cardList);
+        }
+        else
+        {
+            Debug.LogWarning("[CombatSceneInitializer] 선택된 덱이 없어 기본 덱을 사용합니다.");
+            selectedDeck = GameContext.Instance.inventory.GetDefaultDeck();
+        }
+
+        // 효과 핸들러 연동
         var playerEffectHandler = combatPlayer.GetComponent<EffectHandler>();
         if (playerEffectHandler != null)
             playerEffectHandler.statusEffectPanel = C_HUDManager.Instance.playerStatusPanel;
 
-        // === 적 배치 위치 계산 ===
+        // === 적 배치 ===
         List<Enemy> enemyList = new();
         float currentX = 0f;
         float previousHalfWidth = 0f;
@@ -90,49 +109,37 @@ public class CombatSceneInitializer : MonoBehaviour
             Enemy enemy = enemyGO.GetComponent<Enemy>();
             enemy.Initialize(enemyData);
 
-            // 스프라이트 크기 측정
             Transform spriteTF = enemyGO.transform.Find("EnemySprite");
             SpriteRenderer sr = spriteTF?.GetComponent<SpriteRenderer>();
             float currentHalfWidth = (sr != null && sr.sprite != null) ? sr.sprite.bounds.size.x / 2f : 0.5f;
 
-            // 위치 계산
-            if (i == 0)
-            {
-                currentX = 0f;
-            }
-            else
-            {
-                currentX += (previousHalfWidth + currentHalfWidth) * spacingBase;
-            }
-
-            float offset = -((evt.enemies.Count - 1) / 2f) * currentX; // 중앙 정렬용
+            currentX += (i == 0 ? 0f : (previousHalfWidth + currentHalfWidth) * spacingBase);
+            float offset = -((evt.enemies.Count - 1) / 2f) * currentX;
             Vector3 spawnPos = enemySpawnCenter != null ? enemySpawnCenter.position : Vector3.zero;
             enemyGO.transform.position = spawnPos + new Vector3(currentX + offset, 0, 0);
 
             previousHalfWidth = currentHalfWidth;
 
-            // === HUD 생성 및 연결 ===
+            // HUD 연결
             GameObject hudGO = Instantiate(enemyHUDPrefab, C_HUDManager.Instance.enemyHUDParent);
             var hudHandler = hudGO.GetComponent<EnemyHUDHandler>();
             if (hudHandler != null)
             {
                 hudHandler.Initialize(enemy);
                 hudHandler.UpdateHealth(enemy.health, enemy.maxHealth, enemy.currentShield);
-
                 enemy.enemyHUD = hudHandler;
 
                 var effectHandler = enemy.GetComponent<EffectHandler>();
                 if (effectHandler != null)
-                {
                     effectHandler.statusEffectPanel = hudHandler.GetStatusPanel();
-                }
             }
 
             C_HUDManager.Instance.RegisterEnemyHUD(enemy, hudGO);
             enemyList.Add(enemy);
         }
 
-        CombatContext.Instance.InitializeFromAcademy(academyPlayer, enemyList, evt);
+        // 전투 컨텍스트 설정
+        CombatContext.Instance.InitializeFromAcademy(combatPlayer, enemyList, evt);
         CombatContext.Instance.combatPlayer = combatPlayer;
 
         Debug.Log($"[CombatSceneInitializer] CombatContext 초기화 완료 (eventId = {eventId})");
@@ -150,8 +157,6 @@ public class CombatSceneInitializer : MonoBehaviour
 
         C_HUDManager.Instance.UpdatePlayerHealth(player.health, player.maxHealth);
         TurnManager.Instance.StartCombat();
-
         AudioManager.Instance?.PlayBGM("CombatBGM", true);
-
     }
 }

@@ -32,17 +32,24 @@ public class DeckManager : MonoBehaviour
     /// <summary>
     /// 전투 시작 시 전투용 덱을 초기화한다
     /// </summary>
-    public void InitializeCombatDeck()
+    public void InitializeCombatDeck(List<CardData> selectedCards)
     {
         combatDeck.Clear();
         discardPile.Clear();
 
-        combatDeck.AddRange(permanentDeck);
-        combatDeck.AddRange(temporaryDeck);
+        if (selectedCards == null || selectedCards.Count == 0)
+        {
+            Debug.LogWarning("[DeckManager] 선택된 덱 카드가 비어 있습니다. 기본 임시 덱을 사용할 수 있습니다.");
+            // 필요하다면 여기에 fallback 로직 삽입 가능
+        }
+        else
+        {
+            combatDeck.AddRange(selectedCards);
+        }
 
         ShuffleList(combatDeck);
 
-        Debug.Log("[DeckManager] 전투 덱 초기화 완료");
+        Debug.Log($"[DeckManager] 전투 덱 초기화 완료 ({combatDeck.Count}장)");
         OnDeckChanged?.Invoke();
         OnDiscardChanged?.Invoke();
     }

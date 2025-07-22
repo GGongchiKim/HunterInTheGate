@@ -12,7 +12,8 @@ public class A_SceneInitializer : MonoBehaviour
     [Header("MainMenu 관련")]
     public GameObject saveLoadPanel;//saveLoadPanel 컨트롤러
     public GameObject snLPanel; // saveLoad 하위 UI패널
-    public GameObject statusPanel;
+    public GameObject statusPanel; 
+    public GameObject settingPanel;
 
     [Header("스케줄 관련")]
     public GameObject schedulePanel;          // 스케줄 시스템 전체 루트
@@ -74,7 +75,7 @@ public class A_SceneInitializer : MonoBehaviour
 
     private void InitializeMainMenuPanel() 
     {
-        SetActiveGroup(false,statusPanel,snLPanel);
+        SetActiveGroup(false,statusPanel,snLPanel,settingPanel);
         
         saveLoadPanel.SetActive(true);
         

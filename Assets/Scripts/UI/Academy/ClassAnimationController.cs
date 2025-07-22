@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SystemManager;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ClassAnimationController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ClassAnimationController : MonoBehaviour
     public ClassRewardManager rewardManager;
     public Image cardFrontImage;
     public Image cardBackImage;
+
+    [Header("날짜 연동")]
+    public DateDisplayUpdater dateUpdater;
 
     [Header("카드 회전용")]
     public Transform cardHolderTransform;
@@ -63,12 +67,17 @@ public class ClassAnimationController : MonoBehaviour
         GameContext.Instance.academyPlayer.ApplyModifiers(finalMods);
         yield return new WaitForEndOfFrame();
         ShowResultStatAnimation(finalMods);
+        
+        //날짜 진행
+        yield return StartCoroutine(dateUpdater.AnimateDateChange(0.5f));
 
         yield return new WaitForSeconds(1.0f); // 연출 감상
 
         classAnimationPanel.SetActive(false);
         classRewardPanel.SetActive(true);
         rewardManager.ShowRewards(currentClass);
+
+
     }
 
     private void SetInitialResultStatsFromPlayer()

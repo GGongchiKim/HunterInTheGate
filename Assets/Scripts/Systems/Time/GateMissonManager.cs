@@ -13,7 +13,7 @@ namespace MissionSystem
         [SerializeField]
         private List<int> missionTriggerWeeks = new()
         {
-            4, 16, 28, 40, 52, 64, 76, 88, 100, 112, 124, 136
+            12, 16, 28, 40, 52, 64, 76, 88, 100, 112, 124, 136
         };
 
         [Header("미션 상태 추적")]
@@ -27,6 +27,9 @@ namespace MissionSystem
 
         public int CurrentMissionDeadline => currentMissionDeadline;
         public int FailedCount => failedCount;
+
+
+    
 
         private void Awake()
         {
@@ -42,6 +45,10 @@ namespace MissionSystem
         private void Start()
         {
             GameDateManager.Instance.OnWeekAdvanced += HandleWeekAdvanced;
+
+            //  게임 시작 시점에서 첫 번째 미션 강제 시작
+            int currentWeek = GameDateManager.Instance.CurrentWeekIndex;
+            TriggerMission(currentWeek);
         }
 
         private void OnDestroy()

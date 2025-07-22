@@ -28,21 +28,21 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        effectHandler = GetComponent<EffectHandler>();
-        enemyHUD = GetComponentInChildren<EnemyHUDHandler>();
-
-        // 🔍 SpriteRenderer 할당
         var spriteRoot = transform.Find("EnemySprite");
         if (spriteRoot != null)
         {
+            animator = spriteRoot.GetComponent<Animator>(); // 여기서 Animator 가져오기
             mainRenderer = spriteRoot.GetComponent<SpriteRenderer>();
+
             var shadow = spriteRoot.Find("EnemyShadow");
             if (shadow != null)
             {
                 shadowRenderer = shadow.GetComponent<SpriteRenderer>();
             }
         }
+
+        effectHandler = GetComponent<EffectHandler>();
+        enemyHUD = GetComponentInChildren<EnemyHUDHandler>();
     }
 
     public void Initialize(EnemyData data)

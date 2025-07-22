@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using SaveSystem;
 
 public class ExplorePanelController : MonoBehaviour
 {
@@ -21,9 +22,17 @@ public class ExplorePanelController : MonoBehaviour
     [SerializeField] private List<Image> artifactImages;
     [SerializeField] private List<TextMeshProUGUI> artifactDescriptions;
 
+    [Header("덱 관련 UI")]
+    [SerializeField] private TMP_Dropdown deckDropdown;
+    [SerializeField] private TextMeshProUGUI deckPreviewText;
+    [SerializeField] private Image deckPreviewSprite;
+
     [Header("버튼 모음")]
     [SerializeField] private Button attendButton;
     [SerializeField] private Button returnButton;
+
+    private List<DeckSaveData> deckPresets;
+    private DeckSaveData selectedDeck;
 
     private void OnEnable()
     {
@@ -34,6 +43,10 @@ public class ExplorePanelController : MonoBehaviour
 
     public void Initialize()
     {
+        // 덱 정보 불러오기
+        deckPresets = GameContext.Instance.inventory.GetAllDeckPresets();
+        InitDeckDropdown();
+
         // 기존 슬롯 초기화
         foreach (Transform child in gateSlotParent)
             Destroy(child.gameObject);
@@ -50,24 +63,59 @@ public class ExplorePanelController : MonoBehaviour
             OnGateSelected(gateList[0]);
     }
 
+    private void InitDeckDropdown()
+    {
+        if (deckDropdown == null || deckPresets == null) return;
+
+        deckDropdown.ClearOptions();
+        List<string> optionNames = new();
+
+        foreach (var deck in deckPresets)
+            optionNames.Add(deck.deckName);
+
+        deckDropdown.AddOptions(optionNames);
+        deckDropdown.onValueChanged.AddListener(OnDeckDropdownChanged);
+
+        // 기본 선택은 첫 번째
+        if (deckPresets.Count > 0)
+        {
+            selectedDeck = deckPresets[0];
+            UpdateDeckDisplay(selectedDeck);
+        }
+    }
+
+    private void OnDeckDropdownChanged(int index)
+    {
+        if (index >= 0 && index < deckPresets.Count)
+        {
+            selectedDeck = deckPresets[index];
+            UpdateDeckDisplay(selectedDeck);
+        }
+    }
+
+    private void UpdateDeckDisplay(DeckSaveData deck)
+    {
+        if (deckPreviewText != null)
+            deckPreviewText.text = deck.deckName;
+
+        // TODO: deckPreviewSprite.sprite = deck.previewSprite (필요시)
+    }
+
     private void OnGateSelected(GateData gate)
     {
         currentGate = gate;
 
-        // 1. 게이트 아이콘 및 제목
         if (gateIconImage != null)
             gateIconImage.sprite = gate.gateIcon;
 
         if (gateTitleText != null)
             gateTitleText.text = gate.gateName;
 
-        // 2. 몬스터 이미지 설정
         for (int i = 0; i < monsterImages.Count; i++)
         {
             monsterImages[i].sprite = (i < gate.monsterSprites.Count) ? gate.monsterSprites[i] : null;
         }
 
-        // 3. 아티팩트 정보 설정
         for (int i = 0; i < artifactTitleTexts.Count; i++)
         {
             bool hasData = (i < gate.artifacts.Count);
@@ -85,7 +133,20 @@ public class ExplorePanelController : MonoBehaviour
             return;
         }
 
-        // SceneDataKey를 통한 안정적인 키 전달
+        if (selectedDeck == null)
+        {
+            Debug.LogWarning("[ExplorePanel] 선택된 덱이 없습니다.");
+            return;
+        }
+
+        // 현재 선택된 덱을 activeDeck으로 지정
+        GameContext.Instance.inventory.SetActiveDeck(selectedDeck);
+
+        // 덱 데이터 전달
+        SceneDataBridge.Instance.SetData("SelectedDeck", selectedDeck);
+        SceneDataBridge.Instance.SetData("SelectedDeckId", selectedDeck.deckId); // (필요 시)
+
+        // 씬 전환
         SceneTransitionManager.Instance.LoadSceneWithFade(
             sceneName: "DialogueScene",
             nextPhase: GamePhase.Event,

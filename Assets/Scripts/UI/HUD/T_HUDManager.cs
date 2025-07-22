@@ -2,16 +2,35 @@ using UnityEngine;
 
 public class T_HUDManager : MonoBehaviour
 {
+    [Header("UI Panels")]
+    [SerializeField] private GameObject optionPanel;
+
     public void OnClickGameStart()
     {
-        // 튜토리얼 종료 후 아카데미 씬으로 전환
         SceneTransitionManager.Instance.LoadSceneWithFade("CutScene", GamePhase.Event);
     }
 
-
     public void OnClickContinue()
     {
-        // 튜토리얼 종료 후 아카데미 씬으로 전환
         SceneTransitionManager.Instance.LoadSceneWithFade("AcademyScene", GamePhase.Management);
     }
+
+    public void OnClickOption()
+    {
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(true);
+            AudioManager.Instance?.PlaySE("ui_confirm");
+        }
+        else
+        {
+            Debug.LogWarning("[T_HUDManager] Option Panel이 연결되지 않았습니다.");
+        }
+    }
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
+
+
 }

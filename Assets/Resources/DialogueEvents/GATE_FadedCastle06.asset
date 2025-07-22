@@ -16,7 +16,7 @@ MonoBehaviour:
   nodes:
   - nodeId: GATE_FadedCastle06-01
     nodeType: 0
-    text: "\u2026\uC81C\uAE38. \uC84C\uB2E4."
+    text: "\u2026\uC81C\uAE38."
     speakerName: "\uC774\uB3C4\uACAC"
     portraitSpriteId: Rival_Default
     choices: []

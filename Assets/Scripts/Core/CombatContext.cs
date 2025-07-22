@@ -35,13 +35,12 @@ public class CombatContext : MonoBehaviour
     }
 
     /// <summary>
-    /// Academy 씬에서 넘어온 데이터를 기반으로 전투 준비
+    /// 전투 씬 초기화. 이미 Instantiate된 CombatPlayer를 전달받아 세팅함.
     /// </summary>
-    public void InitializeFromAcademy(AcademyPlayer source, List<Enemy> enemies, CombatEventData combatEvent = null)
+    public void InitializeFromAcademy(CombatPlayer playerInstance, List<Enemy> enemies, CombatEventData combatEvent = null)
     {
-        // 플레이어 설정
-        combatPlayer = new CombatPlayer();
-        combatPlayer.LoadFromAcademy(source);
+        // 외부에서 생성된 CombatPlayer를 직접 주입
+        combatPlayer = playerInstance;
 
         // 적 리스트 설정
         allEnemies = new List<Enemy>(enemies);

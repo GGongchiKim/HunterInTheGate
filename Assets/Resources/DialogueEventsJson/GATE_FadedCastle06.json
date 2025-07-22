@@ -1,0 +1,62 @@
+{
+  "eventId": "GATE_FadedCastle06",
+  "backgroundSpriteId": "BG_FadedCastle",
+  "nodes": [
+    {
+      "nodeId": "GATE_FadedCastle06-01",
+      "nodeType": "Dialogue",
+      "speakerName": "이도견",
+      "portraitSpriteId": "Rival_Default",
+      "text": "…제길.",
+      "nextNodeId": "GATE_FadedCastle06-02"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-02",
+      "nodeType": "Dialogue",
+      "speakerName": "이도견",
+      "portraitSpriteId": "Rival_Default",
+      "text": "(검을 내밀며) 약속이니까… 가져가.",
+      "nextNodeId": "GATE_FadedCastle06-03"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-03",
+      "nodeType": "Dialogue",
+      "speakerName": "서예린",
+      "portraitSpriteId": "PScg_Default",
+      "text": "(검을 받아들며) 의외로 결과를 담담히 받아들이네.",
+      "nextNodeId": "GATE_FadedCastle06-04"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-04",
+      "nodeType": "Dialogue",
+      "speakerName": "이도견",
+      "portraitSpriteId": "Rival_Default",
+      "text": "시끄러. 나도 자존심이 있으니 약속은 지켜. 다음에는 꼭 이겨서 그 검 다시 돌려받을테니까 깨끗이 써라.",
+      "nextNodeId": "GATE_FadedCastle06-05"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-05",
+      "nodeType": "Dialogue",
+      "speakerName": "서예린",
+      "portraitSpriteId": "PScg_Default",
+      "text": "그럴 수 있다면 마음대로 해.",
+      "nextNodeId": "GATE_FadedCastle06-06"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-06",
+      "nodeType": "Dialogue",
+      "speakerName": "서예린",
+      "portraitSpriteId": "PScg_Default",
+      "text": "그럼 수고해.",
+      "nextNodeId": "GATE_FadedCastle06-07"
+    },
+    {
+      "nodeId": "GATE_FadedCastle06-07",
+      "nodeType": "Action",
+      "action": {
+        "actionType": "BranchDialogue",
+        "parameter": "Academy_AfterFadedCastle"
+      }
+    }
+  ]
+}

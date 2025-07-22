@@ -23,6 +23,9 @@ namespace Inventory
         [Header("보유 중인 덱 프리셋")]
         [SerializeField] private List<DeckSaveData> allDeckPresets = new(); // <- 변경됨
 
+        [Header("현재 선택된 전투 덱")]
+        private string activeDeckId = null;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -33,6 +36,15 @@ namespace Inventory
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (GameContext.Instance != null)
+            {
+                GameContext.Instance.inventory = this;
+                DontDestroyOnLoad(gameObject);
+                Debug.Log("[PlayerInventory] GameContext에 연결 완료");
+            }
+
+
         }
 
         private void Start()
@@ -235,6 +247,34 @@ namespace Inventory
                     note = newData.note
                 });
             }
+        }
+        // 현재 선택된 덱 ID 설정
+        public void SetActiveDeck(DeckSaveData deck)
+        {
+            if (deck == null)
+            {
+                Debug.LogWarning("[PlayerInventory] null 덱을 선택하려고 했습니다.");
+                activeDeckId = null;
+                return;
+            }
+
+            activeDeckId = deck.deckId;  // 이 필드는 DeckSaveData에 존재한다고 가정
+            Debug.Log($"[PlayerInventory] 선택된 덱 ID 설정됨: {activeDeckId}");
+        }
+
+        // 현재 선택된 덱 가져오기
+        public DeckSaveData GetActiveDeck()
+        {
+            if (string.IsNullOrEmpty(activeDeckId)) return null;
+            return allDeckPresets.Find(d => d.deckId == activeDeckId);
+        }
+
+        public DeckSaveData GetDefaultDeck()
+        {
+            if (allDeckPresets.Count > 0)
+                return allDeckPresets[0]; // 첫 번째 덱을 기본으로 간주
+            else
+                return null;
         }
 
 

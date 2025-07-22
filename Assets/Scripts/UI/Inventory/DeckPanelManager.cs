@@ -85,9 +85,13 @@ namespace Inventory
                 Destroy(deckUI.gameObject);
             deckUIs.Clear();
 
-            // PlayerInventory에서 덱 정보 가져오기
-            var presets = PlayerInventory.Instance.GetAllDeckPresets();
-            foreach (var deck in presets.OrderBy(d => d.slotIndex))
+            // PlayerInventory에서 덱 프리셋 정렬하여 가져오기
+            var presets = PlayerInventory.Instance.GetAllDeckPresets()
+                .OrderBy(d => d.slotIndex)
+                .ToList();
+
+            // 덱 프리셋 생성 및 초기화
+            foreach (var deck in presets)
             {
                 GameObject go = Instantiate(deckPrefab, recipeSlotParent);
                 var deckUI = go.GetComponent<DeckPresetUI>();
@@ -102,7 +106,11 @@ namespace Inventory
                 };
 
                 deckUI.Initialize(data, this);
+                deckUI.CloseRecipePanel(); // 기본적으로 닫힌 상태로 시작
                 deckUIs.Add(deckUI);
+
+                // 항상 최상단에 배치 (+버튼보다 위)
+                go.transform.SetSiblingIndex(0);
             }
 
             ApplyFilters();

@@ -56,7 +56,8 @@ public class TurnManager : MonoBehaviour
 
     private void BeginCombat()
     {
-        deckManager.InitializeCombatDeck();
+        var selectedCards = CombatContext.Instance.combatPlayer.GetDeck();
+        deckManager.InitializeCombatDeck(selectedCards);
 
         C_HUDManager.Instance.playerSpriteTransform = CombatContext.Instance.combatPlayer.transform;
 

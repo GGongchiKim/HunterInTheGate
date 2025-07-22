@@ -59,4 +59,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d257641e58dcd244c92e0c5af7c20611, type: 2}
   - {fileID: 11400000, guid: 7f50a0f9c727eb04aadf54c50874cbbe, type: 2}
   - {fileID: 11400000, guid: e28a9d638958d984b946884f6d23c360, type: 2}
-  allDeckPresets: []
+  allDeckPresets:
+  - deckName: DefaultDeck
+    cardIds:
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_G_Shield
+    - C_G_Shield
+    - C_G_Shield
+    isSelected: 0
+    isFavorite: 0
+    slotIndex: 0
+    note: 

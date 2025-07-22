@@ -58,6 +58,11 @@ public class SchedulePanelManager : MonoBehaviour
         scheduleMenuPanel.SetActive(false);
     }
 
+    public void CloseOutingPanel()
+    {
+        outingPanel.SetActive(false);
+    }
+
     public void CloseScheduleDetailPanels()
     {
         classPanel.SetActive(false);
@@ -83,12 +88,15 @@ public class SchedulePanelManager : MonoBehaviour
                 break;
             case ScheduleType.Outing:
                 outingPanel.SetActive(true);
+                scheduleMenuPanel.SetActive(false);
                 break;
             case ScheduleType.GateDive:
                 gateDivePanel.SetActive(true);
+                scheduleMenuPanel.SetActive(false);
                 break;
             case ScheduleType.Rest:
                 restPanel.SetActive(true);
+                scheduleMenuPanel.SetActive(false);
                 break;
         }
     }

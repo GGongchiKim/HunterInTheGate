@@ -45,16 +45,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  strength: 0
-  agility: 0
-  magic: 0
-  insight: 0
-  willPower: 0
-  wit: 0
-  charisma: 0
-  luck: 0
+  combat:
+    strength: 0
+    agility: 0
+    magic: 0
+    insight: 0
+    willPower: 0
+    wit: 0
+  relation:
+    charisma: 0
+    luck: 0
+    fame: 0
+  condition:
+    mood: 0
+    stress: 0
+  gold: 0
+  hunterRank: 0
   deck:
-    deckName: 
-    cardIds: []
-  inventoryCards: []
-  reputation: 0
+    deckName: DefaultDeck
+    cardIds:
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_S_Slash
+    - C_G_Shield
+    - C_G_Shield
+    - C_G_Shield
+    isSelected: 0
+    isFavorite: 0
+    slotIndex: -1
+    note: 

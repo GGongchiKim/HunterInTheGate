@@ -1,3 +1,4 @@
+using Inventory;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class GameContext : MonoBehaviour
     public AcademyPlayer academyPlayer;
     public GameObject academyPlayerPrefab;
 
+    [Header("인벤토리")]
+    public PlayerInventory inventory;
+
     public enum SceneType { Academy, Combat, Inventory, Event }
     public SceneType currentScene = SceneType.Academy;
 
@@ -19,13 +23,7 @@ public class GameContext : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            if (academyPlayer == null && academyPlayerPrefab != null)
-            {
-                GameObject playerInstance = Instantiate(academyPlayerPrefab);
-                academyPlayer = playerInstance.GetComponent<AcademyPlayer>();
-                academyPlayer.InitializeStats(); // ✅ 초기 능력치 설정 호출
-                DontDestroyOnLoad(playerInstance);
-            }
+            InitializeAcademyPlayer();
             Debug.Log($"[GameContext] AcademyPlayer 생성 완료: {academyPlayer}");
         }
         else
@@ -34,11 +32,30 @@ public class GameContext : MonoBehaviour
         }
     }
 
+    private void InitializeAcademyPlayer()
+    {
+        if (academyPlayer == null && academyPlayerPrefab != null)
+        {
+            GameObject playerInstance = Instantiate(academyPlayerPrefab);
+            academyPlayer = playerInstance.GetComponent<AcademyPlayer>();
+            academyPlayer.InitializeStats();
+            DontDestroyOnLoad(playerInstance);
+        }
+    }
+
     public void EnterCombatScene(List<Enemy> enemies)
     {
         currentScene = SceneType.Combat;
-        CombatContext.Instance.InitializeFromAcademy(academyPlayer, enemies);
+
+        // CombatPlayer 생성 및 세팅
+        GameObject combatPlayerGO = new GameObject("CombatPlayer");
+        CombatPlayer combatPlayer = combatPlayerGO.AddComponent<CombatPlayer>();
+        combatPlayer.LoadFromAcademy(academyPlayer);
+        DontDestroyOnLoad(combatPlayerGO);
+
+        CombatContext.Instance.InitializeFromAcademy(combatPlayer, enemies);
     }
+
 
     public void ExitCombatScene()
     {
@@ -49,5 +66,4 @@ public class GameContext : MonoBehaviour
     {
         currentScene = nextScene;
     }
-    
 }

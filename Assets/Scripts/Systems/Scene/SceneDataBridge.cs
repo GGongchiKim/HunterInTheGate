@@ -24,11 +24,17 @@ public class SceneDataBridge : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 데이터 설정
+    /// </summary>
     public void SetData(string key, object value)
     {
         data[key] = value;
     }
 
+    /// <summary>
+    /// 꺼내면서 삭제
+    /// </summary>
     public T ConsumeData<T>(string key)
     {
         if (data.TryGetValue(key, out object value) && value is T typedValue)
@@ -40,6 +46,9 @@ public class SceneDataBridge : MonoBehaviour
         return default;
     }
 
+    /// <summary>
+    /// 그대로 보기만 (삭제 X)
+    /// </summary>
     public T PeekData<T>(string key)
     {
         if (data.TryGetValue(key, out object value) && value is T typedValue)
@@ -50,9 +59,33 @@ public class SceneDataBridge : MonoBehaviour
         return default;
     }
 
+    /// <summary>
+    /// 문자열용 단축 접근자 (삭제 포함)
+    /// </summary>
     public string GetString(string key)
     {
         return ConsumeData<string>(key);
+    }
+
+    /// <summary>
+    /// 키 존재 여부 확인
+    /// </summary>
+    public bool HasData(string key)
+    {
+        return data.ContainsKey(key);
+    }
+
+    /// <summary>
+    /// 타입 확인 포함 반환 (삭제 X)
+    /// </summary>
+    public T GetData<T>(string key)
+    {
+        if (data.TryGetValue(key, out object value) && value is T typedValue)
+        {
+            return typedValue;
+        }
+
+        return default;
     }
 
     public void ClearAll()

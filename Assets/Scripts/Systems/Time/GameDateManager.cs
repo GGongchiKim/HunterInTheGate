@@ -10,6 +10,7 @@ namespace SystemManager
         public event Action<int> OnWeekAdvanced;  // 주차 변경 시
         public event Action<int> OnDayAdvanced;   // 일자 변경 시
 
+        private const int StartYear = 2048; //시작년도
         private const int WeeksPerMonth = 4;
         private const int MonthsPerYear = 12;
         private const int DaysPerWeek = 7;
@@ -40,7 +41,7 @@ namespace SystemManager
             get
             {
                 int totalMonths = currentDayIndex / DaysPerMonth;
-                return 1 + (totalMonths + 2) / MonthsPerYear; // 시작 월 = 3월
+                return StartYear + (totalMonths + 2) / MonthsPerYear;
             }
         }
 
@@ -65,7 +66,7 @@ namespace SystemManager
             int totalMonths = totalDays / DaysPerMonth;
             int day = (totalDays % DaysPerMonth) + 1;
             int month = (totalMonths + 2) % MonthsPerYear + 1;
-            int year = 1 + (totalMonths + 2) / MonthsPerYear;
+            int year = StartYear + (totalMonths + 2) / MonthsPerYear;
             return (year, month, day);
         }
 

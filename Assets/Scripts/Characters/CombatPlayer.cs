@@ -1,3 +1,5 @@
+using Inventory;
+using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +25,9 @@ public class CombatPlayer : MonoBehaviour
     public CombatStats combat = new();
     public RelationStats relation = new();
 
+    [Header("전투 카드 덱")]
+    public List<CardData> playerDeck = new();
+
     [Header("행동력")]
     public int actionPoints;
     public int maxActionPoints;
@@ -34,7 +39,6 @@ public class CombatPlayer : MonoBehaviour
     private Animator animator;
     public EffectHandler effectHandler;
 
-    public CombatPlayer() { }
 
     private void Awake()
     {
@@ -228,4 +232,42 @@ public class CombatPlayer : MonoBehaviour
         actionPoints = maxActionPoints;
         cardProgressMap = new Dictionary<CardData, CardProgress>();
     }
+
+
+    /// <summary>
+    /// 저장된 덱 데이터를 기반으로 전투용 덱을 초기화합니다.
+    /// </summary>
+    public void LoadDeck(DeckSaveData deckData)
+    {
+        if (deckData == null)
+        {
+            Debug.LogError("[CombatPlayer] 덱 데이터가 null입니다.");
+            return;
+        }
+
+        playerDeck.Clear();
+
+        foreach (var cardId in deckData.cardIds)
+        {
+            var card = CardDatabase.Instance.GetCardById(cardId);
+            if (card != null)
+            {
+                playerDeck.Add(card);
+            }
+            else
+            {
+                Debug.LogWarning($"[CombatPlayer] 유효하지 않은 카드 ID: {cardId}");
+            }
+        }
+
+        Debug.Log($"[CombatPlayer] 덱 '{deckData.deckName}' 로드 완료 ({playerDeck.Count}장)");
+    }
+
+
+
+    public List<CardData> GetDeck()
+    {
+        return playerDeck;
+    }
+
 }
